@@ -145,6 +145,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                           text: 'Sign Up',
                           color: AppColors.primaryColor,
                           width: double.infinity,
+                          onPressed: () {},
                         ),
                         SizedBox(height: 16.h),
 
