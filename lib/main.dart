@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nap_nest/core/helper/on_generate_route.dart';
-import 'package:nap_nest/features/auth/presentation/view/register_view.dart';
+import 'package:nap_nest/core/services/shared_preferences_singleton.dart';
+import 'package:nap_nest/features/splash/presentation/view/splash_view1.dart';
 
-void main() {
+void main() async {
+  await SharedPreferencesSingleton.init();
   runApp(
     ScreenUtilInit(
       designSize: Size(428, 926),
@@ -22,6 +24,6 @@ class NapNest extends StatelessWidget {
     debugShowCheckedModeBanner: false,
     theme: ThemeData(fontFamily: 'Roboto'),
     onGenerateRoute: onGenerateRoute,
-    initialRoute: RegisterView.routeName,
+    initialRoute: SplashView1.routeName,
   );
 }
