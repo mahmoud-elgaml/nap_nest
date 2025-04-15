@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nap_nest/features/onboarding/presentation/on_boarding_view_body.dart';
+import 'package:nap_nest/features/onboarding/presentation/views/widgets/on_boarding_view_body.dart';
 
 class OnBoardingView extends StatelessWidget {
   const OnBoardingView({super.key});

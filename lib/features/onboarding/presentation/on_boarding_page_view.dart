@@ -30,32 +30,3 @@ class OnboardingPageView extends StatelessWidget {
     ],
   );
 }
-
-// linter:
-//   rules:
-//     # Disabling any rule by default
-//     avoid_print: false
-//     curly_braces_in_flow_control_structures: true
-//     prefer_single_quotes: true
-
-// # Analyzer options
-// analyzer:
-//   exclude:
-//     - '**/*.g.dart'
-//     - '**/*.freezed.dart'
-//     - '**/*.gr.dart'
-//   errors:
-//     # Treating warnings as errors (optional)
-//     missing_return: warning
-//     unused_element: error
-
-// # Deprecated rules you want to disable
-// deprecated_member_use: false
-
-// # Enable Flutter specific linting rules
-// flutter:
-//   rules:
-//     prefer_const_constructors: true
-//     prefer_final_fields: true
-//     avoid_renaming_method_parameters: true
-//     use_key_in_widget_constructors: true

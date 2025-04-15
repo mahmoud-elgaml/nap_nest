@@ -1,7 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:nap_nest/constants.dart';
+import 'package:nap_nest/core/services/shared_preferences_singleton.dart';
 import 'package:nap_nest/core/utils/app_images.dart';
+import 'package:nap_nest/features/auth/presentation/view/auth_view.dart';
 import 'package:nap_nest/features/onboarding/presentation/views/on_boarding_view.dart';
 
 class SplashView2Body extends StatefulWidget {
@@ -26,12 +29,14 @@ class SplashView2BodyState extends State<SplashView2Body> {
   );
 
   void executeNavigation() {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      Future.delayed(const Duration(milliseconds: 1500), () {
-        if (mounted) {
-          Navigator.of(context).pushReplacementNamed(OnBoardingView.routeName);
-        }
-      });
+    bool isOnBoardingSeen = Prefs.getBool(kIsOnBoardingSeen);
+
+    Future.delayed(const Duration(milliseconds: 1500), () {
+      if (isOnBoardingSeen) {
+        Navigator.pushReplacementNamed(context, AuthView.routeName);
+      } else {
+        Navigator.pushReplacementNamed(context, OnBoardingView.routeName);
+      }
     });
   }
 }
