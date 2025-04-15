@@ -1,0 +1,37 @@
+import 'dart:async';
+
+import 'package:flutter/material.dart';
+import 'package:nap_nest/core/utils/app_images.dart';
+import 'package:nap_nest/features/onboarding/presentation/views/on_boarding_view.dart';
+
+class SplashView2Body extends StatefulWidget {
+  const SplashView2Body({super.key});
+
+  @override
+  SplashView2BodyState createState() => SplashView2BodyState();
+}
+
+class SplashView2BodyState extends State<SplashView2Body> {
+  @override
+  @override
+  void initState() {
+    super.initState();
+    executeNavigation();
+  }
+
+  @override
+  Widget build(BuildContext context) => Scaffold(
+    backgroundColor: Colors.white,
+    body: Center(child: Image.asset(AppImages.imagesAppIcon, width: 200)),
+  );
+
+  void executeNavigation() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Future.delayed(const Duration(milliseconds: 1500), () {
+        if (mounted) {
+          Navigator.of(context).pushReplacementNamed(OnBoardingView.routeName);
+        }
+      });
+    });
+  }
+}
