@@ -26,3 +26,4 @@ flutter:
     prefer_final_fields: true
     avoid_renaming_method_parameters: true
     use_key_in_widget_constructors: true
+    prefer_const_literals_to_create_immutables: true

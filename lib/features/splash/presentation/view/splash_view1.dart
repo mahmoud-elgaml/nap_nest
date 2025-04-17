@@ -3,7 +3,7 @@ import 'package:nap_nest/features/splash/presentation/view/widgets/splash_view1_
 
 class SplashView1 extends StatelessWidget {
   const SplashView1({super.key});
-  static const String routeName = 'splash';
+  static const routeName = 'splash';
 
   @override
   Widget build(BuildContext context) =>

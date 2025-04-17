@@ -3,7 +3,7 @@ import 'package:nap_nest/features/auth/presentation/widgets/register_view_body.d
 
 class RegisterView extends StatelessWidget {
   const RegisterView({super.key});
-  static const String routeName = 'register';
+  static const routeName = 'register';
   @override
   Widget build(BuildContext context) =>
       Scaffold(body: SafeArea(child: RegisterViewBody()));

@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nap_nest/core/utils/app_colors.dart';
 import 'package:nap_nest/core/utils/app_images.dart';
 import 'package:nap_nest/core/widgets/custom_button.dart';
+import 'package:nap_nest/features/auth/presentation/view/forget_password_view.dart';
 import 'package:nap_nest/features/auth/presentation/widgets/custom_text_field.dart';
 import 'package:nap_nest/features/auth/presentation/widgets/dont_have_account.dart';
 import 'package:nap_nest/features/auth/presentation/widgets/other_register.dart';
@@ -106,23 +107,29 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                                       ? 'Minimum 6 characters'
                                       : null,
                         ),
-                        SizedBox(height: 12.h),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
 
                           children: [
-                            Text(
-                              'Forget your password?',
-                              style: TextStyle(
-                                color: AppColors.primaryColor,
-                                fontSize: 14,
-                                fontFamily: 'Roboto',
-                                fontWeight: FontWeight.w700,
+                            TextButton(
+                              onPressed:
+                                  () => Navigator.pushNamed(
+                                    context,
+                                    ForgetPasswordView.routeName,
+                                  ),
+                              child: Text(
+                                'Forget your password?',
+                                style: TextStyle(
+                                  color: AppColors.primaryColor,
+                                  fontSize: 14,
+                                  fontFamily: 'Roboto',
+                                  fontWeight: FontWeight.w700,
+                                ),
                               ),
                             ),
                           ],
                         ),
-                        SizedBox(height: 40.h),
+                        SizedBox(height: 10.h),
                         CustomButton(
                           text: 'Login',
                           color: AppColors.primaryColor,

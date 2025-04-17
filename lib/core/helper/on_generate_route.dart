@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nap_nest/features/auth/presentation/view/auth_view.dart';
+import 'package:nap_nest/features/auth/presentation/view/forget_password_view.dart';
 import 'package:nap_nest/features/auth/presentation/view/login_view.dart';
 import 'package:nap_nest/features/auth/presentation/view/register_view.dart';
 import 'package:nap_nest/features/onboarding/presentation/views/on_boarding_view.dart';
@@ -25,6 +26,11 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
 
     case LoginView.routeName:
       return MaterialPageRoute(builder: (context) => const LoginView());
+
+    case ForgetPasswordView.routeName:
+      return MaterialPageRoute(
+        builder: (context) => const ForgetPasswordView(),
+      );
 
     default:
       return MaterialPageRoute(builder: (context) => const Scaffold());

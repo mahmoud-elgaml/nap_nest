@@ -21,7 +21,7 @@ class AuthViewBody extends StatelessWidget {
             margin: EdgeInsets.symmetric(horizontal: 85.w, vertical: 65.h),
             width: 162.w,
             height: 134.h,
-            child: Image.asset(AppImages.imagesAppIcon),
+            child: Image.asset(AppImages.imagesAppIcon, fit: BoxFit.cover),
           ),
           SizedBox(height: 24.h),
           Row(
@@ -69,15 +69,20 @@ class AuthViewBody extends StatelessWidget {
                   color: const Color(0xFF74B2E7),
                   width: double.infinity,
                   onPressed:
-                      () =>
-                          Navigator.pushNamed(context, RegisterView.routeName),
+                      () => Navigator.pushReplacementNamed(
+                        context,
+                        RegisterView.routeName,
+                      ),
                 ),
                 CustomButton(
                   color: Colors.transparent,
                   text: 'Login',
                   width: double.infinity,
                   onPressed:
-                      () => Navigator.pushNamed(context, LoginView.routeName),
+                      () => Navigator.pushReplacementNamed(
+                        context,
+                        LoginView.routeName,
+                      ),
                 ),
               ],
             ),
