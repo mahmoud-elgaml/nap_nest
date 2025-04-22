@@ -3,10 +3,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nap_nest/core/utils/app_colors.dart';
 import 'package:nap_nest/core/utils/app_images.dart';
 import 'package:nap_nest/core/widgets/custom_button.dart';
-import 'package:nap_nest/features/auth/presentation/view/forget_password_view.dart';
 import 'package:nap_nest/features/auth/presentation/widgets/custom_text_field.dart';
 import 'package:nap_nest/features/auth/presentation/widgets/dont_have_account.dart';
 import 'package:nap_nest/features/auth/presentation/widgets/other_register.dart';
+import 'package:nap_nest/features/userInfo/birthday_view_body.dart';
 
 class LoginViewBody extends StatefulWidget {
   const LoginViewBody({super.key});
@@ -32,14 +32,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
             color: Colors.white,
             height: MediaQuery.of(context).size.height * 0.37,
             padding: EdgeInsets.only(bottom: 30.h),
-            child: Center(
-              child: Image.asset(
-                AppImages.imagesAppIcon,
-
-                width: 134,
-                height: 110,
-              ),
-            ),
+            child: Center(child: Image.asset(AppImages.imagesAppIcon, width: 134, height: 110)),
           ),
           Expanded(
             child: Card(
@@ -91,21 +84,10 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                           hint: 'Enter your password',
                           obscureText: _obscurePassword,
                           suffix: IconButton(
-                            icon: Icon(
-                              _obscurePassword
-                                  ? Icons.visibility_off
-                                  : Icons.visibility,
-                            ),
-                            onPressed:
-                                () => setState(
-                                  () => _obscurePassword = !_obscurePassword,
-                                ),
+                            icon: Icon(_obscurePassword ? Icons.visibility_off : Icons.visibility),
+                            onPressed: () => setState(() => _obscurePassword = !_obscurePassword),
                           ),
-                          validator:
-                              (val) =>
-                                  val!.length < 6
-                                      ? 'Minimum 6 characters'
-                                      : null,
+                          validator: (val) => val!.length < 6 ? 'Minimum 6 characters' : null,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
@@ -113,10 +95,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                           children: [
                             TextButton(
                               onPressed:
-                                  () => Navigator.pushNamed(
-                                    context,
-                                    ForgetPasswordView.routeName,
-                                  ),
+                                  () => Navigator.pushNamed(context, BirthdayViewBody.routeName),
                               child: Text(
                                 'Forget your password?',
                                 style: TextStyle(
@@ -142,18 +121,9 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            OtherRegister(
-                              image: AppImages.imagesIconsGoogle,
-                              onPressed: () {},
-                            ),
-                            OtherRegister(
-                              image: AppImages.imagesIconsFacebook,
-                              onPressed: () {},
-                            ),
-                            OtherRegister(
-                              image: AppImages.imagesIconsApple,
-                              onPressed: () {},
-                            ),
+                            OtherRegister(image: AppImages.imagesIconsGoogle, onPressed: () {}),
+                            OtherRegister(image: AppImages.imagesIconsFacebook, onPressed: () {}),
+                            OtherRegister(image: AppImages.imagesIconsApple, onPressed: () {}),
                           ],
                         ),
                         SizedBox(height: 4.h),

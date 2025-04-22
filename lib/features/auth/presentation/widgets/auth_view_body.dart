@@ -4,12 +4,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nap_nest/core/utils/app_colors.dart';
 import 'package:nap_nest/core/utils/app_images.dart';
 import 'package:nap_nest/core/widgets/custom_button.dart';
-import 'package:nap_nest/features/auth/presentation/view/login_view.dart';
 import 'package:nap_nest/features/auth/presentation/view/register_view.dart';
+import 'package:nap_nest/features/userInfo/birthday_view_body.dart';
 
 class AuthViewBody extends StatelessWidget {
   const AuthViewBody({super.key});
-  static const String routeName = 'authScreen';
+  static const routeName = 'authScreen';
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -68,21 +68,14 @@ class AuthViewBody extends StatelessWidget {
                   text: 'Sign Up',
                   color: const Color(0xFF74B2E7),
                   width: double.infinity,
-                  onPressed:
-                      () => Navigator.pushReplacementNamed(
-                        context,
-                        RegisterView.routeName,
-                      ),
+                  onPressed: () => Navigator.pushReplacementNamed(context, RegisterView.routeName),
                 ),
                 CustomButton(
                   color: Colors.transparent,
                   text: 'Login',
                   width: double.infinity,
                   onPressed:
-                      () => Navigator.pushReplacementNamed(
-                        context,
-                        LoginView.routeName,
-                      ),
+                      () => Navigator.pushReplacementNamed(context, BirthdayViewBody.routeName),
                 ),
               ],
             ),

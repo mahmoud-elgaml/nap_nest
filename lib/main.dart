@@ -13,7 +13,7 @@ void main() async {
       designSize: Size(428, 926),
       minTextAdapt: true,
       splitScreenMode: true,
-      builder: (context, child) => const NapNest(),
+      builder: (context, child) => NapNest(),
     ),
   );
 }

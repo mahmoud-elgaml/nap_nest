@@ -1,9 +1,4 @@
 {
-    "github.copilot.enable": {
-        "*": true,
-        "plaintext": false,
-        "markdown": false,
-        "scminput": false,
-        "dart": true
-    }
+    "files.autoSave": "afterDelay",
+    "bitoAI.codeCompletion.enableAutoCompletion": false
 }
