@@ -39,7 +39,7 @@ class GenderOptionTile extends StatelessWidget {
               child:
                   isSelected
                       ? const Center(
-                        child: Icon(Icons.check_outlined, size: 14, color: Colors.white),
+                        child: Icon(Icons.check_outlined, size: 16, color: Colors.white),
                       )
                       : null,
             ),
