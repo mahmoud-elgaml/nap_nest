@@ -14,7 +14,7 @@ class CustomContainer extends StatelessWidget {
       height: 61,
       padding: const EdgeInsets.symmetric(horizontal: 18),
       decoration: BoxDecoration(
-        color: AppColors.containerColor,
+        color: const Color.fromARGB(255, 243, 244, 246),
         borderRadius: BorderRadius.circular(18.w),
       ),
       child: Row(
