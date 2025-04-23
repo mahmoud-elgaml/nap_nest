@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nap_nest/core/utils/app_colors.dart';
 import 'package:nap_nest/core/widgets/custom_button.dart';
+import 'package:nap_nest/features/psqi/presentation/view/psqi_view.dart';
 import 'package:nap_nest/features/userInfo/widgets/gender_option_tile.dart';
 
 class GenderViewBody extends StatefulWidget {
@@ -38,7 +39,6 @@ class _GenderViewBodyState extends State<GenderViewBody> {
               label: 'Male',
               isSelected: selectedGender == 'Male',
               onTap: () => setState(() => selectedGender = 'Male'),
-
             ),
             SizedBox(height: 24.h),
             GenderOptionTile(
@@ -50,7 +50,13 @@ class _GenderViewBodyState extends State<GenderViewBody> {
             const Spacer(),
             SizedBox(
               width: double.infinity,
-              child: CustomButton(text: 'Next', color: AppColors.primaryColor, onPressed: () {}),
+              child: CustomButton(
+                text: 'Next',
+                color: AppColors.primaryColor,
+                onPressed: () {
+                  Navigator.pushNamed(context, PsqiView.routeName);
+                },
+              ),
             ),
           ],
         ),

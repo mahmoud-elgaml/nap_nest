@@ -45,11 +45,11 @@ class BirthdayViewBodyState extends State<BirthdayViewBody> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.only(top: 74.0, bottom: 80.0, right: 24, left: 22),
+        padding: const EdgeInsets.only(top: 64.0, bottom: 80.0, right: 24, left: 22),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 70.h, width: 382.w),
+            SizedBox(height: 65.h, width: 382.w),
             Text(
               'When’s Your Birthday?',
               style: TextStyle(fontSize: 30.sp, fontFamily: 'Roboto', fontWeight: FontWeight.w600),

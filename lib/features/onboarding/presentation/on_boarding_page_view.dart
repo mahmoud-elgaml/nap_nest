@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nap_nest/core/utils/app_images.dart';
 import 'package:nap_nest/features/auth/presentation/view/auth_view.dart';
-import 'package:nap_nest/features/onboarding/presentation/views/widgets/page_view_item.dart.dart';
+import 'package:nap_nest/features/onboarding/presentation/widgets/page_view_item.dart.dart';
 
 class OnboardingPageView extends StatelessWidget {
   const OnboardingPageView({required this.pageController, super.key});

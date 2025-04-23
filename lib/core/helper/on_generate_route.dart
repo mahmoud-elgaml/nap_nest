@@ -5,6 +5,7 @@ import 'package:nap_nest/features/auth/presentation/view/login_view.dart';
 import 'package:nap_nest/features/auth/presentation/view/register_view.dart';
 import 'package:nap_nest/features/auth/presentation/view/verify_code_view.dart';
 import 'package:nap_nest/features/onboarding/presentation/views/on_boarding_view.dart';
+import 'package:nap_nest/features/psqi/presentation/view/psqi_view.dart';
 import 'package:nap_nest/features/splash/presentation/view/splash_view1.dart';
 import 'package:nap_nest/features/splash/presentation/view/splash_view2.dart';
 import 'package:nap_nest/features/userInfo/birthday_view_body.dart';
@@ -34,9 +35,7 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => BirthdayViewBody());
 
     case ForgetPasswordView.routeName:
-      return MaterialPageRoute(
-        builder: (context) => const ForgetPasswordView(),
-      );
+      return MaterialPageRoute(builder: (context) => const ForgetPasswordView());
 
     case VerifyCodeView.routeName:
       return MaterialPageRoute(builder: (context) => const VerifyCodeView());
@@ -44,7 +43,12 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
     case GenderViewBody.routeName:
       return MaterialPageRoute(builder: (context) => GenderViewBody());
 
+    case PsqiView.routeName:
+      return MaterialPageRoute(builder: (context) => const PsqiView());
+
     default:
       return MaterialPageRoute(builder: (context) => const Scaffold());
   }
 }
+
+
