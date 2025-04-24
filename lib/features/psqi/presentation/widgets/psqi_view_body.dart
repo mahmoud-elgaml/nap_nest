@@ -10,71 +10,76 @@ class PsqiViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 16.h),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: 56.h),
-            Text(
-              'PSQI Test',
-              style: TextStyle(
-                color: AppColors.darkGreyTxtColor,
-                fontSize: 16.sp,
-                fontFamily: 'Roboto',
-                fontWeight: FontWeight.w700,
+    return Column(
+      children: [
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 8.h),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: 54.h),
+              Text(
+                'PSQI Test',
+                style: TextStyle(
+                  color: AppColors.darkGreyTxtColor,
+                  fontSize: 16.sp,
+                  fontFamily: 'Roboto',
+                  fontWeight: FontWeight.w700,
+                ),
               ),
-            ),
-            SizedBox(height: 32.h),
-            LinearProgressBar(
-              maxSteps: 20,
-              currentStep: 9,
-              progressColor: AppColors.secondaryColor2,
-              backgroundColor: AppColors.containerColor,
-              borderRadius: BorderRadius.circular(12.r),
-            ),
-            SizedBox(height: 12.h),
-            Text(
-              'Question 9 of 17',
-              style: TextStyle(
-                color: const Color(0xFF9EA8B9),
-                fontSize: 14.sp,
-                fontFamily: 'Roboto',
-                fontWeight: FontWeight.w400,
+              SizedBox(height: 30.h),
+              LinearProgressBar(
+                maxSteps: 20,
+                currentStep: 9,
+                progressColor: AppColors.secondaryColor2,
+                backgroundColor: AppColors.containerColor,
+                borderRadius: BorderRadius.circular(12.r),
               ),
-            ),
-            SizedBox(height: 42.h),
-            Text(
-              'During the past month, what time have you usually gone to bed at night?',
-              style: TextStyle(fontSize: 18.sp, fontFamily: 'Roboto', fontWeight: FontWeight.w600),
-            ),
-            SizedBox(height: 50.h),
-            AnswersContainer(),
-            SizedBox(height: 80.h),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              spacing: 40.0.w,
-              children: [
-                NavigatorButton(
-                  buttonColor: Colors.transparent,
-                  text: 'Previous',
+              SizedBox(height: 10.h),
+              Text(
+                'Question 9 of 17',
+                style: TextStyle(
+                  color: const Color(0xFF9EA8B9),
+                  fontSize: 14.sp,
+                  fontFamily: 'Roboto',
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+              SizedBox(height: 40.h),
+              Text(
+                'During the past month, what time have you usually gone to bed at night?',
+                style: TextStyle(
+                  fontSize: 18.sp,
+                  fontFamily: 'Roboto',
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              SizedBox(height: 45.h),
+              AnswersContainer(),
+            ],
+          ),
+        ),
+        SizedBox(height: 44.h),
 
-                  textColor: AppColors.primaryColor,
-                  side: const BorderSide(color: AppColors.primaryColor, width: 3),
-                  onPressed: () {},
-                ),
-                NavigatorButton(
-                  text: 'Next',
-                  textColor: Colors.white,
-                  buttonColor: AppColors.primaryColor,
-                  onPressed: () {},
-                ),
-              ],
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            NavigatorButton(
+              buttonColor: Colors.transparent,
+              text: 'Previous',
+              textColor: AppColors.primaryColor,
+              side: BorderSide(color: AppColors.primaryColor, width: 2.5.w),
+              onPressed: () {},
+            ),
+            NavigatorButton(
+              text: 'Next',
+              textColor: Colors.white,
+              buttonColor: AppColors.primaryColor,
+              onPressed: () {},
             ),
           ],
         ),
-      ),
+      ],
     );
   }
 }

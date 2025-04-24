@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nap_nest/core/widgets/success_message_view.dart';
 import 'package:nap_nest/features/auth/presentation/view/auth_view.dart';
 import 'package:nap_nest/features/auth/presentation/view/forget_password_view.dart';
 import 'package:nap_nest/features/auth/presentation/view/login_view.dart';
@@ -46,9 +47,10 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
     case PsqiView.routeName:
       return MaterialPageRoute(builder: (context) => const PsqiView());
 
+    case SuccessMessage.routeName:
+      return MaterialPageRoute(builder: (context) => const SuccessMessage());
+
     default:
       return MaterialPageRoute(builder: (context) => const Scaffold());
   }
 }
-
-

@@ -8,26 +8,25 @@ class AnswersContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Card(
-        color: const Color.fromARGB(255, 255, 254, 254),
-        elevation: 2.0,
-        margin: EdgeInsets.symmetric(horizontal: 6.w, vertical: 14.h),
-        child: Container(
-          width: 428,
-          padding: const EdgeInsets.all(10),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: const [
-              CustomContainer(option: '8pm : 10pm'),
-              SizedBox(height: 16),
-              CustomContainer(option: '10pm : 12am'),
-              SizedBox(height: 16),
-              CustomContainer(option: '12am : 2am'),
-              SizedBox(height: 16),
-              CustomContainer(option: '2am : 4am'),
-            ],
-          ),
+    return Card(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.r)),
+      color: const Color.fromARGB(255, 255, 254, 254),
+      elevation: 1.75,
+
+      margin: EdgeInsets.symmetric(horizontal: 6.w, vertical: 12.h),
+      child: Container(
+        width: 450.w,
+        padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 24.h),
+        child: Column(
+          children: [
+            CustomContainer(option: '8pm : 10pm'),
+            SizedBox(height: 20.h),
+            CustomContainer(option: '10pm : 12am'),
+            SizedBox(height: 20.h),
+            CustomContainer(option: '12am : 2am'),
+            SizedBox(height: 20.h),
+            CustomContainer(option: '2am : 4am'),
+          ],
         ),
       ),
     );

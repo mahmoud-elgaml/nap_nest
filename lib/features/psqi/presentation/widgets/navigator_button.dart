@@ -22,8 +22,8 @@ class NavigatorButton extends StatelessWidget {
     return GestureDetector(
       onTap: onPressed,
       child: Container(
-        width: 170.w,
-        padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 20.h),
+        width: 190.w,
+        padding: EdgeInsets.symmetric(horizontal: 18.w, vertical: 22.h),
         decoration: ShapeDecoration(
           color: buttonColor,
           shape: RoundedRectangleBorder(side: side, borderRadius: BorderRadius.circular(28.r)),

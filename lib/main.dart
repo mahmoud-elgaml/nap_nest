@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nap_nest/core/helper/on_generate_route.dart';
 import 'package:nap_nest/core/services/shared_preferences_singleton.dart';
 import 'package:nap_nest/core/utils/app_colors.dart';
+import 'package:nap_nest/core/widgets/success_message_view.dart';
 import 'package:nap_nest/features/splash/presentation/view/splash_view1.dart';
 
 void main() async {
@@ -22,15 +23,23 @@ class NapNest extends StatelessWidget {
   const NapNest({super.key});
 
   @override
-  Widget build(BuildContext context) => MaterialApp(
-    debugShowCheckedModeBanner: false,
-    theme: ThemeData(
-      fontFamily: 'Roboto',
-      scaffoldBackgroundColor: Colors.white,
-      primaryColor: AppColors.primaryColor,
-      useMaterial3: true,
-    ),
-    onGenerateRoute: onGenerateRoute,
-    initialRoute: SplashView1.routeName,
-  );
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: AppColors.primaryColor,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(28.r)),
+          ),
+        ),
+        fontFamily: 'Roboto',
+        scaffoldBackgroundColor: Colors.white,
+        primaryColor: AppColors.primaryColor,
+        useMaterial3: true,
+      ),
+      onGenerateRoute: onGenerateRoute,
+      initialRoute: SuccessMessage.routeName,
+    );
+  }
 }
