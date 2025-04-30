@@ -5,8 +5,10 @@ import 'package:nap_nest/features/auth/presentation/view/forget_password_view.da
 import 'package:nap_nest/features/auth/presentation/view/login_view.dart';
 import 'package:nap_nest/features/auth/presentation/view/register_view.dart';
 import 'package:nap_nest/features/auth/presentation/view/verify_code_view.dart';
+import 'package:nap_nest/features/home/presentation/view/home_view.dart';
 import 'package:nap_nest/features/onboarding/presentation/views/on_boarding_view.dart';
 import 'package:nap_nest/features/psqi/presentation/view/psqi_view.dart';
+import 'package:nap_nest/features/soundtrack/presentation/view/sound_track_view.dart';
 import 'package:nap_nest/features/splash/presentation/view/splash_view1.dart';
 import 'package:nap_nest/features/splash/presentation/view/splash_view2.dart';
 import 'package:nap_nest/features/userInfo/birthday_view_body.dart';
@@ -49,6 +51,14 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
 
     case SuccessMessage.routeName:
       return MaterialPageRoute(builder: (context) => const SuccessMessage());
+
+    case HomeView.routeName:
+      return MaterialPageRoute(builder: (context) => const HomeView());
+
+    case SoundTrackView.routeName:
+      return MaterialPageRoute(builder: (context) => const SoundTrackView());
+
+
 
     default:
       return MaterialPageRoute(builder: (context) => const Scaffold());

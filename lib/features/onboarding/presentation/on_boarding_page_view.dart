@@ -14,13 +14,13 @@ class OnboardingPageView extends StatelessWidget {
       PageViewItem(
         title: 'Welcome to ',
         title2: 'NAPNEST',
-        image: AppImages.imagesOnboarding1,
+        image: Assets.imagesOnboarding1,
 
         description:
             'Hi there! We’re so glad you’re here. Let’s work together to improve your sleep, boost your energy, and help you feel your best every day. Sweet dreams start now!',
       ),
       PageViewItem(
-        image: AppImages.imagesOnboarding2,
+        image: Assets.imagesOnboarding2,
         title: 'Your Sleep, Your Way',
 
         description:

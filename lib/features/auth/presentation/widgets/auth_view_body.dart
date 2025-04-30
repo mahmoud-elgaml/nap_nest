@@ -4,8 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nap_nest/core/utils/app_colors.dart';
 import 'package:nap_nest/core/utils/app_images.dart';
 import 'package:nap_nest/core/widgets/custom_button.dart';
+import 'package:nap_nest/features/auth/presentation/view/forget_password_view.dart';
 import 'package:nap_nest/features/auth/presentation/view/register_view.dart';
-import 'package:nap_nest/features/userInfo/birthday_view_body.dart';
 
 class AuthViewBody extends StatelessWidget {
   const AuthViewBody({super.key});
@@ -21,9 +21,10 @@ class AuthViewBody extends StatelessWidget {
             margin: EdgeInsets.symmetric(horizontal: 85.w, vertical: 65.h),
             width: 162.w,
             height: 134.h,
-            child: Image.asset(AppImages.imagesAppIcon, fit: BoxFit.cover),
+            child: Image.asset(Assets.imagesAppIcon, fit: BoxFit.cover),
           ),
           SizedBox(height: 24.h),
+
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -75,7 +76,7 @@ class AuthViewBody extends StatelessWidget {
                   text: 'Login',
                   width: double.infinity,
                   onPressed:
-                      () => Navigator.pushReplacementNamed(context, BirthdayViewBody.routeName),
+                      () => Navigator.pushReplacementNamed(context, ForgetPasswordView.routeName),
                 ),
               ],
             ),

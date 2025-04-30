@@ -19,8 +19,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confirmPasswordController =
-      TextEditingController();
+  final TextEditingController _confirmPasswordController = TextEditingController();
 
   bool _obscurePassword = true;
   bool _obscureConfirmPassword = true;
@@ -33,13 +32,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
           color: Colors.white,
           height: 127.h,
           margin: EdgeInsets.only(top: 32.h),
-          child: Center(
-            child: Image.asset(
-              AppImages.imagesAppIcon,
-              width: 74.w,
-              height: 64.h,
-            ),
-          ),
+          child: Center(child: Image.asset(Assets.imagesAppIcon, width: 74.w, height: 64.h)),
         ),
         Expanded(
           child: Card(
@@ -72,8 +65,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                         controller: _nameController,
                         label: 'Full Name',
                         hint: 'Enter your name',
-                        validator:
-                            (val) => val!.isEmpty ? 'Enter your name' : null,
+                        validator: (val) => val!.isEmpty ? 'Enter your name' : null,
                       ),
                       SizedBox(height: 16.h),
                       CustomTextField(
@@ -97,19 +89,10 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                         hint: 'Enter your password',
                         obscureText: _obscurePassword,
                         suffix: IconButton(
-                          icon: Icon(
-                            _obscurePassword
-                                ? Icons.visibility_off
-                                : Icons.visibility,
-                          ),
-                          onPressed:
-                              () => setState(
-                                () => _obscurePassword = !_obscurePassword,
-                              ),
+                          icon: Icon(_obscurePassword ? Icons.visibility_off : Icons.visibility),
+                          onPressed: () => setState(() => _obscurePassword = !_obscurePassword),
                         ),
-                        validator:
-                            (val) =>
-                                val!.length < 6 ? 'Minimum 6 characters' : null,
+                        validator: (val) => val!.length < 6 ? 'Minimum 6 characters' : null,
                       ),
                       SizedBox(height: 16.h),
                       CustomTextField(
@@ -119,22 +102,16 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                         obscureText: _obscureConfirmPassword,
                         suffix: IconButton(
                           icon: Icon(
-                            _obscureConfirmPassword
-                                ? Icons.visibility_off
-                                : Icons.visibility,
+                            _obscureConfirmPassword ? Icons.visibility_off : Icons.visibility,
                           ),
                           onPressed:
                               () => setState(
-                                () =>
-                                    _obscureConfirmPassword =
-                                        !_obscureConfirmPassword,
+                                () => _obscureConfirmPassword = !_obscureConfirmPassword,
                               ),
                         ),
                         validator:
                             (val) =>
-                                val != _passwordController.text
-                                    ? 'Passwords do not match'
-                                    : null,
+                                val != _passwordController.text ? 'Passwords do not match' : null,
                       ),
                       SizedBox(height: 24.h),
                       CustomButton(
@@ -150,18 +127,9 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          OtherRegister(
-                            image: AppImages.imagesIconsGoogle,
-                            onPressed: () {},
-                          ),
-                          OtherRegister(
-                            image: AppImages.imagesIconsFacebook,
-                            onPressed: () {},
-                          ),
-                          OtherRegister(
-                            image: AppImages.imagesIconsApple,
-                            onPressed: () {},
-                          ),
+                          OtherRegister(image: Assets.imagesGoogle, onPressed: () {}),
+                          OtherRegister(image: Assets.imagesFacebook, onPressed: () {}),
+                          OtherRegister(image: Assets.imagesApple, onPressed: () {}),
                         ],
                       ),
                       SizedBox(height: 4.h),

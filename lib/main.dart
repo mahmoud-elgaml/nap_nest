@@ -3,8 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nap_nest/core/helper/on_generate_route.dart';
 import 'package:nap_nest/core/services/shared_preferences_singleton.dart';
 import 'package:nap_nest/core/utils/app_colors.dart';
-import 'package:nap_nest/core/widgets/success_message_view.dart';
-import 'package:nap_nest/features/splash/presentation/view/splash_view1.dart';
+import 'package:nap_nest/features/home/presentation/view/home_view.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -39,7 +38,7 @@ class NapNest extends StatelessWidget {
         useMaterial3: true,
       ),
       onGenerateRoute: onGenerateRoute,
-      initialRoute: SuccessMessage.routeName,
+      initialRoute: HomeView.routeName,
     );
   }
 }

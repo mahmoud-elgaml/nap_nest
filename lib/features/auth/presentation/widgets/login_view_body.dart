@@ -32,7 +32,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
             color: Colors.white,
             height: MediaQuery.of(context).size.height * 0.37,
             padding: EdgeInsets.only(bottom: 30.h),
-            child: Center(child: Image.asset(AppImages.imagesAppIcon, width: 134, height: 110)),
+            child: Center(child: Image.asset(Assets.imagesAppIcon, width: 134, height: 110)),
           ),
           Expanded(
             child: Card(
@@ -121,9 +121,9 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            OtherRegister(image: AppImages.imagesIconsGoogle, onPressed: () {}),
-                            OtherRegister(image: AppImages.imagesIconsFacebook, onPressed: () {}),
-                            OtherRegister(image: AppImages.imagesIconsApple, onPressed: () {}),
+                            OtherRegister(image: Assets.imagesGoogle, onPressed: () {}),
+                            OtherRegister(image: Assets.imagesFacebook, onPressed: () {}),
+                            OtherRegister(image: Assets.imagesApple, onPressed: () {}),
                           ],
                         ),
                         SizedBox(height: 4.h),

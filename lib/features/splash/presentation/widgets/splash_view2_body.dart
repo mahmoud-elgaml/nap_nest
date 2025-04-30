@@ -25,12 +25,11 @@ class SplashView2BodyState extends State<SplashView2Body> {
   @override
   Widget build(BuildContext context) => Scaffold(
     backgroundColor: Colors.white,
-    body: Center(child: Image.asset(AppImages.imagesAppIcon, width: 200)),
+    body: Center(child: Image.asset(Assets.imagesAppIcon, width: 200)),
   );
 
   void executeNavigation() {
     bool isOnBoardingSeen = Prefs.getBool(kIsOnBoardingSeen);
-
     Future.delayed(const Duration(milliseconds: 1500), () {
       if (isOnBoardingSeen) {
         Navigator.pushReplacementNamed(context, AuthView.routeName);
