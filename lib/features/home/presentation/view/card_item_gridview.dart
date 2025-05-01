@@ -19,7 +19,7 @@ class CardItemGridView extends StatelessWidget {
         HomeItemCard(
           title: 'Ready to Sleep',
           backgroundAsset: Assets.imagesPurble,
-          iconAsset: Assets.imagesSleep,
+          iconAsset: Assets.imagesMoon,
         ),
         HomeItemCard(
           title: 'Library',

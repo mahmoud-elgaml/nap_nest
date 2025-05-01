@@ -14,9 +14,10 @@ class SoundTrackItem extends StatelessWidget {
           physics: BouncingScrollPhysics(),
           scrollDirection: Axis.horizontal,
           children: const [
-            SoundItem(img: Assets.imagesTest1),
-            SoundItem(img: Assets.imagesTest2),
-            SoundItem(img: Assets.imagesTest1),
+            SoundItem(img: Assets.imagesSound1),
+            SoundItem(img: Assets.imagesSound2),
+            SoundItem(img: Assets.imagesSound3),
+            SoundItem(img: Assets.imagesSound4),
           ],
         ),
       ),

@@ -58,6 +58,9 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
     case SoundTrackView.routeName:
       return MaterialPageRoute(builder: (context) => const SoundTrackView());
 
+    // case MainLayout.routeName:
+    //   return MaterialPageRoute(builder: (context) => const MainLayout());
+
 
 
     default:
