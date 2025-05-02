@@ -15,7 +15,7 @@ class CardItemGridView extends StatelessWidget {
       childAspectRatio: 179 / 126,
       shrinkWrap: true,
       physics: NeverScrollableScrollPhysics(),
-      children: const [
+      children:  [
         HomeItemCard(
           title: 'Ready to Sleep',
           backgroundAsset: Assets.imagesPurble,
@@ -35,6 +35,7 @@ class CardItemGridView extends StatelessWidget {
           title: 'Attach Device',
           backgroundAsset: Assets.imagesOrange,
           iconAsset: Assets.imagesHand,
+          onPressed: (){},
         ),
       ],
     );

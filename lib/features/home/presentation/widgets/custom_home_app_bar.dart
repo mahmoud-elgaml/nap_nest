@@ -12,7 +12,7 @@ class CustomHomeAppBar extends StatelessWidget {
         children: [
           SizedBox(height: 74.h),
           Text(
-            'Hello, Mohamed',
+            'Hello, Mahmoud',
             style: TextStyle(
               fontSize: 32.sp,
               fontWeight: FontWeight.w700,

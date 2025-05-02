@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nap_nest/core/widgets/success_message_view.dart';
+import 'package:nap_nest/features/attachDevice/presentation/view/attach_device_view.dart';
 import 'package:nap_nest/features/auth/presentation/view/auth_view.dart';
 import 'package:nap_nest/features/auth/presentation/view/forget_password_view.dart';
 import 'package:nap_nest/features/auth/presentation/view/login_view.dart';
@@ -58,8 +59,8 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
     case SoundTrackView.routeName:
       return MaterialPageRoute(builder: (context) => const SoundTrackView());
 
-    // case MainLayout.routeName:
-    //   return MaterialPageRoute(builder: (context) => const MainLayout());
+    case AttachDevice.routeName:
+      return MaterialPageRoute(builder: (context) => const AttachDevice());
 
 
 

@@ -16,11 +16,10 @@ class _HomeNavigationState extends State<HomeLayout> {
   int _selectedIndex = 2;
   late final PageController _pageController;
 
-  // تعريف الصفحات
   final List<Widget> _pages = [
     const Placeholder(), // الصفحة الرئيسية
     const SoundTrackView(), // صفحة الموسيقى
-    const HomeViewBody(), // صفحة القمر (يمكن تعديلها لاحقاً)
+    const HomeViewBody(), //  (صفحة الاساسية)
     const PsqiView(), // صفحة الإحصائيات
     const AuthView(), // صفحة الحساب الشخصي
   ];
