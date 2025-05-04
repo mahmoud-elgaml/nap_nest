@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nap_nest/core/utils/app_images.dart';
+import 'package:nap_nest/features/attachDevice/presentation/view/attach_device_view.dart';
 import 'package:nap_nest/features/home/presentation/widgets/home_item_card.dart';
 
 class CardItemGridView extends StatelessWidget {
@@ -35,7 +36,9 @@ class CardItemGridView extends StatelessWidget {
           title: 'Attach Device',
           backgroundAsset: Assets.imagesOrange,
           iconAsset: Assets.imagesHand,
-          onPressed: (){},
+          onPressed: () {
+            Navigator.pushNamed(context, AttachDevice.routeName);
+          },
         ),
       ],
     );

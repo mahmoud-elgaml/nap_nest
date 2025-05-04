@@ -79,20 +79,20 @@ class Assets {
   static const String imagesSleepHome = "assets/images/sleep_home.svg";
 
   /// Assets for imagesSound1
-  /// assets/images/sound1.png
-  static const String imagesSound1 = "assets/images/sound1.png";
+  /// assets/images/sound1.svg
+  static const String imagesSound1 = "assets/images/sound1.svg";
 
   /// Assets for imagesSound2
-  /// assets/images/sound2.png
-  static const String imagesSound2 = "assets/images/sound2.png";
+  /// assets/images/sound2.svg
+  static const String imagesSound2 = "assets/images/sound2.svg";
 
   /// Assets for imagesSound3
-  /// assets/images/sound3.png
-  static const String imagesSound3 = "assets/images/sound3.png";
+  /// assets/images/sound3.svg
+  static const String imagesSound3 = "assets/images/sound3.svg";
 
   /// Assets for imagesSound4
-  /// assets/images/sound4.png
-  static const String imagesSound4 = "assets/images/sound4.png";
+  /// assets/images/sound4.svg
+  static const String imagesSound4 = "assets/images/sound4.svg";
 
   /// Assets for imagesStatistics
   /// assets/images/statistics.svg
