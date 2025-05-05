@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nap_nest/features/soundtrack/presentation/view/sound_track_view.dart';
 
 class SoundTrackHeader extends StatelessWidget {
   const SoundTrackHeader({super.key});
@@ -22,8 +23,15 @@ class SoundTrackHeader extends StatelessWidget {
             ), //
             IconButton(
               color: Colors.black,
-              onPressed: () {},
-              icon: Icon(Icons.keyboard_arrow_right_outlined, size: 45.sp, weight: 20.0),
+              onPressed: () {
+                Navigator.pushNamed(context, SoundTrackView.routeName);
+              },
+              icon: Icon(
+                Icons.keyboard_arrow_right_outlined,
+                size: 45.sp,
+                weight: 20.0,
+                //
+              ),
               //
             ),
           ],

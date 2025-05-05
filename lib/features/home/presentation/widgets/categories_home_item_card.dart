@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class HomeItemCard extends StatelessWidget {
+class CategoriesHomeItemCard extends StatelessWidget {
   final String title;
   final String iconAsset;
   final String backgroundAsset;
   final void Function()? onPressed;
-  const HomeItemCard({
+  const CategoriesHomeItemCard({
     super.key,
     required this.title,
     required this.iconAsset,

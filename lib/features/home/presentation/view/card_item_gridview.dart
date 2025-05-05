@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nap_nest/core/utils/app_images.dart';
 import 'package:nap_nest/features/attachDevice/presentation/view/attach_device_view.dart';
-import 'package:nap_nest/features/home/presentation/widgets/home_item_card.dart';
+import 'package:nap_nest/features/home/presentation/widgets/categories_home_item_card.dart';
 
-class CardItemGridView extends StatelessWidget {
-  const CardItemGridView({super.key});
+class CategoriesCardGridView extends StatelessWidget {
+  const CategoriesCardGridView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,23 +16,23 @@ class CardItemGridView extends StatelessWidget {
       childAspectRatio: 179 / 126,
       shrinkWrap: true,
       physics: NeverScrollableScrollPhysics(),
-      children:  [
-        HomeItemCard(
+      children: [
+        CategoriesHomeItemCard(
           title: 'Ready to Sleep',
           backgroundAsset: Assets.imagesPurble,
           iconAsset: Assets.imagesMoon,
         ),
-        HomeItemCard(
+        CategoriesHomeItemCard(
           title: 'Library',
           backgroundAsset: Assets.imagesBlue,
           iconAsset: Assets.imagesBook,
         ),
-        HomeItemCard(
+        CategoriesHomeItemCard(
           title: 'Alarm',
           backgroundAsset: Assets.imagesGreen,
           iconAsset: Assets.imagesAlarm,
         ),
-        HomeItemCard(
+        CategoriesHomeItemCard(
           title: 'Attach Device',
           backgroundAsset: Assets.imagesOrange,
           iconAsset: Assets.imagesHand,
