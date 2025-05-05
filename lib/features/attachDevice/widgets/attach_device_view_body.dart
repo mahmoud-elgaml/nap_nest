@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nap_nest/core/utils/app_colors.dart';
 import 'package:nap_nest/features/attachDevice/widgets/connect_button.dart';
 
 class AttachDeviceViewBody extends StatelessWidget {
@@ -8,17 +9,19 @@ class AttachDeviceViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
-          onPressed: () => Navigator.pop(context),
+        leading: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16.0.w),
+          child: IconButton(
+            icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
+            onPressed: () => Navigator.pop(context),
+          ),
         ),
       ),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20.w),
+        padding: EdgeInsets.symmetric(horizontal: 26.w, vertical: 6.h),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -30,12 +33,12 @@ class AttachDeviceViewBody extends StatelessWidget {
                 color: const Color(0xFF111111),
               ),
             ),
-            SizedBox(height: 8.h),
+            SizedBox(height: 9.h),
             Text(
               'Select your preferred relaxing soundtrack to listen  to.',
-              style: TextStyle(fontSize: 16.sp, color: const Color(0xFF9EA8B9)),
+              style: TextStyle(fontSize: 16.sp, color: Color(0xff9FA9BA)),
             ),
-            SizedBox(height: 24.h),
+            SizedBox(height: 60.h),
             Expanded(
               child: ListView.separated(
                 itemCount: 4,
@@ -83,19 +86,15 @@ class AttachDeviceViewBody extends StatelessWidget {
                             Text(
                               stepTitles[index],
                               style: TextStyle(
-                                fontSize: 15.sp,
-                                fontWeight: FontWeight.w600,
-                                color: const Color(0xff5691E0),
+                                fontSize: 16.sp,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
                               ),
                             ),
-                            SizedBox(height: 4.h),
+                            SizedBox(height: 10.h),
                             Text(
                               stepDescriptions[index],
-                              style: TextStyle(
-                                fontSize: 13.sp,
-                                fontWeight: FontWeight.w400,
-                                color: const Color(0xff111111),
-                              ),
+                              style: TextStyle(fontSize: 16.sp, color: AppColors.darkGreyTxtColor),
                             ),
                           ],
                         ),
@@ -105,9 +104,8 @@ class AttachDeviceViewBody extends StatelessWidget {
                 },
               ),
             ),
-            SizedBox(height: 10.h),
-           ConnectButton(),
-            SizedBox(height: 16.h),
+            ConnectButton(),
+            SizedBox(height: 68.h),
           ],
         ),
       ),
