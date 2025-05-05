@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:nap_nest/core/constants/custom_bottom_navbar.dart';
 import 'package:nap_nest/features/attachDevice/widgets/attach_device_view_body.dart';
-import 'package:nap_nest/features/auth/presentation/view/auth_view.dart';
 import 'package:nap_nest/features/breathing/presentation/widgets/breathing_view_body.dart';
 import 'package:nap_nest/features/home/presentation/widgets/home_view_body.dart';
-import 'package:nap_nest/features/psqi/presentation/view/psqi_view.dart';
 import 'package:nap_nest/features/soundtrack/presentation/view/sound_track_view.dart';
 
 class HomeLayout extends StatefulWidget {
@@ -25,7 +23,7 @@ class _HomeNavigationState extends State<HomeLayout> {
     const AttachDeviceViewBody(), // Home page
     const SoundTrackView(), // Bed
     const HomeViewBody(), // Main
-    const PsqiView(), // Stats
+    const Placeholder(), // Stats
     const BreathingViewBody(), // Profile
   ];
 
