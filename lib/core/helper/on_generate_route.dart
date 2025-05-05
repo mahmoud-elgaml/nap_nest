@@ -59,10 +59,8 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
     case SoundTrackView.routeName:
       return MaterialPageRoute(builder: (context) => const SoundTrackView());
 
-    case AttachDevice.routeName:
-      return MaterialPageRoute(builder: (context) => const AttachDevice());
-
-
+    case AttachDeviceView.routeName:
+      return MaterialPageRoute(builder: (context) => const AttachDeviceView());
 
     default:
       return MaterialPageRoute(builder: (context) => const Scaffold());

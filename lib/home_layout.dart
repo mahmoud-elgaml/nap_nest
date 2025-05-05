@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nap_nest/core/constants/custom_bottom_navbar.dart';
+import 'package:nap_nest/features/attachDevice/widgets/attach_device_view_body.dart';
 import 'package:nap_nest/features/auth/presentation/view/auth_view.dart';
 import 'package:nap_nest/features/home/presentation/widgets/home_view_body.dart';
 import 'package:nap_nest/features/psqi/presentation/view/psqi_view.dart';
@@ -17,41 +18,41 @@ class HomeLayout extends StatefulWidget {
 
 class _HomeNavigationState extends State<HomeLayout> {
   late int selectedIndex;
+  late PageController _pageController;
 
   final List<Widget> pages = [
-    const Placeholder(), // Home page
-    const SoundTrackView(), // Music page
-    const HomeViewBody(), // Main page (center)
-    const PsqiView(), // Statistics page
-    const AuthView(), // Profile page
+    const AttachDeviceViewBody(), // Home page
+    const SoundTrackView(), // Bed
+    const HomeViewBody(), // Main
+    const PsqiView(), // Stats
+    const AuthView(), // Profile
   ];
 
   @override
   void initState() {
     super.initState();
     selectedIndex = widget.currentIndex;
+    _pageController = PageController(initialPage: selectedIndex,);
   }
 
   void onBottomNavPressed(int index) {
-    if (widget.screen != null && selectedIndex == index) {
-      Navigator.of(context).popUntil((route) => route.isFirst);
-      return;
-    }
-
-    setState(() {
-      selectedIndex = index;
-    });
-
-    if (widget.screen != null) {
-      Navigator.of(context).popUntil((route) => route.isFirst);
-    }
+    _pageController.animateToPage(index, duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
+    setState(() => selectedIndex = index);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: widget.screen ?? pages[selectedIndex],
+      body:
+          widget.screen ??
+          PageView(
+            controller: _pageController,
+            onPageChanged: (index) {
+              setState(() => selectedIndex = index);
+            },
+            children: pages,
+            physics: const BouncingScrollPhysics(),
+          ),
       bottomNavigationBar: CustomBottomNavBar(
         selectedIndex: selectedIndex,
         onTap: onBottomNavPressed,

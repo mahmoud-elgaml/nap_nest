@@ -37,7 +37,7 @@ class CategoriesCardGridView extends StatelessWidget {
           backgroundAsset: Assets.imagesOrange,
           iconAsset: Assets.imagesHand,
           onPressed: () {
-            Navigator.pushNamed(context, AttachDevice.routeName);
+            Navigator.pushNamed(context, AttachDeviceView.routeName);
           },
         ),
       ],

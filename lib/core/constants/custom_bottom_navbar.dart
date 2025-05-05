@@ -188,12 +188,11 @@ class CustomBottomNavBar extends StatelessWidget {
         children: List.generate(icons.length, (index) {
           final icon = icons[index];
           final isSelected = selectedIndex == index;
-
           return GestureDetector(
             onTap: () => onTap(index),
             child: AnimatedContainer(
-              duration: const Duration(milliseconds: 300),
-              padding: EdgeInsets.all(isSelected ? 12.w : 0),
+              duration: const Duration(milliseconds: 200),
+              padding: EdgeInsets.all(isSelected ? 14.w : 0),
               decoration: BoxDecoration(
                 color: isSelected ? AppColors.primaryColor : Colors.transparent,
                 shape: BoxShape.circle,

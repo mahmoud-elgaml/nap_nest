@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:nap_nest/features/attachDevice/widgets/attach_device_view_body.dart';
 import 'package:nap_nest/home_layout.dart';
 
-class AttachDevice extends StatelessWidget {
-  const AttachDevice({super.key});
+class AttachDeviceView extends StatelessWidget {
+  const AttachDeviceView({super.key});
   static const routeName = 'attachDevice';
   @override
   Widget build(BuildContext context) {
