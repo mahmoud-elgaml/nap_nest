@@ -12,10 +12,13 @@ class BreathingAppbar extends StatelessWidget {
         children: [
           Row(
             children: [
-              Icon(Icons.arrow_back_ios, size: 32.sp),
+              GestureDetector(
+                onTap: () => Navigator.pop(context),
+                child: Icon(Icons.arrow_back_ios, size: 32.sp),
+              ),
               SizedBox(width: 4.w),
               Text(
-                'Breathing',
+                'Home',
                 style: TextStyle(
                   fontSize: 24.sp,
                   fontWeight: FontWeight.w500,
@@ -28,7 +31,7 @@ class BreathingAppbar extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Soundtracks', style: TextStyle(fontSize: 32.sp, fontWeight: FontWeight.w700)),
+              Text('Breathing', style: TextStyle(fontSize: 32.sp, fontWeight: FontWeight.w700)),
               SizedBox(height: 9.h),
               Text(
                 'Select your preferred relaxing breathe exercise to do. ',
