@@ -16,28 +16,26 @@ class SoundTrackViewBody extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Appbar(),
+              const SoundTrackAppbar(),
               SizedBox(height: 20.h),
-
               SoundtrackCard(
                 imageAsset: Assets.imagesSound4,
                 title: 'Basic Mindfulness',
                 duration: '8:24',
               ),
-              const SizedBox(height: 20),
-
+              SizedBox(height: 20.h),
               SoundtrackCard(
                 imageAsset: Assets.imagesSound2,
                 title: 'Evening Calm',
                 duration: '5:10',
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: 20.h),
               SoundtrackCard(
                 imageAsset: Assets.imagesSound1,
                 title: 'Basic Mindfulness',
                 duration: '8:24',
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: 20.h),
               const SoundtrackCard(
                 imageAsset: Assets.imagesSound3,
                 title: 'Nature Bliss',
