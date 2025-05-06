@@ -10,9 +10,9 @@ class LetsGoButton extends StatelessWidget {
     return GestureDetector(
       onTap: onPressed,
       child: Container(
-        height: 32.h,
-        margin: EdgeInsets.only(left: 8.dg, top: 12.dm, right: 20.h),
-        padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 6.h),
+        height: 35.h,
+        margin: EdgeInsets.only(left: 8.dg, top: 8.dm, right: 20.h,),
+        padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 4.h),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(24.0.r)),
           color: AppColors.primaryColor,

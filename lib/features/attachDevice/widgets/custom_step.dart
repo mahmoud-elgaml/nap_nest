@@ -92,6 +92,8 @@ class CustomSteps extends StatelessWidget {
                         ),
                       ),
                     ),
+                                 
+
                 ],
               ),
               SizedBox(width: 16.w),
@@ -117,11 +119,13 @@ class CustomSteps extends StatelessWidget {
                       ),
                     ),
                   ],
+                  
                 ),
               ),
             ],
           ),
         );
+
       },
     );
   }

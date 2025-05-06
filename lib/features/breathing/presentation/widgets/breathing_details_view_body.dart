@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:nap_nest/core/utils/app_images.dart';
+import 'package:svg_flutter/svg_flutter.dart';
 
 class BreathingDetailsViewBody extends StatelessWidget {
   const BreathingDetailsViewBody({
@@ -16,24 +18,12 @@ class BreathingDetailsViewBody extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          // Background
-          Container(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  Color(0xFF0C0D3D), // Deep night blue
-                  Color(0xFF1A1E3F), // Darker at bottom
-                ],
-              ),
-            ),
-          ),
+ 
           // Moon and clouds image overlay
           Positioned.fill(
-            child: Image.asset(
-              'assets/images/night_sky.png', // <-- Replace with your image
-              fit: BoxFit.cover,
+            child: SvgPicture.asset(
+             Assets.imagesBreathingBackground,
+              fit: BoxFit.fill,
             ),
           ),
 

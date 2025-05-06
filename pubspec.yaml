@@ -24,6 +24,7 @@ dependencies:
   flutter_bloc: ^9.1.0
   dio: ^5.8.0+1
   flutter_steps: ^1.0.5
+  audioplayers: ^6.4.0
 
 
 
@@ -38,7 +39,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/
-    # - assets/images/icons/
+    - assets/audio/
 
   fonts:
     - family: Roboto

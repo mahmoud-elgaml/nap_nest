@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nap_nest/core/utils/app_images.dart';
 import 'package:nap_nest/features/soundtrack/presentation/widgets/custom_appbar.dart';
+import 'package:nap_nest/features/soundtrack/presentation/widgets/song_view_body.dart';
 import 'package:nap_nest/features/soundtrack/presentation/widgets/sound_track_card.dart';
 
 class SoundTrackViewBody extends StatelessWidget {
@@ -22,24 +23,57 @@ class SoundTrackViewBody extends StatelessWidget {
                 imageAsset: Assets.imagesSound4,
                 title: 'Basic Mindfulness',
                 duration: '8:24',
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder:
+                          (_) => SongDetailScreen(
+                            title: 'Basic Mindfulness',
+                            audioAsset: 'song1.mp3',
+                            backgroundAsset: Assets.imagesSound3,
+                          ),
+                    ),
+                  );
+                },
               ),
               SizedBox(height: 20.h),
               SoundtrackCard(
-                imageAsset: Assets.imagesSound2,
-                title: 'Evening Calm',
-                duration: '5:10',
-              ),
-              SizedBox(height: 20.h),
-              SoundtrackCard(
-                imageAsset: Assets.imagesSound1,
+                imageAsset: Assets.imagesSound4,
                 title: 'Basic Mindfulness',
                 duration: '8:24',
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder:
+                          (_) => SongDetailScreen(
+                            title: 'Basic Mindfulness',
+                            audioAsset: 'song2.mp3',
+                            backgroundAsset: Assets.imagesSound2,
+                          ),
+                    ),
+                  );
+                },
               ),
               SizedBox(height: 20.h),
-              const SoundtrackCard(
-                imageAsset: Assets.imagesSound3,
-                title: 'Nature Bliss',
-                duration: '10:00',
+              SoundtrackCard(
+                imageAsset: Assets.imagesSound4,
+                title: 'Basic Mindfulness',
+                duration: '8:24',
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder:
+                          (_) => SongDetailScreen(
+                            title: 'Basic Mindfulness',
+                            audioAsset: 'song3.mp3',
+                            backgroundAsset: Assets.imagesSound4,
+                          ),
+                    ),
+                  );
+                },
               ),
             ],
           ),

@@ -50,10 +50,7 @@ class AttachDeviceViewBody extends StatelessWidget {
             children: [
               Text(
                 'How To Attach Your Device',
-                style: TextStyle(
-                  fontSize: 24.sp,
-                  fontWeight: FontWeight.w700,
-                ),
+                style: TextStyle(fontSize: 24.sp, fontWeight: FontWeight.w700),
               ),
               SizedBox(height: 9.h),
               Text(
@@ -61,20 +58,23 @@ class AttachDeviceViewBody extends StatelessWidget {
                 style: TextStyle(fontSize: 16.sp, color: AppColors.darkGreyTxtColor),
               ),
               SizedBox(height: 40.h),
-              Expanded(
-                child: CustomSteps(
-                  steps:
-                      stepData
-                          .map(
-                            (data) => StepItem(
-                              title: data['title'] ?? '',
-                              description: data['description'] ?? '',
-                            ),
-                          )
-                          .toList(),
+              Container(
+                child: Expanded(
+                  child: CustomSteps(
+                    steps:
+                        stepData
+                            .map(
+                              (data) => StepItem(
+                                title: data['title'] ?? '',
+                                description: data['description'] ?? '',
+                              ),
+                            )
+                            .toList(),
+                  ),
                 ),
               ),
               const ConnectButton(),
+        
               SizedBox(height: 68.h),
             ],
           ),
