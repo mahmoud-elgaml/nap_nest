@@ -12,6 +12,7 @@ import 'package:nap_nest/features/breathing/presentation/view/breathing_view.dar
 import 'package:nap_nest/features/breathing/presentation/widgets/breathing_details_view_body.dart';
 import 'package:nap_nest/features/home/presentation/view/home_view.dart';
 import 'package:nap_nest/features/onboarding/presentation/views/on_boarding_view.dart';
+import 'package:nap_nest/features/psqi/presentation/view/psqi_result_view.dart';
 import 'package:nap_nest/features/psqi/presentation/view/psqi_view.dart';
 import 'package:nap_nest/features/soundtrack/presentation/view/sound_track_view.dart';
 import 'package:nap_nest/features/splash/presentation/view/splash_view1.dart';
@@ -53,13 +54,17 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
 
     case PsqiView.routeName:
       return MaterialPageRoute(builder: (context) => const PsqiView());
+  
+    case PsqiResultView.routeName:
+      return MaterialPageRoute(builder: (context) => const PsqiResultView());
+
 
     case SuccessMessage.routeName:
       return MaterialPageRoute(builder: (context) => const SuccessMessage());
 
     case SetNewPasswordViewBody.routeName:
       return MaterialPageRoute(builder: (context) => const SetNewPasswordViewBody());
-
+  
     case HomeView.routeName:
       return MaterialPageRoute(builder: (context) => const HomeView());
 
