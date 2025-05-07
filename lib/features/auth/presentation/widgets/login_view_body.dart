@@ -31,7 +31,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
         children: [
           Container(
             color: Colors.white,
-            height: MediaQuery.of(context).size.height * 0.37,
+            height: MediaQuery.of(context).size.height * 0.32,
             padding: EdgeInsets.only(bottom: 30.h),
             child: Center(child: Image.asset(Assets.imagesAppIcon, width: 134.w, height: 110.h)),
           ),
@@ -50,7 +50,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
               child: Container(
                 padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 16.h),
                 decoration: BoxDecoration(
-                  color: Colors.grey[50],
+                  color: const Color.fromARGB(255, 255, 251, 251),
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(60.r),
                     topRight: Radius.circular(60.r),
@@ -62,7 +62,6 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                     child: Column(
                       children: [
                         SizedBox(height: 32.h),
-
                         SizedBox(height: 16.h),
                         CustomTextField(
                           controller: _emailController,
