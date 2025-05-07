@@ -6,6 +6,7 @@ import 'package:nap_nest/features/auth/presentation/view/forget_password_view.da
 import 'package:nap_nest/features/auth/presentation/view/login_view.dart';
 import 'package:nap_nest/features/auth/presentation/view/register_view.dart';
 import 'package:nap_nest/features/auth/presentation/view/verify_code_view.dart';
+import 'package:nap_nest/features/auth/presentation/widgets/set_new_password_body.dart';
 import 'package:nap_nest/features/breathing/presentation/view/breathing_details_view.dart';
 import 'package:nap_nest/features/breathing/presentation/view/breathing_view.dart';
 import 'package:nap_nest/features/breathing/presentation/widgets/breathing_details_view_body.dart';
@@ -55,6 +56,9 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
 
     case SuccessMessage.routeName:
       return MaterialPageRoute(builder: (context) => const SuccessMessage());
+
+    case SetNewPasswordViewBody.routeName:
+      return MaterialPageRoute(builder: (context) => const SetNewPasswordViewBody());
 
     case HomeView.routeName:
       return MaterialPageRoute(builder: (context) => const HomeView());

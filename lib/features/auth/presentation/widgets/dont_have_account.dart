@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nap_nest/core/utils/app_colors.dart';
 import 'package:nap_nest/features/auth/presentation/view/login_view.dart';
 import 'package:nap_nest/features/auth/presentation/view/register_view.dart';
 
@@ -19,9 +21,8 @@ class HaveAccount extends StatelessWidget {
         Text(
           text,
           style: TextStyle(
-            color: const Color(0xFF414E61),
-            fontSize: 16,
-            fontFamily: 'Roboto',
+            color: AppColors.darkGreyTxtColor,
+            fontSize: 16.sp,
             fontWeight: FontWeight.w700,
           ),
         ),
@@ -38,9 +39,8 @@ class HaveAccount extends StatelessWidget {
           child: Text(
             method,
             style: TextStyle(
-              color: const Color(0xFF74B2E7),
-              fontSize: 16,
-              fontFamily: 'Roboto',
+              color:  AppColors.primaryColor,
+              fontSize: 16.sp,
               fontWeight: FontWeight.w700,
             ), //       ),
           ),

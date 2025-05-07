@@ -113,5 +113,13 @@ class Assets {
   /// Assets for imagesStatistics
   /// assets/images/statistics.svg
   static const String imagesStatistics = "assets/images/statistics.svg";
+
+  /// Assets for imagesTest1
+  /// assets/images/test1.svg
+  static const String imagesTest1 = "assets/images/test1.svg";
+
+  /// Assets for imagesTest2
+  /// assets/images/test2.svg
+  static const String imagesTest2 = "assets/images/test2.svg";
 }
 

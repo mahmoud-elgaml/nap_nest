@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nap_nest/core/helper/on_generate_route.dart';
 import 'package:nap_nest/core/services/shared_preferences_singleton.dart';
 import 'package:nap_nest/core/utils/app_colors.dart';
-import 'package:nap_nest/features/home/presentation/view/home_view.dart';
+import 'package:nap_nest/features/splash/presentation/view/splash_view1.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,13 +33,12 @@ class NapNest extends StatelessWidget {
           ),
         ),
         fontFamily: 'Roboto',
-
         scaffoldBackgroundColor: Colors.white,
         primaryColor: AppColors.primaryColor,
         useMaterial3: true,
       ),
       onGenerateRoute: onGenerateRoute,
-      initialRoute: HomeView.routeName,
+      initialRoute: SplashView1.routeName,
     );
   }
 }

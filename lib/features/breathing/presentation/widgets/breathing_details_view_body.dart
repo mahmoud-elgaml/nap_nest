@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nap_nest/core/utils/app_colors.dart';
 import 'package:nap_nest/core/utils/app_images.dart';
 import 'package:svg_flutter/svg_flutter.dart';
 
@@ -18,19 +20,14 @@ class BreathingDetailsViewBody extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
- 
           // Moon and clouds image overlay
           Positioned.fill(
-            child: SvgPicture.asset(
-             Assets.imagesBreathingBackground,
-              fit: BoxFit.fill,
-            ),
+            child: SvgPicture.asset(Assets.imagesBreathingBackground, fit: BoxFit.fill),
           ),
 
-          // Content
           SafeArea(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -39,62 +36,52 @@ class BreathingDetailsViewBody extends StatelessWidget {
                     icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
                     onPressed: () => Navigator.pop(context),
                   ),
-                  const SizedBox(height: 10),
+                  SizedBox(height: 10.h),
 
                   // Title
                   Text(
                     title,
-                    style: const TextStyle(
-                      fontSize: 28,
+                    style: TextStyle(
+                      fontSize: 28.sp,
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
                     ),
                   ),
-                  const SizedBox(height: 20),
-
-                  // Description
+                  SizedBox(height: 20.h),
                   Text(
                     description,
-                    style: const TextStyle(fontSize: 16, height: 1.6, color: Colors.white70),
+                    style: TextStyle(fontSize: 16.sp, height: 1.6.h, color: Colors.white70),
                   ),
                   const SizedBox(height: 20),
-
-                  // Duration
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                    padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
                     decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.1),
+                      color: Colors.white.withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        const Icon(Icons.timer, color: Colors.white70, size: 18),
-                        const SizedBox(width: 8),
+                        Icon(Icons.timer, color: Colors.white70, size: 18.sp),
+                        SizedBox(width: 8.w),
                         Text(duration, style: const TextStyle(color: Colors.white70)),
                       ],
                     ),
                   ),
                   const Spacer(),
-
-                  // Start button
                   Center(
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFF7FB7FF),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-                        padding: const EdgeInsets.symmetric(horizontal: 60, vertical: 14),
+                        backgroundColor: AppColors.primaryColor,
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.r)),
+                        padding: EdgeInsets.symmetric(horizontal: 60.w, vertical: 14.h),
                       ),
                       onPressed: () {
                         // Navigate to breathing timer screen
                       },
-                      child: const Text(
+                      child: Text(
                         'Start',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black87,
-                        ),
+                        style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
                       ),
                     ),
                   ),

@@ -42,14 +42,14 @@ class _ForgetPasswordViewBodyState extends State<ForgetPasswordViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return SingleChildScrollView(
       padding: EdgeInsets.symmetric(horizontal: 24.w),
-      child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: 74.h),
-            Row(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(height: 74.h),
+          Container(
+            child: Row(
               children: [
                 IconButton(
                   onPressed: () => Navigator.pop(context),
@@ -60,57 +60,52 @@ class _ForgetPasswordViewBodyState extends State<ForgetPasswordViewBody> {
                   style: TextStyle(
                     fontSize: 16.sp,
                     fontFamily: 'Roboto',
-                    fontWeight: FontWeight.w400,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
               ],
             ),
-            SizedBox(height: 24.h),
-            Text(
-              'Forgot Password?',
+          ),
+          SizedBox(height: 24.h),
+          Text(
+            'Forgot Password?',
+            style: TextStyle(fontSize: 28.sp, fontFamily: 'Roboto', fontWeight: FontWeight.w700),
+          ),
+          SizedBox(height: 8.h),
+          SizedBox(
+            width: double.infinity,
+            child: Text(
+              'Please enter your email to reset the password',
               style: TextStyle(
-                fontSize: 28.sp,
+                color: const Color(0xFF9EA8B9),
+                fontSize: 14.sp,
                 fontFamily: 'Roboto',
-                fontWeight: FontWeight.w700,
+                fontWeight: FontWeight.w400,
               ),
             ),
-            SizedBox(height: 8.h),
-            SizedBox(
-              width: double.infinity,
-              child: Text(
-                'Please enter your email to reset the password',
-                style: TextStyle(
-                  color: const Color(0xFF9EA8B9),
-                  fontSize: 14.sp,
-                  fontFamily: 'Roboto',
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-            ),
-            SizedBox(height: 132.h),
-            CustomTextField(
-              controller: _emailController,
-              label: 'Email',
-              hint: 'Enter your email',
-              keyboardType: TextInputType.emailAddress,
-              validator: (val) {
-                if (val == null || val.isEmpty) return 'Enter your email';
-                final emailRegex = RegExp(r'^[^@]+@[^@]+\.[^@]+');
-                if (!emailRegex.hasMatch(val)) return 'Enter a valid email';
-                return null;
-              },
-            ),
-            SizedBox(height: 200.h),
-            ResetButton(
-              buttonText: 'Reset Password',
-              backgroundColor: const Color(0xFF74B2E7),
-              opacity: isEmailValid ? 1.0 : 0.5,
-              // onTap: isEmailValid ? resetPassword : () {},
-              onTap:
-                  () => Navigator.pushNamed(context, VerifyCodeView.routeName),
-            ),
-          ],
-        ),
+          ),
+          SizedBox(height: 132.h),
+          CustomTextField(
+            controller: _emailController,
+            label: 'Email',
+            hint: 'Enter your email',
+            keyboardType: TextInputType.emailAddress,
+            validator: (val) {
+              if (val == null || val.isEmpty) return 'Enter your email';
+              final emailRegex = RegExp(r'^[^@]+@[^@]+\.[^@]+');
+              if (!emailRegex.hasMatch(val)) return 'Enter a valid email';
+              return null;
+            },
+          ),
+          SizedBox(height: 200.h),
+          ResetButton(
+            buttonText: 'Reset Password',
+            backgroundColor: const Color(0xFF74B2E7),
+            opacity: isEmailValid ? 1.0 : 0.5,
+            // onTap: isEmailValid ? resetPassword : () {},
+            onTap: () => Navigator.pushNamed(context, VerifyCodeView.routeName),
+          ),
+        ],
       ),
     );
   }

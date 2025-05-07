@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nap_nest/core/constants/custom_snackbar.dart';
 import 'package:nap_nest/core/utils/app_colors.dart';
+import 'package:nap_nest/core/widgets/success_message_view.dart';
+import 'package:nap_nest/features/auth/presentation/widgets/set_new_password_body.dart';
 
 class VerifyCodeViewBody extends StatefulWidget {
   const VerifyCodeViewBody({super.key});
@@ -36,8 +39,7 @@ class _VerifyCodeViewBodyState extends State<VerifyCodeViewBody> {
     setState(() {});
   }
 
-  bool get isCodeComplete =>
-      _controllers.every((controller) => controller.text.length == 1);
+  bool get isCodeComplete => _controllers.every((controller) => controller.text.length == 1);
 
   @override
   Widget build(BuildContext context) {
@@ -67,11 +69,7 @@ class _VerifyCodeViewBodyState extends State<VerifyCodeViewBody> {
             SizedBox(height: 24.h),
             Text(
               'Check your email',
-              style: TextStyle(
-                fontSize: 28.sp,
-                fontFamily: 'Roboto',
-                fontWeight: FontWeight.w700,
-              ),
+              style: TextStyle(fontSize: 28.sp, fontFamily: 'Roboto', fontWeight: FontWeight.w700),
             ),
             SizedBox(height: 8.h),
             SizedBox(
@@ -127,10 +125,7 @@ class _VerifyCodeViewBodyState extends State<VerifyCodeViewBody> {
                     maxLength: 1,
                     keyboardType: TextInputType.number,
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 24.sp,
-                      fontWeight: FontWeight.w600,
-                    ),
+                    style: TextStyle(fontSize: 24.sp, fontWeight: FontWeight.w600),
                     decoration: InputDecoration(
                       counterText: '',
                       contentPadding: EdgeInsets.all(12.r),
@@ -140,10 +135,7 @@ class _VerifyCodeViewBodyState extends State<VerifyCodeViewBody> {
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12.r),
-                        borderSide: const BorderSide(
-                          color: Color(0xFF74B2E7),
-                          width: 2,
-                        ),
+                        borderSide: const BorderSide(color: AppColors.primaryColor, width: 2),
                       ),
                     ),
                   ),
@@ -154,18 +146,37 @@ class _VerifyCodeViewBodyState extends State<VerifyCodeViewBody> {
             Opacity(
               opacity: isCodeComplete ? 1.0 : 0.5,
               child: GestureDetector(
-                onTap: isCodeComplete ? () {} : () {},
+                onTap:
+                    isCodeComplete
+                        ? () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return SuccessMessage(
+                                  message: 'Your password has been reset successfully!',
+                                  title: 'Way To Go!',
+                                  textButton: 'Set New Password',
+                                  onPressed: () {
+                                    Navigator.pushNamed(context, SetNewPasswordViewBody.routeName);
+                                  },
+                                );
+                              },
+                            ),
+                          );
+                          CustomSnackBar.show(
+                            message: 'Code verified successfully!',
+                            type: SnackBarType.success,
+                            context,
+                          );
+                        }
+                        : () {},
                 child: Container(
                   width: double.infinity,
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 32.w,
-                    vertical: 20.h,
-                  ),
+                  padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 20.h),
                   decoration: ShapeDecoration(
-                    color: const Color(0xFF74B2E7),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(28.r),
-                    ),
+                    color: AppColors.primaryColor,
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(28.r)),
                   ),
                   child: Center(
                     child: Text(
@@ -199,7 +210,7 @@ class _VerifyCodeViewBodyState extends State<VerifyCodeViewBody> {
                             text: 'Haven’t got the email yet? ',
                             style: TextStyle(
                               color: const Color(0xFF9EA8B9),
-                              fontSize: 14,
+                              fontSize: 14.sp,
                               fontFamily: 'Roboto',
                               fontWeight: FontWeight.w400,
                             ),
@@ -209,7 +220,7 @@ class _VerifyCodeViewBodyState extends State<VerifyCodeViewBody> {
                             text: 'Resend email',
                             style: TextStyle(
                               color: AppColors.primaryColor,
-                              fontSize: 14,
+                              fontSize: 14.sp,
                               fontFamily: 'Roboto',
                               fontWeight: FontWeight.w700,
                             ),

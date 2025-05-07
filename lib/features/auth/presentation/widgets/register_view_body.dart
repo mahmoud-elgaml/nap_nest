@@ -121,7 +121,6 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                         onPressed: () {},
                       ),
                       SizedBox(height: 16.h),
-
                       const Text('Or'),
                       SizedBox(height: 4.h),
                       Row(

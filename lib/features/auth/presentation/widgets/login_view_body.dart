@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nap_nest/core/utils/app_colors.dart';
 import 'package:nap_nest/core/utils/app_images.dart';
 import 'package:nap_nest/core/widgets/custom_button.dart';
+import 'package:nap_nest/features/auth/presentation/view/forget_password_view.dart';
 import 'package:nap_nest/features/auth/presentation/widgets/custom_text_field.dart';
 import 'package:nap_nest/features/auth/presentation/widgets/dont_have_account.dart';
 import 'package:nap_nest/features/auth/presentation/widgets/other_register.dart';
@@ -32,13 +33,13 @@ class _LoginViewBodyState extends State<LoginViewBody> {
             color: Colors.white,
             height: MediaQuery.of(context).size.height * 0.37,
             padding: EdgeInsets.only(bottom: 30.h),
-            child: Center(child: Image.asset(Assets.imagesAppIcon, width: 134, height: 110)),
+            child: Center(child: Image.asset(Assets.imagesAppIcon, width: 134.w, height: 110.h)),
           ),
           Expanded(
             child: Card(
               shadowColor: Colors.transparent,
               borderOnForeground: false,
-              color: const Color.fromARGB(255, 255, 255, 255),
+              color: Colors.white,
               margin: EdgeInsets.zero,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.only(
@@ -95,13 +96,12 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                           children: [
                             TextButton(
                               onPressed:
-                                  () => Navigator.pushNamed(context, BirthdayViewBody.routeName),
+                                  () => Navigator.pushNamed(context, ForgetPasswordView.routeName),
                               child: Text(
                                 'Forget your password?',
                                 style: TextStyle(
                                   color: AppColors.primaryColor,
-                                  fontSize: 14,
-                                  fontFamily: 'Roboto',
+                                  fontSize: 14.sp,
                                   fontWeight: FontWeight.w700,
                                 ),
                               ),
@@ -113,7 +113,8 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                           text: 'Login',
                           color: AppColors.primaryColor,
                           width: double.infinity,
-                          onPressed: () {},
+                          onPressed: () =>
+                                  () => Navigator.pushNamed(context, BirthdayViewBody.routeName),
                         ),
                         SizedBox(height: 24.h),
                         const Text('Or'),

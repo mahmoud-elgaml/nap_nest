@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nap_nest/core/utils/app_colors.dart';
 import 'package:nap_nest/core/utils/app_images.dart';
 import 'package:nap_nest/core/widgets/custom_button.dart';
-import 'package:nap_nest/features/auth/presentation/view/forget_password_view.dart';
+import 'package:nap_nest/features/auth/presentation/view/login_view.dart';
 import 'package:nap_nest/features/auth/presentation/view/register_view.dart';
 
 class AuthViewBody extends StatelessWidget {
@@ -76,7 +76,7 @@ class AuthViewBody extends StatelessWidget {
                   text: 'Login',
                   width: double.infinity,
                   onPressed:
-                      () => Navigator.pushReplacementNamed(context, ForgetPasswordView.routeName),
+                      () => Navigator.pushReplacementNamed(context, LoginView.routeName),
                 ),
               ],
             ),

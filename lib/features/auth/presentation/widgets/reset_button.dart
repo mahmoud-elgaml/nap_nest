@@ -13,7 +13,7 @@ class ResetButton extends StatelessWidget {
   final String buttonText;
   final Color backgroundColor;
   final double opacity;
-  final VoidCallback onTap;
+  final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {

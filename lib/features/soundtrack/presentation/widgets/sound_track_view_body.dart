@@ -30,8 +30,8 @@ class SoundTrackViewBody extends StatelessWidget {
                       builder:
                           (_) => SongDetailScreen(
                             title: 'Basic Mindfulness',
-                            audioAsset: 'song1.mp3',
-                            backgroundAsset: Assets.imagesSound3,
+                            audio: 'song1.mp3',
+                            backgroundImage: Assets.imagesSound3,
                           ),
                     ),
                   );
@@ -49,8 +49,8 @@ class SoundTrackViewBody extends StatelessWidget {
                       builder:
                           (_) => SongDetailScreen(
                             title: 'Basic Mindfulness',
-                            audioAsset: 'song2.mp3',
-                            backgroundAsset: Assets.imagesSound2,
+                            audio: 'song2.mp3',
+                            backgroundImage: Assets.imagesSound2,
                           ),
                     ),
                   );
@@ -68,8 +68,8 @@ class SoundTrackViewBody extends StatelessWidget {
                       builder:
                           (_) => SongDetailScreen(
                             title: 'Basic Mindfulness',
-                            audioAsset: 'song3.mp3',
-                            backgroundAsset: Assets.imagesSound4,
+                            audio: 'song3.mp3',
+                            backgroundImage: Assets.imagesSound4,
                           ),
                     ),
                   );
