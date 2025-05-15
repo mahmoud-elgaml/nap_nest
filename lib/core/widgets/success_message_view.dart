@@ -11,38 +11,35 @@ class SuccessMessage extends StatelessWidget {
   final VoidCallback? onPressed;
 
   const SuccessMessage({super.key, this.title, this.message, this.textButton, this.onPressed});
+
   static const routeName = 'successMessage';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromRGBO(246, 247, 251, 1),
       body: Padding(
-        padding:  EdgeInsets.symmetric(horizontal: 20.w),
+        padding: EdgeInsets.symmetric(horizontal: 20.w),
         child: Column(
           children: [
             const SizedBox(height: 120),
             Text(
               title ?? 'Way to go!',
-              style:  TextStyle(
+              style: TextStyle(
                 fontSize: 32.sp,
                 fontWeight: FontWeight.w500,
                 color: Color(0xFF111111),
               ),
             ).animate().fadeIn(duration: 500.ms).moveY(begin: -20, end: 0),
-
-             SizedBox(height: 100.h),
-            
+            SizedBox(height: 100.h),
             const AnimatedSuccessIcon(),
-            
-             SizedBox(height: 100.h),
+            SizedBox(height: 100.h),
             Text(
                   message ?? 'Your password has changed successfully!',
                   textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontSize: 16,
+                  style: TextStyle(
+                    fontSize: 16.sp,
                     fontWeight: FontWeight.w400,
-                    fontFamily: 'Roboto',
-                    color: Color(0xFF6B7280),
+                    color: AppColors.darkGreyTxtColor,
                   ),
                 )
                 .animate()
@@ -56,7 +53,7 @@ class SuccessMessage extends StatelessWidget {
                     curve: Curves.easeOut,
                   ),
                 ),
-            const Spacer(),
+            SizedBox(height: 100.h),
             Animate(
               effects: [
                 FadeEffect(duration: 400.ms),
@@ -81,7 +78,7 @@ class SuccessMessage extends StatelessWidget {
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
                     ),
-                    borderRadius: BorderRadius.circular(14),
+                    borderRadius: BorderRadius.circular(14.r),
                     boxShadow: [
                       BoxShadow(
                         color: const Color.fromRGBO(96, 165, 250, 0.3),
@@ -92,7 +89,7 @@ class SuccessMessage extends StatelessWidget {
                   ),
                   child: Text(
                     textButton ?? 'Done',
-                    style:  TextStyle(
+                    style: TextStyle(
                       color: Colors.white,
                       fontSize: 18.sp,
                       fontWeight: FontWeight.w600,
@@ -101,8 +98,6 @@ class SuccessMessage extends StatelessWidget {
                 ),
               ),
             ),
-
-             SizedBox(height: 50.h),
           ],
         ),
       ),

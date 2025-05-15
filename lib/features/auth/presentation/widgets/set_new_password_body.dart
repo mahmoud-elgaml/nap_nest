@@ -1,9 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nap_nest/core/utils/app_colors.dart';
 import 'package:nap_nest/core/widgets/success_message_view.dart';
 import 'package:nap_nest/features/auth/presentation/view/login_view.dart';
 import 'package:nap_nest/features/auth/presentation/widgets/custom_text_field.dart';
+import 'package:nap_nest/features/auth/presentation/widgets/reset_button.dart';
 
 class SetNewPasswordViewBody extends StatefulWidget {
   const SetNewPasswordViewBody({super.key});
@@ -20,6 +22,7 @@ class _SetNewPasswordViewBodyState extends State<SetNewPasswordViewBody> {
 
   bool _obscurePassword = true;
   bool _obscureConfirmPassword = true;
+  bool _passwordsMatch = false;
 
   void _togglePasswordVisibility() => setState(() => _obscurePassword = !_obscurePassword);
 
@@ -30,7 +33,7 @@ class _SetNewPasswordViewBodyState extends State<SetNewPasswordViewBody> {
     if (_formKey.currentState!.validate()) {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(
+        CupertinoPageRoute(
           builder:
               (context) => SuccessMessage(
                 title: 'Way to go!',
@@ -41,6 +44,28 @@ class _SetNewPasswordViewBodyState extends State<SetNewPasswordViewBody> {
         ),
       );
     }
+  }
+
+  void _checkPasswordMatch() {
+    setState(() {
+      _passwordsMatch =
+          _passwordController.text.isNotEmpty &&
+          _passwordController.text == _confirmPasswordController.text;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _passwordController.addListener(_checkPasswordMatch);
+    _confirmPasswordController.addListener(_checkPasswordMatch);
+  }
+
+  @override
+  void dispose() {
+    _passwordController.dispose();
+    _confirmPasswordController.dispose();
+    super.dispose();
   }
 
   @override
@@ -75,7 +100,6 @@ class _SetNewPasswordViewBodyState extends State<SetNewPasswordViewBody> {
                   style: TextStyle(
                     color: AppColors.darkGreyTxtColor,
                     fontSize: 16.sp,
-                    fontFamily: 'Roboto',
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -86,7 +110,10 @@ class _SetNewPasswordViewBodyState extends State<SetNewPasswordViewBody> {
                   hint: 'Enter your password',
                   obscureText: _obscurePassword,
                   suffix: IconButton(
-                    icon: Icon(_obscurePassword ? Icons.visibility_off : Icons.visibility),
+                    icon: Icon(
+                      _obscurePassword ? Icons.visibility_off : Icons.visibility,
+                      color: _obscurePassword ? Colors.grey : AppColors.primaryColor,
+                    ),
                     onPressed: _togglePasswordVisibility,
                   ),
                   validator:
@@ -102,7 +129,10 @@ class _SetNewPasswordViewBodyState extends State<SetNewPasswordViewBody> {
                   hint: 'Re-enter your password',
                   obscureText: _obscureConfirmPassword,
                   suffix: IconButton(
-                    icon: Icon(_obscureConfirmPassword ? Icons.visibility_off : Icons.visibility),
+                    icon: Icon(
+                      _obscureConfirmPassword ? Icons.visibility_off : Icons.visibility,
+                      color: _obscureConfirmPassword ? Colors.grey : AppColors.primaryColor,
+                    ),
                     onPressed: _toggleConfirmPasswordVisibility,
                   ),
                   validator:
@@ -112,27 +142,11 @@ class _SetNewPasswordViewBodyState extends State<SetNewPasswordViewBody> {
                               : null,
                 ),
                 SizedBox(height: 120.h),
-                GestureDetector(
-                  onTap: _validateAndNavigate,
-                  child: Container(
-                    width: double.infinity,
-                    padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 20.h),
-                    decoration: ShapeDecoration(
-                      color: AppColors.primaryColor,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(28.r)),
-                    ),
-                    child: Center(
-                      child: Text(
-                        'Update Password',
-                        style: TextStyle(
-                          color: const Color(0xFFF9F9F9),
-                          fontSize: 14.sp,
-                          fontFamily: 'Inter',
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                    ),
-                  ),
+                ResetButton(
+                  buttonText: 'Update Password',
+                  backgroundColor: AppColors.primaryColor,
+                  opacity: _passwordsMatch ? 1.0 : 0.5,
+                  onTap: _passwordsMatch ? _validateAndNavigate : null,
                 ),
               ],
             ),

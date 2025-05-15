@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nap_nest/core/utils/app_colors.dart';
 import 'package:nap_nest/features/auth/presentation/view/verify_code_view.dart';
 import 'package:nap_nest/features/auth/presentation/widgets/custom_text_field.dart';
 import 'package:nap_nest/features/auth/presentation/widgets/reset_button.dart';
@@ -79,7 +80,6 @@ class _ForgetPasswordViewBodyState extends State<ForgetPasswordViewBody> {
               style: TextStyle(
                 color: const Color(0xFF9EA8B9),
                 fontSize: 15.sp,
-                fontFamily: 'Roboto',
                 fontWeight: FontWeight.w400,
               ),
             ),
@@ -100,7 +100,7 @@ class _ForgetPasswordViewBodyState extends State<ForgetPasswordViewBody> {
           SizedBox(height: 200.h),
           ResetButton(
             buttonText: 'Reset Password',
-            backgroundColor: const Color(0xFF74B2E7),
+            backgroundColor: AppColors.primaryColor,
             opacity: isEmailValid ? 1.0 : 0.5,
             // onTap: isEmailValid ? resetPassword : () {},
             onTap: () => Navigator.pushNamed(context, VerifyCodeView.routeName),
