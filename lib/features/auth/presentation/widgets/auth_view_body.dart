@@ -31,9 +31,7 @@ class AuthViewBody extends StatelessWidget {
               Text(
                 'Relax, Sleep, Thrive',
                 style: TextStyle(
-                  color: const Color(0xFF111111),
                   fontSize: 32.sp,
-                  fontFamily: 'Roboto',
                   fontWeight: FontWeight.w700,
                 ),
                 textAlign: TextAlign.center,
@@ -67,7 +65,7 @@ class AuthViewBody extends StatelessWidget {
               children: [
                 CustomButton(
                   text: 'Sign Up',
-                  color: const Color(0xFF74B2E7),
+                  color: AppColors.primaryColor,
                   width: double.infinity,
                   onPressed: () => Navigator.pushReplacementNamed(context, RegisterView.routeName),
                 ),

@@ -5,6 +5,7 @@ class RegisterView extends StatelessWidget {
   const RegisterView({super.key});
   static const routeName = 'register';
   @override
-  Widget build(BuildContext context) =>
-      Scaffold(body: SafeArea(child: RegisterViewBody()));
+  Widget build(BuildContext context) {
+    return Scaffold(body: SafeArea(child: RegisterViewBody()));
+  }
 }

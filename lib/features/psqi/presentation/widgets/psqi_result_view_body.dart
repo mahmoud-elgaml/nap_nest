@@ -1,5 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:nap_nest/features/home/presentation/view/home_view.dart';
 
 class PsqiResultViewBody extends StatelessWidget {
   const PsqiResultViewBody({super.key});
@@ -122,7 +123,10 @@ class PsqiResultViewBody extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    // Handle continue action
+                    Navigator.pushNamed(context,HomeView.routeName); // Replace with your route
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF4A90E2),
                     padding: const EdgeInsets.symmetric(vertical: 16),

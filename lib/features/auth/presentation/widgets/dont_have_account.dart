@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nap_nest/core/utils/app_colors.dart';
@@ -30,7 +31,7 @@ class HaveAccount extends StatelessWidget {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute<void>(
+              CupertinoPageRoute<void>(
                 builder:
                     (_) => isLogin ? const RegisterView() : const LoginView(),
               ),

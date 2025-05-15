@@ -11,7 +11,7 @@ class AnswersContainer extends StatelessWidget {
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.r)),
       color: const Color.fromARGB(255, 255, 254, 254),
-      elevation: 1.75,
+      // elevation: 1.75,
 
       margin: EdgeInsets.symmetric(horizontal: 6.w, vertical: 12.h),
       child: Container(

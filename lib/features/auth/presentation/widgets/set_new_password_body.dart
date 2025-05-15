@@ -4,7 +4,6 @@ import 'package:nap_nest/core/utils/app_colors.dart';
 import 'package:nap_nest/core/widgets/success_message_view.dart';
 import 'package:nap_nest/features/auth/presentation/view/login_view.dart';
 import 'package:nap_nest/features/auth/presentation/widgets/custom_text_field.dart';
-import 'package:nap_nest/core/constants/custom_snackbar.dart';
 
 class SetNewPasswordViewBody extends StatefulWidget {
   const SetNewPasswordViewBody({super.key});
@@ -29,11 +28,6 @@ class _SetNewPasswordViewBodyState extends State<SetNewPasswordViewBody> {
 
   void _validateAndNavigate() {
     if (_formKey.currentState!.validate()) {
-      CustomSnackBar.show(
-        message: 'Password updated successfully!',
-        type: SnackBarType.success,
-        context,
-      );
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(

@@ -1,6 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:nap_nest/core/constants/custom_snackbar.dart';
 import 'package:nap_nest/core/utils/app_colors.dart';
 import 'package:nap_nest/core/widgets/success_message_view.dart';
 import 'package:nap_nest/features/auth/presentation/widgets/set_new_password_body.dart';
@@ -16,7 +16,7 @@ class _VerifyCodeViewBodyState extends State<VerifyCodeViewBody> {
   final List<FocusNode> _focusNodes = List.generate(5, (index) => FocusNode());
   final List<TextEditingController> _controllers = List.generate(
     5,
-    (index) => TextEditingController(),
+    (index) => TextEditingController(), //
   );
 
   @override
@@ -56,20 +56,13 @@ class _VerifyCodeViewBodyState extends State<VerifyCodeViewBody> {
                   onPressed: () => Navigator.pop(context),
                   icon: Icon(Icons.arrow_back_ios, size: 28.sp),
                 ),
-                Text(
-                  'Login',
-                  style: TextStyle(
-                    fontSize: 16.sp,
-                    fontFamily: 'Roboto',
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
+                Text('Login', style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w400)),
               ],
             ),
             SizedBox(height: 24.h),
             Text(
               'Check your email',
-              style: TextStyle(fontSize: 28.sp, fontFamily: 'Roboto', fontWeight: FontWeight.w700),
+              style: TextStyle(fontSize: 28.sp, fontWeight: FontWeight.w700),
             ),
             SizedBox(height: 8.h),
             SizedBox(
@@ -85,14 +78,14 @@ class _VerifyCodeViewBodyState extends State<VerifyCodeViewBody> {
                         fontFamily: 'Inter',
                         fontWeight: FontWeight.w600,
                         height: 1.25,
-                        letterSpacing: -0.50,
+                        letterSpacing: -0.50.w,
                       ),
                     ),
                     TextSpan(
                       text: 'Yomna24@gmail.com\n',
                       style: TextStyle(
                         color: AppColors.darkGreyTxtColor,
-                        fontSize: 14,
+                        fontSize: 16.sp,
                         fontFamily: 'Inter',
                         fontWeight: FontWeight.w600,
                       ),
@@ -105,7 +98,7 @@ class _VerifyCodeViewBodyState extends State<VerifyCodeViewBody> {
                         fontFamily: 'Inter',
                         fontWeight: FontWeight.w600,
                         height: 1.25,
-                        letterSpacing: -0.50,
+                        letterSpacing: -0.50.w,
                       ),
                     ),
                   ],
@@ -122,12 +115,17 @@ class _VerifyCodeViewBodyState extends State<VerifyCodeViewBody> {
                     controller: _controllers[index],
                     focusNode: _focusNodes[index],
                     onChanged: (value) => onDigitEntered(index, value),
+                    cursorColor: AppColors.primaryColor,
+                    scrollPhysics: BouncingScrollPhysics(),
+
                     maxLength: 1,
                     keyboardType: TextInputType.number,
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 24.sp, fontWeight: FontWeight.w600),
                     decoration: InputDecoration(
                       counterText: '',
+                      focusColor: AppColors.primaryColor,
+
                       contentPadding: EdgeInsets.all(12.r),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12.r),
@@ -151,7 +149,7 @@ class _VerifyCodeViewBodyState extends State<VerifyCodeViewBody> {
                         ? () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(
+                            CupertinoPageRoute(
                               builder: (context) {
                                 return SuccessMessage(
                                   message: 'Your password has been reset successfully!',
@@ -163,11 +161,6 @@ class _VerifyCodeViewBodyState extends State<VerifyCodeViewBody> {
                                 );
                               },
                             ),
-                          );
-                          CustomSnackBar.show(
-                            message: 'Code verified successfully!',
-                            type: SnackBarType.success,
-                            context,
                           );
                         }
                         : () {},

@@ -78,7 +78,7 @@ class _ForgetPasswordViewBodyState extends State<ForgetPasswordViewBody> {
               'Please enter your email to reset the password',
               style: TextStyle(
                 color: const Color(0xFF9EA8B9),
-                fontSize: 14.sp,
+                fontSize: 15.sp,
                 fontFamily: 'Roboto',
                 fontWeight: FontWeight.w400,
               ),

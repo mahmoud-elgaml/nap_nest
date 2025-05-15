@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nap_nest/core/utils/app_colors.dart';
-import 'package:nap_nest/core/widgets/custom_button.dart';
+import 'package:nap_nest/core/widgets/animated_success_icon.dart';
 
 class SuccessMessage extends StatelessWidget {
   final String? title;
@@ -11,63 +12,97 @@ class SuccessMessage extends StatelessWidget {
 
   const SuccessMessage({super.key, this.title, this.message, this.textButton, this.onPressed});
   static const routeName = 'successMessage';
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromRGBO(246, 247, 251, 1),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20.w),
+        padding:  EdgeInsets.symmetric(horizontal: 20.w),
         child: Column(
           children: [
-            SizedBox(height: 170.h),
+            const SizedBox(height: 120),
             Text(
               title ?? 'Way to go!',
-              style: TextStyle(
+              style:  TextStyle(
                 fontSize: 32.sp,
                 fontWeight: FontWeight.w500,
-                fontFamily: 'Roboto',
-                color: const Color(0xFF111111),
+                color: Color(0xFF111111),
               ),
-            ),
-            SizedBox(height: 100.h),
-            Stack(
-              alignment: Alignment.center,
-              children: [
-                Container(
-                  width: 145.w,
-                  height: 145.w,
-                  decoration: const BoxDecoration(color: Color(0xFFE4EEF9), shape: BoxShape.circle),
-                ),
-                Container(
-                  width: 115.w,
-                  height: 115.w,
-                  decoration: const BoxDecoration(
-                    color: AppColors.primaryColor,
-                    shape: BoxShape.circle,
+            ).animate().fadeIn(duration: 500.ms).moveY(begin: -20, end: 0),
+
+             SizedBox(height: 100.h),
+            
+            const AnimatedSuccessIcon(),
+            
+             SizedBox(height: 100.h),
+            Text(
+                  message ?? 'Your password has changed successfully!',
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400,
+                    fontFamily: 'Roboto',
+                    color: Color(0xFF6B7280),
                   ),
-                  child: Icon(Icons.check_rounded, size: 90.w, color: Colors.white, weight: 32.0.w),
+                )
+                .animate()
+                .fadeIn(duration: 600.ms)
+                .then(delay: 200.ms)
+                .addEffect(
+                  MoveEffect(
+                    begin: const Offset(0, 20),
+                    end: Offset.zero,
+                    duration: 600.ms,
+                    curve: Curves.easeOut,
+                  ),
+                ),
+            const Spacer(),
+            Animate(
+              effects: [
+                FadeEffect(duration: 400.ms),
+                ScaleEffect(
+                  begin: const Offset(1.0, 1.0),
+                  end: const Offset(1.05, 1.05),
+                  duration: 1000.ms,
+                  curve: Curves.easeInOut,
+                  delay: 400.ms,
                 ),
               ],
-            ),
-            SizedBox(height: 100.h),
-            Text(
-              message ?? 'Your password has changed successfully!',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 16.sp,
-                fontWeight: FontWeight.w400,
-                fontFamily: 'Roboto',
-                color: AppColors.darkGreyTxtColor,
+              onPlay: (controller) => controller.repeat(reverse: true),
+              child: GestureDetector(
+                onTap: onPressed,
+                child: Container(
+                  width: double.infinity,
+                  height: 56.h,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    gradient: const LinearGradient(
+                      colors: [AppColors.primaryColor, Color(0xFF3B82F6)],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                    borderRadius: BorderRadius.circular(14),
+                    boxShadow: [
+                      BoxShadow(
+                        color: const Color.fromRGBO(96, 165, 250, 0.3),
+                        blurRadius: 20,
+                        spreadRadius: 2,
+                      ),
+                    ],
+                  ),
+                  child: Text(
+                    textButton ?? 'Done',
+                    style:  TextStyle(
+                      color: Colors.white,
+                      fontSize: 18.sp,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
               ),
             ),
-            SizedBox(height: 165.h),
-            CustomButton(
-              text: textButton ?? 'Done',
-              onPressed: onPressed,
-              color: AppColors.primaryColor,
-              width: 380.w,
-            ),
-            Spacer(),
+
+             SizedBox(height: 50.h),
           ],
         ),
       ),

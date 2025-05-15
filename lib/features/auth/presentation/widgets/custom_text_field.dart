@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nap_nest/core/utils/app_colors.dart';
 
 class CustomTextField extends StatelessWidget {
   final TextEditingController controller;
@@ -32,11 +33,12 @@ class CustomTextField extends StatelessWidget {
             fontWeight: FontWeight.w600,
             fontSize: 16.sp,
             color: const Color(0xFF414E61),
-            fontFamily: 'Roboto',
           ),
         ),
         SizedBox(height: 6.h),
         TextFormField(
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          cursorColor: AppColors.primaryColor,
           controller: controller,
           obscureText: obscureText,
           keyboardType: keyboardType,
@@ -46,7 +48,6 @@ class CustomTextField extends StatelessWidget {
             hintStyle: TextStyle(
               color: const Color(0xFF9EA8B9),
               fontSize: 16.sp,
-              fontFamily: 'Roboto',
               fontWeight: FontWeight.w400,
             ),
             filled: true,

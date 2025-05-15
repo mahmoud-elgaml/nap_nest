@@ -24,13 +24,7 @@ class SplashView1BodyState extends State<SplashView1Body> {
   @override
   Widget build(BuildContext context) => Scaffold(
     backgroundColor: AppColors.primaryColor,
-    body: Center(
-      child: SvgPicture.asset(
-        'assets/images/app_icon.svg',
-        width: 200,
-        height: 110.0,
-      ),
-    ),
+    body: Center(child: SvgPicture.asset('assets/images/app_icon.svg', width: 200, height: 110.0)),
   );
 
   void excuteNavigation() {

@@ -6,5 +6,7 @@ class SplashView1 extends StatelessWidget {
   static const routeName = 'splash';
 
   @override
-  Widget build(BuildContext context) => const Scaffold(body: SafeArea(child: SplashView1Body()));
+  Widget build(BuildContext context) {
+    return const Scaffold(body: SafeArea(child: SplashView1Body()));
+  }
 }

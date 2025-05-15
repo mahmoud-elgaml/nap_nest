@@ -25,7 +25,8 @@ dependencies:
   dio: ^5.8.0+1
   flutter_steps: ^1.0.5
   audioplayers: ^6.4.0
-  fl_chart: ^0.71.0
+  fl_chart: ^1.0.0
+  flutter_animate: ^4.5.2
 
 
 

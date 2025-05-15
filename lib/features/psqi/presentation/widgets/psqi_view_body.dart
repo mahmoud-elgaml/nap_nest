@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:linear_progress_bar/linear_progress_bar.dart';
 import 'package:nap_nest/core/utils/app_colors.dart';
+import 'package:nap_nest/features/psqi/presentation/view/psqi_result_view.dart';
 import 'package:nap_nest/features/psqi/presentation/widgets/answer_container.dart';
 import 'package:nap_nest/features/psqi/presentation/widgets/navigator_button.dart';
 
@@ -75,7 +76,9 @@ class PsqiViewBody extends StatelessWidget {
               text: 'Next',
               textColor: Colors.white,
               buttonColor: AppColors.primaryColor,
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, PsqiResultView.routeName);
+              },
             ),
           ],
         ),

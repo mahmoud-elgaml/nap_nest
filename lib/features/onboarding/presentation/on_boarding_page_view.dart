@@ -15,14 +15,12 @@ class OnboardingPageView extends StatelessWidget {
         title: 'Welcome to ',
         title2: 'NAPNEST',
         image: Assets.imagesOnboarding1,
-
         description:
             'Hi there! We’re so glad you’re here. Let’s work together to improve your sleep, boost your energy, and help you feel your best every day. Sweet dreams start now!',
       ),
       PageViewItem(
         image: Assets.imagesOnboarding2,
         title: 'Your Sleep, Your Way',
-
         description:
             'Begin your journey with a quick sleep assessment to uncover your unique needs. Receive tailored CBT programs and monitor your progress using state-of-the-art sleep tracking tools.',
       ),

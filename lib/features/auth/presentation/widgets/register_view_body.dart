@@ -49,7 +49,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 16.h),
               decoration: BoxDecoration(
-                color: Colors.grey[50],
+                color: Color.fromARGB(255, 255, 251, 251),
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(60.r),
                   topRight: Radius.circular(60.r),
@@ -89,7 +89,10 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                         hint: 'Enter your password',
                         obscureText: _obscurePassword,
                         suffix: IconButton(
-                          icon: Icon(_obscurePassword ? Icons.visibility_off : Icons.visibility),
+                          icon: Icon(
+                            _obscurePassword ? Icons.visibility_off : Icons.visibility,
+                            color: _obscurePassword ? Colors.grey : AppColors.primaryColor,
+                          ),
                           onPressed: () => setState(() => _obscurePassword = !_obscurePassword),
                         ),
                         validator: (val) => val!.length < 6 ? 'Minimum 6 characters' : null,
@@ -103,6 +106,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                         suffix: IconButton(
                           icon: Icon(
                             _obscureConfirmPassword ? Icons.visibility_off : Icons.visibility,
+                         color: _obscureConfirmPassword ? Colors.grey : AppColors.primaryColor,
                           ),
                           onPressed:
                               () => setState(
@@ -111,7 +115,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                         ),
                         validator:
                             (val) =>
-                                val != _passwordController.text ? 'Passwords do not match' : null,
+                                val != _passwordController.text ? "Passwords don't match" : null,
                       ),
                       SizedBox(height: 24.h),
                       CustomButton(

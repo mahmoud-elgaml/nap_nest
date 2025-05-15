@@ -84,14 +84,15 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                           hint: 'Enter your password',
                           obscureText: _obscurePassword,
                           suffix: IconButton(
-                            icon: Icon(_obscurePassword ? Icons.visibility_off : Icons.visibility),
+                            icon: Icon(_obscurePassword ? Icons.visibility_off : Icons.visibility,
+                                  color: _obscurePassword ? Colors.grey : AppColors.primaryColor,
+                            ),
                             onPressed: () => setState(() => _obscurePassword = !_obscurePassword),
                           ),
                           validator: (val) => val!.length < 6 ? 'Minimum 6 characters' : null,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
-
                           children: [
                             TextButton(
                               onPressed:
@@ -126,7 +127,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                             OtherRegister(image: Assets.imagesApple, onPressed: () {}),
                           ],
                         ),
-                        SizedBox(height: 4.h),
+                        // SizedBox(height: 4.h),
                         HaveAccount(
                           isLogin: true,
                           text: "Don't have an account?",
