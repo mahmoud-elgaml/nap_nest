@@ -20,9 +20,9 @@ class HomeViewBody extends StatelessWidget {
           slivers: [
             CustomHomeAppBar(),
             CustomHomeCard(),
-            sliverSizedBox(45),
+            sliverSizedBox(30),
             SliverToBoxAdapter(child: CategoriesCardGridView()),
-            sliverSizedBox(40),
+            sliverSizedBox(30),
             SoundTrackHeader(),
             sliverSizedBox(8),
             SoundTrackItem(),

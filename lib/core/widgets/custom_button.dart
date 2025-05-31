@@ -9,12 +9,14 @@ class CustomButton extends StatelessWidget {
     super.key,
     this.onPressed,
     this.width,
+    this.opacity,
   });
 
   final String text;
   final Color color;
   final void Function()? onPressed;
   final double? width;
+  final Opacity? opacity;
 
   @override
   Widget build(BuildContext context) => GestureDetector(

@@ -35,7 +35,11 @@ class _HomeNavigationState extends State<HomeLayout> {
   }
 
   void onBottomNavPressed(int index) {
-    _pageController.animateToPage(index, duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
+    _pageController.animateToPage(index, 
+    duration: const Duration(milliseconds: 300), 
+    curve: Curves.easeInOutQuint,
+    
+    );
     setState(() => selectedIndex = index);
   }
 

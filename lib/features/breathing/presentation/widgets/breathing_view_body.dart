@@ -17,7 +17,7 @@ class BreathingViewBody extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const BreathingAppbar(),
+               BreathingAppbar(),
               SizedBox(height: 12.h),
               BreathingCard(
                 imageAsset: Assets.imagesBreathingHeart,

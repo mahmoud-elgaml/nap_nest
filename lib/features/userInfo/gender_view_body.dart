@@ -50,12 +50,21 @@ class _GenderViewBodyState extends State<GenderViewBody> {
             const Spacer(),
             SizedBox(
               width: double.infinity,
-              child: CustomButton(
-                text: 'Next',
-                color: AppColors.primaryColor,
-                onPressed: () {
-                  Navigator.pushNamed(context, PsqiView.routeName);
-                },
+              child: Opacity(
+                opacity: selectedGender != null ? 1.0 : 0.5,
+                child: CustomButton(
+                  text: 'Next',
+                  color: AppColors.primaryColor,
+                  onPressed: () {
+                    if (selectedGender != null) {
+                      Navigator.pushNamed(context, PsqiView.routeName);
+                    } else {
+                      ScaffoldMessenger.of(
+                        context,
+                      ).showSnackBar(const SnackBar(content: Text('Please select your gender',)));
+                    }
+                  },
+                ),
               ),
             ),
           ],

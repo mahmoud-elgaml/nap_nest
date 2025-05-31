@@ -1,11 +1,11 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nap_nest/core/utils/app_colors.dart';
 import 'package:nap_nest/core/widgets/custom_button.dart';
 import 'package:nap_nest/features/userInfo/gender_view_body.dart';
 import 'package:nap_nest/features/userInfo/widgets/build_drobdown.dart';
+
 
 class BirthdayViewBody extends StatefulWidget {
   static const routeName = 'birthday';
@@ -34,12 +34,15 @@ class BirthdayViewBodyState extends State<BirthdayViewBody> {
     'Nov',
     'Dec',
   ];
+
   final List<String> days = List.generate(31, (index) => (index + 1).toString());
 
   final List<String> years = List.generate(
     100,
     (index) => (DateTime.now().year - index).toString(),
   );
+
+  bool get isDateComplete => selectedMonth != null && selectedDay != null && selectedYear != null;
 
   @override
   Widget build(BuildContext context) {
@@ -76,20 +79,22 @@ class BirthdayViewBodyState extends State<BirthdayViewBody> {
                 }),
               ],
             ),
-            Spacer(),
+            const Spacer(),
             SizedBox(
               width: double.infinity,
-              child: CustomButton(
-                text: 'Next',
-                color: AppColors.primaryColor,
-                onPressed: () {
-                  (selectedMonth != null && selectedDay != null && selectedYear != null)
-                      ? () {
-                        log('Selected Date: $selectedMonth $selectedDay, $selectedYear');
-                      }
-                      : null;
-                  Navigator.pushNamed(context, GenderViewBody.routeName);
-                },
+              child: Opacity(
+                opacity: isDateComplete ? 1.0 : 0.5,
+                child: CustomButton(
+                  text: 'Next',
+                  color: AppColors.primaryColor,
+                  onPressed:
+                      isDateComplete
+                          ? () {
+                            log('Selected Date: $selectedMonth $selectedDay, $selectedYear');
+                            Navigator.pushNamed(context, GenderViewBody.routeName);
+                          }
+                          : null,
+                ),
               ),
             ),
           ],

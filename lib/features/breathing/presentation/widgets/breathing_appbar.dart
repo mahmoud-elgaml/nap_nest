@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nap_nest/core/utils/app_colors.dart';
 
 class BreathingAppbar extends StatelessWidget {
-  const BreathingAppbar();
 
   @override
   Widget build(BuildContext context) {
