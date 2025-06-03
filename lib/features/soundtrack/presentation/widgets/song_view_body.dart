@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:svg_flutter/svg_flutter.dart';
 
-class SongDetailScreen extends StatefulWidget {
+class SongDetailsScreen extends StatefulWidget {
   final String title;
   final String audio;
   final String backgroundImage;
 
-  const SongDetailScreen({
+  const SongDetailsScreen({
     super.key,
     required this.title,
     required this.audio,
@@ -17,13 +17,14 @@ class SongDetailScreen extends StatefulWidget {
   });
 
   @override
-  State<SongDetailScreen> createState() => _SongDetailScreenState();
+  State<SongDetailsScreen> createState() => _SongDetailsScreenState();
 }
 
-class _SongDetailScreenState extends State<SongDetailScreen> {
-  late AudioPlayer _player;
-  late StreamSubscription<Duration> _posSub;
-  late StreamSubscription<Duration> _durSub;
+class _SongDetailsScreenState extends State<SongDetailsScreen> {
+late AudioPlayer _player;
+  StreamSubscription<Duration>? _posSub;
+  StreamSubscription<Duration>? _durSub;
+
 
   bool isPlaying = false;
   Duration current = Duration.zero;
@@ -60,14 +61,15 @@ class _SongDetailScreenState extends State<SongDetailScreen> {
     if (mounted) setState(() => isPlaying = !isPlaying);
   }
 
-  @override
+@override
   void dispose() {
-    _posSub.cancel();
-    _durSub.cancel();
-    _player.stop(); // يوقف الصوت عند pop
+    _posSub?.cancel();
+    _durSub?.cancel();
+    _player.stop();
     _player.dispose();
     super.dispose();
   }
+
 
   String formatTime(Duration duration) {
     String twoDigits(int n) => n.toString().padLeft(2, '0');

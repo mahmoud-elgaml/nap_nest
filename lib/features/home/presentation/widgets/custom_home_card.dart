@@ -12,7 +12,10 @@ class CustomHomeCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
       child: Card(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.r)),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16.r,
+          ),
+          ),
         shadowColor: Colors.grey.shade100,
         color: Colors.white,
         

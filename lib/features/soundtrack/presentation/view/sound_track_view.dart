@@ -7,7 +7,7 @@ class SoundTrackView extends StatelessWidget {
 static const routeName = 'soundTrack';
   @override
   Widget build(BuildContext context) {
-    return const HomeLayout(
+    return  HomeLayout(
       currentIndex: 2,
       screen: SoundTrackViewBody(),
       //
