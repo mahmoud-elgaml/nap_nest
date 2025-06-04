@@ -43,15 +43,17 @@ class NapNest extends StatelessWidget {
           ),
         ),
         fontFamily: 'Roboto',
-        indicatorColor: AppColors.primaryColor,
         splashColor: Color.fromARGB(255, 164, 209, 248),
         splashFactory: InkRipple.splashFactory,
         scaffoldBackgroundColor: Colors.white,
         primaryColor: AppColors.primaryColor,
-        useMaterial3: true,
+        useMaterial3: true, 
       ),
       onGenerateRoute: onGenerateRoute,
       initialRoute: HomeView.routeName,
     );
   }
 }
+
+
+
