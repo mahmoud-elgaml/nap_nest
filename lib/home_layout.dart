@@ -4,6 +4,7 @@ import 'package:nap_nest/features/attachDevice/widgets/attach_device_view_body.d
 import 'package:nap_nest/features/breathing/presentation/widgets/breathing_view_body.dart';
 import 'package:nap_nest/features/home/presentation/widgets/home_view_body.dart';
 import 'package:nap_nest/features/soundtrack/presentation/view/sound_track_view.dart';
+import 'package:nap_nest/statistics/presentation/views/statistics_view.dart';
 
 class HomeLayout extends StatefulWidget {
   final Widget? screen;
@@ -27,7 +28,7 @@ class _HomeNavigationState extends State<HomeLayout> with TickerProviderStateMix
     const AttachDeviceViewBody(),
     const SoundTrackView(),
     const HomeViewBody(),
-    const Placeholder(),
+    const StatisticsView(),
     const BreathingViewBody(),
   ];
 

@@ -20,6 +20,7 @@ import 'package:nap_nest/features/splash/presentation/view/splash_view2.dart';
 import 'package:nap_nest/features/userInfo/birthday_view_body.dart';
 import 'package:nap_nest/features/userInfo/gender_view_body.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:nap_nest/statistics/presentation/views/statistics_view.dart';
 
 Route<dynamic> onGenerateRoute(RouteSettings settings) {
   switch (settings.name) {
@@ -76,6 +77,9 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
 
     case BreathingView.routeName:
       return CupertinoPageRoute(builder: (context) => const BreathingView());
+
+    case StatisticsView.routeName:
+      return CupertinoPageRoute(builder: (context) => const StatisticsView());  
 
     case BreathingDetailsView.routeName:
       final args = settings.arguments as Map<String, String>;

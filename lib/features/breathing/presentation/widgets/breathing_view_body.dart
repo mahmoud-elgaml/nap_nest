@@ -8,6 +8,7 @@ import 'package:nap_nest/features/breathing/presentation/widgets/breathing_card.
 class BreathingViewBody extends StatelessWidget {
   const BreathingViewBody({super.key});
 
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
