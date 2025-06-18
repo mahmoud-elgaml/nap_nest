@@ -6,33 +6,27 @@ import 'package:nap_nest/features/soundtrack/presentation/widgets/song_view_body
 import 'package:nap_nest/home__items_model.dart';
 import 'package:svg_flutter/svg_flutter.dart';
 
-class SoundTrackItem extends StatelessWidget {
-  SoundTrackItem({super.key});
+class BreathingCardItem extends StatelessWidget {
+  BreathingCardItem({super.key});
 
-  final List<HomeItemsModel> sounds = [
+  final List<HomeItemsModel> breathing = [
     HomeItemsModel(
-      title: 'Basic Mindfulness',
+      title: '7 - 11 Breathing',
       path: 'song2.mp3',
-      imagePath: Assets.imagesSound4,
-      duration: '8:24 min',
+      imagePath: Assets.imagesB1,
+      duration: '3 : 5 min',
     ),
     HomeItemsModel(
-      title: 'Basic Mindfulness',
+      title: '5 - 5 Breathing',
       path: 'song1.mp3',
-      imagePath: Assets.imagesSound2,
-      duration: '8:24 min',
+      imagePath: Assets.imagesB2,
+      duration: '3 : 5 min',
     ),
     HomeItemsModel(
-      title: 'Basic Mindfulness',
+      title: '3 - 6 Breathing',
       path: 'song2.mp3',
-      imagePath: Assets.imagesSound1,
-      duration: '8:24 min',
-    ),
-    HomeItemsModel(
-      title: 'Basic Mindfulness',
-      path: 'song3.mp3',
-      imagePath: Assets.imagesSound3,
-      duration: '8:24 min',
+      imagePath: Assets.imagesB1,
+      duration: '3 - 6 min',
     ),
   ];
 
@@ -43,20 +37,20 @@ class SoundTrackItem extends StatelessWidget {
         height: 200.h,
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
-          itemCount: sounds.length,
+          itemCount: breathing.length,
           itemBuilder: (context, index) {
-            final sound = sounds[index];
-            return SoundItem(
-              soundModel: sound,
+            final breathingModel = breathing[index];
+            return BreathingItem(
+              breathingModel: breathing[index],
               onTap: () {
                 Navigator.push(
                   context,
                   CupertinoPageRoute(
                     builder:
                         (_) => SongDetailsScreen(
-                          title: sound.title,
-                          audio: sound.path,
-                          backgroundImage: sound.imagePath,
+                          title: breathingModel.title,
+                          audio: breathingModel.path,
+                          backgroundImage: breathingModel.imagePath,
                         ),
                   ),
                 );
@@ -71,11 +65,11 @@ class SoundTrackItem extends StatelessWidget {
 
 // -------------------------------------------------------------------------------------------------------------
 
-class SoundItem extends StatelessWidget {
-  final HomeItemsModel soundModel;
+class BreathingItem extends StatelessWidget {
+  final HomeItemsModel breathingModel;
   final VoidCallback onTap;
 
-  const SoundItem({super.key, required this.soundModel, required this.onTap});
+  const BreathingItem({super.key, required this.breathingModel, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -97,7 +91,7 @@ class SoundItem extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.vertical(top: Radius.circular(16.r)),
               child: SvgPicture.asset(
-                soundModel.imagePath,
+                breathingModel.imagePath,
                 width: double.infinity,
                 height: 120.h,
                 fit: BoxFit.fill,
@@ -109,7 +103,7 @@ class SoundItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    soundModel.title,
+                    breathingModel.title,
                     style: TextStyle(
                       fontSize: 16.sp,
                       fontWeight: FontWeight.w600,
@@ -121,10 +115,10 @@ class SoundItem extends StatelessWidget {
                   SizedBox(height: 6.h),
                   Row(
                     children: [
-                      Icon(Icons.graphic_eq, size: 14.sp, color: Colors.grey.shade600),
+                      Icon(Icons.heart_broken_outlined, size: 14.sp, color: Colors.grey.shade600),
                       SizedBox(width: 4.w),
                       Text(
-                        soundModel.duration,
+                        breathingModel.duration,
                         style: TextStyle(fontSize: 14.sp, color: Colors.grey.shade700),
                       ),
                     ],

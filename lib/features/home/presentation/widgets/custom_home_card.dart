@@ -48,6 +48,8 @@ class CustomHomeCard extends StatelessWidget {
                   SizedBox(height: 20.0.h),
                 ],
               ),
+
+
               SvgPicture.asset(Assets.imagesSleepHome, fit: BoxFit.fill),
             ],
           ),

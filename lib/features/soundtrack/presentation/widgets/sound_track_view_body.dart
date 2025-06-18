@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nap_nest/core/utils/app_images.dart';
-import 'package:nap_nest/features/soundtrack/data/model/sound_model.dart';
 import 'package:nap_nest/features/soundtrack/presentation/widgets/custom_appbar.dart';
 import 'package:nap_nest/features/soundtrack/presentation/widgets/song_view_body.dart';
 import 'package:nap_nest/features/soundtrack/presentation/widgets/sound_track_card.dart';
+import 'package:nap_nest/home__items_model.dart';
 
 // class SoundTrackViewBody extends StatelessWidget {
 //   const SoundTrackViewBody({super.key});
@@ -84,27 +84,25 @@ import 'package:nap_nest/features/soundtrack/presentation/widgets/sound_track_ca
 //   }
 // }
 
-
-
 class SoundTrackViewBody extends StatelessWidget {
-   SoundTrackViewBody({super.key});
+  SoundTrackViewBody({super.key});
 
-  final List<SoundModel> sounds = [
-    SoundModel(
+  final List<HomeItemsModel> sounds = [
+    HomeItemsModel(
       title: 'Basic Mindfulness',
-      audioPath: 'song1.mp3',
+      path: 'song1.mp3',
       imagePath: Assets.imagesSound3,
       duration: '8:24',
     ),
-     SoundModel(
+    HomeItemsModel(
       title: 'Basic Mindfulness',
-      audioPath: 'song2.mp3',
+      path: 'song2.mp3',
       imagePath: Assets.imagesSound2,
       duration: '8:24',
     ),
-     SoundModel(
+    HomeItemsModel(
       title: 'Basic Mindfulness',
-      audioPath: 'song3.mp3',
+      path: 'song3.mp3',
       imagePath: Assets.imagesSound4,
       duration: '8:24',
     ),
@@ -125,7 +123,7 @@ class SoundTrackViewBody extends StatelessWidget {
                 (sound) => Padding(
                   padding: EdgeInsets.only(bottom: 20.h),
                   child: SoundtrackCard(
-                    sound: sound,
+                    soundModel: sound,
                     onTap: () {
                       Navigator.push(
                         context,
@@ -133,7 +131,7 @@ class SoundTrackViewBody extends StatelessWidget {
                           builder:
                               (_) => SongDetailsScreen(
                                 title: sound.title,
-                                audio: sound.audioPath,
+                                audio: sound.path,
                                 backgroundImage: sound.imagePath,
                               ),
                         ),
