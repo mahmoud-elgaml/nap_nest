@@ -1,13 +1,13 @@
-class SoundModel {
+class HomeItemsModel {
   final String title;
-  final String audioPath;
+  final String path;
   final String imagePath;
   final String duration;
 
-  SoundModel({
+  HomeItemsModel({
     required this.title,
-    required this.audioPath,
+    required this.path,
     required this.imagePath,
-    required this.duration,//
+    required this.duration, //
   });
 }
