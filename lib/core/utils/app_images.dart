@@ -74,6 +74,10 @@ class Assets {
   /// assets/images/home.svg
   static const String imagesHome = "assets/images/home.svg";
 
+  /// Assets for imagesInsomniaConceptIllustration
+  /// assets/images/insomnia-concept-illustration.svg
+  static const String imagesInsomniaConceptIllustration = "assets/images/insomnia-concept-illustration.svg";
+
   /// Assets for imagesLibrary1
   /// assets/images/library_1.svg
   static const String imagesLibrary1 = "assets/images/library_1.svg";
@@ -149,5 +153,9 @@ class Assets {
   /// Assets for imagesTest2
   /// assets/images/test2.svg
   static const String imagesTest2 = "assets/images/test2.svg";
+
+  /// Assets for imagesTesting
+  /// assets/images/testing.jpg
+  static const String imagesTesting = "assets/images/testing.jpg";
 }
 

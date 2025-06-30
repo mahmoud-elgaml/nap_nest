@@ -11,6 +11,8 @@ import 'package:nap_nest/features/breathing/presentation/view/breathing_details_
 import 'package:nap_nest/features/breathing/presentation/view/breathing_view.dart';
 import 'package:nap_nest/features/breathing/presentation/widgets/breathing_details_view_body.dart';
 import 'package:nap_nest/features/home/presentation/view/home_view.dart';
+import 'package:nap_nest/features/library/presentation/views/article_view.dart';
+import 'package:nap_nest/features/library/presentation/views/library_view.dart';
 import 'package:nap_nest/features/onboarding/presentation/views/on_boarding_view.dart';
 import 'package:nap_nest/features/psqi/presentation/view/psqi_result_view.dart';
 import 'package:nap_nest/features/psqi/presentation/view/psqi_view.dart';
@@ -79,7 +81,7 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
       return CupertinoPageRoute(builder: (context) => const BreathingView());
 
     case StatisticsView.routeName:
-      return CupertinoPageRoute(builder: (context) => const StatisticsView());  
+      return CupertinoPageRoute(builder: (context) => const StatisticsView());
 
     case BreathingDetailsView.routeName:
       final args = settings.arguments as Map<String, String>;
@@ -91,6 +93,12 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
               duration: args['duration'] ?? '',
             ),
       );
+
+    case ArticleView.routeName:
+      return CupertinoPageRoute(builder: (context) => const ArticleView());
+
+    case LibraryView.routeName:
+      return CupertinoPageRoute(builder: (context) => const LibraryView());
 
     default:
       return CupertinoPageRoute(builder: (context) => const Scaffold());
