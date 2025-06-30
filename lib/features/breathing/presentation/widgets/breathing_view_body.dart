@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nap_nest/core/utils/app_images.dart';
+import 'package:nap_nest/core/widgets/custom_appbar.dart';
 import 'package:nap_nest/features/breathing/presentation/view/breathing_details_view.dart';
-import 'package:nap_nest/features/breathing/presentation/widgets/breathing_appbar.dart';
 import 'package:nap_nest/features/breathing/presentation/widgets/breathing_card.dart';
 
 class BreathingViewBody extends StatelessWidget {
   const BreathingViewBody({super.key});
-
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +17,11 @@ class BreathingViewBody extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-               BreathingAppbar(),
+              CustomAppbar(
+                popText: 'Home',
+                title: 'Breathing',
+                subtitle: 'Select your preferred relaxing breathe exercise to do. ',
+              ),
               SizedBox(height: 12.h),
               BreathingCard(
                 imageAsset: Assets.imagesBreathingHeart,

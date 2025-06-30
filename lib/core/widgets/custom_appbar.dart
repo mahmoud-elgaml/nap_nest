@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nap_nest/core/utils/app_colors.dart';
 
-class SoundTrackAppbar extends StatelessWidget {
-  const SoundTrackAppbar();
-
+class CustomAppbar extends StatelessWidget {
+  const CustomAppbar({ required this.title,required this.subtitle, this.popText = 'Home',super.key,
+  });
+  final String? popText;
+  final String title;
+  final String subtitle;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -18,7 +21,7 @@ class SoundTrackAppbar extends StatelessWidget {
               ),
               SizedBox(width: 4.w),
               Text(
-                'Home',
+                popText! ,
                 style: TextStyle(
                   fontSize: 24.sp,
                   fontWeight: FontWeight.w500,
@@ -31,10 +34,10 @@ class SoundTrackAppbar extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Soundtracks', style: TextStyle(fontSize: 32.sp, fontWeight: FontWeight.w700)),
+              Text(title, style: TextStyle(fontSize: 32.sp, fontWeight: FontWeight.w700)),
               SizedBox(height: 9.h),
               Text(
-                'Select your preferred relaxing soundtrack to listen to.',
+                subtitle,
                 style: TextStyle(fontSize: 16.sp, color: AppColors.darkGreyTxtColor),
               ),
             ],

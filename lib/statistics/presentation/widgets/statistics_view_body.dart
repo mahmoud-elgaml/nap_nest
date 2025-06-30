@@ -1,6 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:nap_nest/statistics/presentation/widgets/statistics_appbar.dart';
+import 'package:nap_nest/core/widgets/custom_appbar.dart';
 
 class StatisticsViewBody extends StatelessWidget {
   const StatisticsViewBody({super.key});
@@ -14,8 +14,10 @@ class StatisticsViewBody extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-            StatisticsAppbar(),
-
+              CustomAppbar(
+                title: 'Statistics',
+                subtitle: 'Select your preferred relaxing breathe exercise to do. ',
+              ),
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
