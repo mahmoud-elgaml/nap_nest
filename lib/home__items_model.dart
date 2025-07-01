@@ -8,6 +8,7 @@ class HomeItemsModel {
     required this.title,
     required this.path,
     required this.imagePath,
-    required this.duration, //
+   required this.duration,
+    //
   });
 }
