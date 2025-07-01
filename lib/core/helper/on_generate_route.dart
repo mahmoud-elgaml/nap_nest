@@ -13,6 +13,7 @@ import 'package:nap_nest/features/breathing/presentation/widgets/breathing_detai
 import 'package:nap_nest/features/home/presentation/view/home_view.dart';
 import 'package:nap_nest/features/library/presentation/views/article_view.dart';
 import 'package:nap_nest/features/library/presentation/views/library_view.dart';
+import 'package:nap_nest/features/library/presentation/widgets/articles_view_body.dart';
 import 'package:nap_nest/features/onboarding/presentation/views/on_boarding_view.dart';
 import 'package:nap_nest/features/psqi/presentation/view/psqi_result_view.dart';
 import 'package:nap_nest/features/psqi/presentation/view/psqi_view.dart';
@@ -99,6 +100,10 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
 
     case LibraryView.routeName:
       return CupertinoPageRoute(builder: (context) => const LibraryView());
+
+    case ArticlesViewBody.routeName:
+            return CupertinoPageRoute(builder: (context) => const ArticlesViewBody());
+
 
     default:
       return CupertinoPageRoute(builder: (context) => const Scaffold());

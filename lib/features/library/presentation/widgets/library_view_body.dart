@@ -1,88 +1,67 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nap_nest/core/utils/app_images.dart';
+import 'package:nap_nest/core/widgets/custom_appbar.dart';
+import 'package:nap_nest/features/library/presentation/widgets/library_card.dart';
 
 class LibraryViewBody extends StatelessWidget {
   const LibraryViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        titleSpacing: 1,
-        title: Text("Home", style: TextStyle(fontSize: 20)),
-        leading: IconButton(onPressed: () {}, icon: Icon(Icons.arrow_back)),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.only(left: 20, right: 10),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text("Library", style: TextStyle(fontSize: 33, fontWeight: FontWeight.bold)),
-            SizedBox(height: 3),
-            Text(
-              "Select your preferred relaxing soundtrack to listen  to.",
-              style: TextStyle(fontSize: 16, color: Colors.grey[600]),
-            ),
-            Expanded(
-              child: GridView.count(
-                crossAxisCount: 2,
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                childAspectRatio: 1 / 1.1,
-                children: <Widget>[
-                  _buildBlock(context, 'assets/images/testing.jpg', 'Sleep Disturbances'),
-                  _buildBlock(context, 'assets/images/testing.jpg', 'Sleep Disturbances'),
-                  _buildBlock(context, 'assets/images/testing.jpg', 'Sleep Disturbances'),
-                ],
+    return SafeArea(
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 20.h),
+          child: Column(
+            children: [
+              CustomAppbar(
+                popText: 'Home',
+                title: 'Library',
+                subtitle: 'Your calming guide to better sleep.',
               ),
-            ),
-          ],
+              SizedBox(height: 10.h),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 20.0),
+                child: LibraryGrid(),
+                //
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 }
-////////
 
-Widget _buildBlock(BuildContext context, String imagePath, String text) {
-  return Container(
-    margin: const EdgeInsets.all(8.0),
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(15.0),
-      color: Colors.transparent,
-      boxShadow: [
-        BoxShadow(
-          color: Colors.grey.withOpacity(0.2),
-          spreadRadius: 2,
-          blurRadius: 5,
-          offset: const Offset(0, 3),
-        ),
-      ],
-    ),
-    child: ClipRRect(
-      borderRadius: BorderRadius.circular(15.0),
-      child: Stack(
-        children: <Widget>[
-          Positioned.fill(child: Image.asset(imagePath, fit: BoxFit.cover)),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Container(
-              width: double.infinity,
-              padding: const EdgeInsets.all(8.0),
-              decoration: BoxDecoration(color: Colors.transparent),
-              child: Text(
-                text,
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                  fontSize: 16,
-                ),
-              ),
-            ),
-          ),
-        ],
+class LibraryGrid extends StatelessWidget {
+  const LibraryGrid({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final items = [
+      {'title': 'Understanding CBT', 'image': Assets.imagesSound1},
+      {'title': 'CBT Tools & Techniques', 'image': Assets.imagesSound2},
+      {'title': 'Sleep Education', 'image': Assets.imagesSound3},
+      {'title': 'Managing Sleep Problems', 'image': Assets.imagesSound4},
+      {'title': 'Breathing & Relaxation Guides', 'image': Assets.imagesSound1},
+      {'title': 'More Sleep Tips', 'image': Assets.imagesSound2},
+    ];
+
+    return GridView.builder(
+      itemCount: items.length,
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        mainAxisSpacing: 12.h,
+        crossAxisSpacing: 14.w,
+        childAspectRatio: 2.5 /2.8,
       ),
-    ),
-  );
+      itemBuilder: (context, index) {
+        final item = items[index];
+        return LibraryCard(title: item['title']!, imagePath: item['image']!);
+      },
+    );
+  }
 }
-

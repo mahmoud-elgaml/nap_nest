@@ -12,14 +12,16 @@ class CustomAppbar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+                    SizedBox(height: 20.h),
+
           Row(
             children: [
               GestureDetector(
                 onTap: () => Navigator.pop(context),
                 child: Icon(Icons.arrow_back_ios, size: 32.sp),
               ),
-              SizedBox(width: 4.w),
               Text(
                 popText! ,
                 style: TextStyle(
@@ -30,12 +32,12 @@ class CustomAppbar extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: 24.h),
+          SizedBox(height: 16.h),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(title, style: TextStyle(fontSize: 32.sp, fontWeight: FontWeight.w700)),
-              SizedBox(height: 9.h),
+              SizedBox(height: 4.h),
               Text(
                 subtitle,
                 style: TextStyle(fontSize: 16.sp, color: AppColors.darkGreyTxtColor),

@@ -13,7 +13,7 @@ class BreathingViewBody extends StatelessWidget {
     return SafeArea(
       child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -22,7 +22,7 @@ class BreathingViewBody extends StatelessWidget {
                 title: 'Breathing',
                 subtitle: 'Select your preferred relaxing breathe exercise to do. ',
               ),
-              SizedBox(height: 12.h),
+              SizedBox(height: 8.h),
               BreathingCard(
                 imageAsset: Assets.imagesBreathingHeart,
                 title: '4-4-4-4 Breathing\n(Box Breathing)',
