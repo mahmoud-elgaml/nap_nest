@@ -20,7 +20,12 @@ class BreathingDetailsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return HomeLayout(
       currentIndex: 4,
-      screen: BreathingDetailsViewBody(title: title, description: description, duration: duration),
+      screen: BreathingDetailsViewBody(
+        title: title,
+        description: description,
+        duration: duration,
+        //
+      ),
     );
   }
 }

@@ -23,7 +23,7 @@ class ArticleViewBody extends StatelessWidget {
                     child: Padding(
                       padding: EdgeInsets.symmetric(vertical: 16.h),
                       child: SvgPicture.asset(
-                        Assets.imagesSound1,
+                        Assets.imagesArticlebackground,
                         width: double.infinity,
                         fit: BoxFit.cover,
                       ),

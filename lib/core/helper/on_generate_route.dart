@@ -10,6 +10,7 @@ import 'package:nap_nest/features/auth/presentation/widgets/set_new_password_bod
 import 'package:nap_nest/features/breathing/presentation/view/breathing_details_view.dart';
 import 'package:nap_nest/features/breathing/presentation/view/breathing_view.dart';
 import 'package:nap_nest/features/breathing/presentation/widgets/breathing_details_view_body.dart';
+import 'package:nap_nest/features/breathing/presentation/widgets/breathing_timer_excercise.dart';
 import 'package:nap_nest/features/home/presentation/view/home_view.dart';
 import 'package:nap_nest/features/library/presentation/views/article_view.dart';
 import 'package:nap_nest/features/library/presentation/views/library_view.dart';
@@ -84,6 +85,7 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
     case StatisticsView.routeName:
       return CupertinoPageRoute(builder: (context) => const StatisticsView());
 
+
     case BreathingDetailsView.routeName:
       final args = settings.arguments as Map<String, String>;
       return CupertinoPageRoute(
@@ -104,7 +106,8 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
     case ArticlesViewBody.routeName:
             return CupertinoPageRoute(builder: (context) => const ArticlesViewBody());
 
-
+    case BreathingTimerView.routeName:
+      return CupertinoPageRoute(builder: (context) => const BreathingTimerView());
     default:
       return CupertinoPageRoute(builder: (context) => const Scaffold());
   }

@@ -13,19 +13,19 @@ class BreathingCardItem extends StatelessWidget {
     HomeItemsModel(
       title: '7 - 11 Breathing',
       path: 'song2.mp3',
-      imagePath: Assets.imagesB1,
+      imagePath: Assets.imagesLibrary1,
       duration: '3 : 5 min',
     ),
     HomeItemsModel(
       title: '5 - 5 Breathing',
       path: 'song1.mp3',
-      imagePath: Assets.imagesB2,
+      imagePath: Assets.imagesLibrary2,
       duration: '3 : 5 min',
     ),
     HomeItemsModel(
       title: '3 - 6 Breathing',
       path: 'song2.mp3',
-      imagePath: Assets.imagesB1,
+      imagePath: Assets.imagesLibrary3,
       duration: '3 - 6 min',
     ),
   ];
@@ -94,7 +94,7 @@ class BreathingItem extends StatelessWidget {
                 breathingModel.imagePath,
                 width: double.infinity,
                 height: 120.h,
-                fit: BoxFit.fill,
+                fit: BoxFit.cover,
               ),
             ),
             Padding(

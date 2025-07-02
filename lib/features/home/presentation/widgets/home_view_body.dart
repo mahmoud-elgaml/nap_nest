@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nap_nest/core/constants/sliver_sizedbox.dart';
-import 'package:nap_nest/features/breathing/presentation/widgets/breathing_card_item.dart';
+import 'package:nap_nest/features/breathing/presentation/widgets/breathing_card_home_item.dart';
 import 'package:nap_nest/features/breathing/presentation/widgets/breathing_header.dart';
 import 'package:nap_nest/features/home/presentation/view/card_item_gridview.dart';
 import 'package:nap_nest/features/home/presentation/widgets/custom_home_app_bar.dart';

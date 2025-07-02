@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nap_nest/core/utils/app_images.dart';
 import 'package:nap_nest/features/attachDevice/presentation/view/attach_device_view.dart';
 import 'package:nap_nest/features/home/presentation/widgets/categories_home_item_card.dart';
-import 'package:nap_nest/features/library/presentation/views/library_view.dart';
+import 'package:nap_nest/features/library/presentation/views/article_view.dart';
 
 class CategoriesCardGridView extends StatelessWidget {
   const CategoriesCardGridView({super.key});
@@ -28,7 +28,7 @@ class CategoriesCardGridView extends StatelessWidget {
           backgroundAsset: Assets.imagesBlue,
           iconAsset: Assets.imagesBook,
           onPressed: () {
-            Navigator.pushNamed(context, LibraryView.routeName);
+            Navigator.pushNamed(context, ArticleView.routeName);
           },
         ),
         CategoriesHomeItemCard(
