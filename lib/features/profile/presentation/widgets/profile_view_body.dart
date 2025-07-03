@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nap_nest/core/utils/app_colors.dart';
 import 'package:nap_nest/features/profile/presentation/widgets/edit_profile_view_body.dart';
 
 class ProfileViewBody extends StatelessWidget {
@@ -41,7 +42,6 @@ class ProfileViewBody extends StatelessWidget {
           ),
           SizedBox(height: 32.h),
 
-          /// Card: Personal Info & Progress
           _buildMenuCard([
             _buildMenuItem(
               icon: Icons.person_outline,
@@ -52,7 +52,7 @@ class ProfileViewBody extends StatelessWidget {
             _buildMenuItem(
               icon: Icons.insights_outlined,
               label: 'My Progress',
-              onTap: () {}, // TODO: Add navigation
+              onTap: () {}, 
             ),
           ]),
           SizedBox(height: 24.h),
@@ -92,10 +92,10 @@ class ProfileViewBody extends StatelessWidget {
             Container(
               padding: EdgeInsets.all(8.r),
               decoration: BoxDecoration(
-                color: const Color(0xFFD3E5F8),
+                color: AppColors.containerColor,
                 borderRadius: BorderRadius.circular(50.r),
               ),
-              child: Icon(icon, color: Colors.blue, size: 20.sp),
+              child: Icon(icon, color: AppColors.primaryColor, size: 22.sp),
             ),
             SizedBox(width: 16.w),
             Expanded(
@@ -123,7 +123,7 @@ class ProfileViewBody extends StatelessWidget {
         color: const Color(0xFFF6F7FB),
         borderRadius: BorderRadius.circular(20.r),
         boxShadow: [
-          BoxShadow(color: const Color(0x19273377), blurRadius: 20, offset: const Offset(0, 4)),
+          BoxShadow(color: const Color(0x19273377), blurRadius: 20, offset: const Offset(0, 3)),
         ],
       ),
       child: Row(
@@ -134,7 +134,7 @@ class ProfileViewBody extends StatelessWidget {
               color: const Color(0xFFD3E5F8),
               borderRadius: BorderRadius.circular(50.r),
             ),
-            child: Icon(Icons.notifications_none, color: Colors.blue, size: 20.sp),
+            child: Icon(Icons.notifications_none, color: AppColors.primaryColor, size: 22.sp),
           ),
           SizedBox(width: 16.w),
           Expanded(
@@ -147,7 +147,10 @@ class ProfileViewBody extends StatelessWidget {
               ),
             ),
           ),
-          Switch(value: true, onChanged: (val) {}, activeColor: const Color(0xFF74B2E7)),
+          Switch(value: true, onChanged: (val) {}, activeColor: AppColors.primaryColor,
+          inactiveThumbColor: Colors.white,
+          
+          ),
         ],
       ),
     );
