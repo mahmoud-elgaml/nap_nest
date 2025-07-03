@@ -16,6 +16,8 @@ import 'package:nap_nest/features/library/presentation/views/article_view.dart';
 import 'package:nap_nest/features/library/presentation/views/library_view.dart';
 import 'package:nap_nest/features/library/presentation/widgets/articles_view_body.dart';
 import 'package:nap_nest/features/onboarding/presentation/views/on_boarding_view.dart';
+import 'package:nap_nest/features/profile/presentation/views/profile_view.dart';
+import 'package:nap_nest/features/profile/presentation/widgets/edit_profile_view_body.dart';
 import 'package:nap_nest/features/psqi/presentation/view/psqi_result_view.dart';
 import 'package:nap_nest/features/psqi/presentation/view/psqi_view.dart';
 import 'package:nap_nest/features/soundtrack/presentation/view/sound_track_view.dart';
@@ -107,7 +109,15 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
             return CupertinoPageRoute(builder: (context) => const ArticlesViewBody());
 
     case BreathingTimerView.routeName:
-      return CupertinoPageRoute(builder: (context) => const BreathingTimerView());
+      return CupertinoPageRoute(builder: (context) =>  BreathingTimerView());
+
+    case ProfileView.routeName:
+      return CupertinoPageRoute(builder: (context) => ProfileView());
+
+    case EditProfileView.routeName:
+                return CupertinoPageRoute(builder: (context) => EditProfileView());
+
+
     default:
       return CupertinoPageRoute(builder: (context) => const Scaffold());
   }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:nap_nest/core/constants/custom_bottom_navbar.dart';
 import 'package:nap_nest/features/attachDevice/widgets/attach_device_view_body.dart';
-import 'package:nap_nest/features/breathing/presentation/widgets/breathing_view_body.dart';
 import 'package:nap_nest/features/home/presentation/widgets/home_view_body.dart';
+import 'package:nap_nest/features/profile/presentation/widgets/profile_view_body.dart';
 import 'package:nap_nest/features/soundtrack/presentation/view/sound_track_view.dart';
 import 'package:nap_nest/statistics/presentation/views/statistics_view.dart';
 
@@ -29,7 +29,7 @@ class _HomeNavigationState extends State<HomeLayout> with TickerProviderStateMix
     const SoundTrackView(),
     const HomeViewBody(),
     const StatisticsView(),
-    const BreathingViewBody(),
+    const ProfileViewBody(),
   ];
 
   @override
