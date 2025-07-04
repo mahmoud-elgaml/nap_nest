@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:nap_nest/core/constants/custom_bottom_navbar.dart';
-import 'package:nap_nest/features/attachDevice/widgets/attach_device_view_body.dart';
 import 'package:nap_nest/features/home/presentation/widgets/home_view_body.dart';
+import 'package:nap_nest/features/myPlan/presentation/views/my_plan_view.dart';
+import 'package:nap_nest/features/myPlan/presentation/widgets/my_plan_view_body.dart';
 import 'package:nap_nest/features/profile/presentation/widgets/profile_view_body.dart';
 import 'package:nap_nest/features/soundtrack/presentation/view/sound_track_view.dart';
 import 'package:nap_nest/statistics/presentation/views/statistics_view.dart';
@@ -13,7 +14,7 @@ class HomeLayout extends StatefulWidget {
   const HomeLayout({
     Key? key,
     this.screen,
-    this.currentIndex = 2,
+    this.currentIndex = 0,
     //
   }) : super(key: key);
 
@@ -25,9 +26,9 @@ class _HomeNavigationState extends State<HomeLayout> with TickerProviderStateMix
   late int selectedIndex;
 
   final List<Widget> pages = [
-    const AttachDeviceViewBody(),
-    const SoundTrackView(),
     const HomeViewBody(),
+    const SoundTrackView(),
+    const MyPlanView(),
     const StatisticsView(),
     const ProfileViewBody(),
   ];

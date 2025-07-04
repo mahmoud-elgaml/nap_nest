@@ -15,6 +15,7 @@ import 'package:nap_nest/features/home/presentation/view/home_view.dart';
 import 'package:nap_nest/features/library/presentation/views/article_view.dart';
 import 'package:nap_nest/features/library/presentation/views/library_view.dart';
 import 'package:nap_nest/features/library/presentation/widgets/articles_view_body.dart';
+import 'package:nap_nest/features/myPlan/presentation/views/my_plan_view.dart';
 import 'package:nap_nest/features/onboarding/presentation/views/on_boarding_view.dart';
 import 'package:nap_nest/features/profile/presentation/views/profile_view.dart';
 import 'package:nap_nest/features/profile/presentation/widgets/edit_profile_view_body.dart';
@@ -87,7 +88,6 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
     case StatisticsView.routeName:
       return CupertinoPageRoute(builder: (context) => const StatisticsView());
 
-
     case BreathingDetailsView.routeName:
       final args = settings.arguments as Map<String, String>;
       return CupertinoPageRoute(
@@ -106,17 +106,19 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
       return CupertinoPageRoute(builder: (context) => const LibraryView());
 
     case ArticlesViewBody.routeName:
-            return CupertinoPageRoute(builder: (context) => const ArticlesViewBody());
+      return CupertinoPageRoute(builder: (context) => const ArticlesViewBody());
 
     case BreathingTimerView.routeName:
-      return CupertinoPageRoute(builder: (context) =>  BreathingTimerView());
+      return CupertinoPageRoute(builder: (context) => BreathingTimerView());
 
     case ProfileView.routeName:
       return CupertinoPageRoute(builder: (context) => ProfileView());
 
     case EditProfileView.routeName:
-                return CupertinoPageRoute(builder: (context) => EditProfileView());
+      return CupertinoPageRoute(builder: (context) => EditProfileView());
 
+    case MyPlanView.routeName:
+      return CupertinoPageRoute(builder: (context) => MyPlanView());
 
     default:
       return CupertinoPageRoute(builder: (context) => const Scaffold());
