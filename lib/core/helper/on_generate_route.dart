@@ -15,6 +15,7 @@ import 'package:nap_nest/features/home/presentation/view/home_view.dart';
 import 'package:nap_nest/features/library/presentation/views/article_view.dart';
 import 'package:nap_nest/features/library/presentation/views/library_view.dart';
 import 'package:nap_nest/features/library/presentation/widgets/articles_view_body.dart';
+import 'package:nap_nest/features/myPlan/presentation/views/analyze_thoghts_view.dart';
 import 'package:nap_nest/features/myPlan/presentation/views/my_plan_view.dart';
 import 'package:nap_nest/features/onboarding/presentation/views/on_boarding_view.dart';
 import 'package:nap_nest/features/profile/presentation/views/profile_view.dart';
@@ -119,6 +120,9 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
 
     case MyPlanView.routeName:
       return CupertinoPageRoute(builder: (context) => MyPlanView());
+
+    case AnalyzeThoghtsView.routeName:
+      return CupertinoPageRoute(builder: (context) => AnalyzeThoghtsView());
 
     default:
       return CupertinoPageRoute(builder: (context) => const Scaffold());

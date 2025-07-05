@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:nap_nest/core/utils/app_colors.dart';
 import 'package:nap_nest/core/utils/app_images.dart';
+import 'package:nap_nest/features/myPlan/presentation/views/analyze_thoghts_view.dart';
 
 class MyPlanViewBody extends StatelessWidget {
   @override
@@ -22,9 +23,9 @@ class MyPlanViewBody extends StatelessWidget {
               //
             ),
           ),
-                     SizedBox(height: 6.h),
+          SizedBox(height: 6.h),
 
-           Text(
+          Text(
             'Complete your daily plan to get better sleep.',
             style: TextStyle(fontSize: 16.sp, color: AppColors.darkGreyTxtColor),
           ),
@@ -43,16 +44,17 @@ class MyPlanViewBody extends StatelessWidget {
                   TimelineDot(isActive: false),
                 ],
               ),
-               SizedBox(width: 12.w),
+              SizedBox(width: 12.w),
               Expanded(
                 child: Column(
-                  children:  [
+                  children: [
                     StepCard(
                       title: 'Analyze Thoughts',
                       duration: '2 min',
                       icon: Icons.psychology_outlined,
                       iconColor: Color(0xFFC1A5E4),
                       bgColor: Color(0x4CC1A5E4),
+                      onTap: () => Navigator.pushNamed(context, AnalyzeThoghtsView.routeName),
                     ),
                     SizedBox(height: 16.h),
                     StepCard(
@@ -179,7 +181,10 @@ class TimelineDot extends StatelessWidget {
                 child: Container(
                   width: 15,
                   height: 15,
-                  decoration: const BoxDecoration(color: AppColors.primaryColor, shape: BoxShape.circle),
+                  decoration: const BoxDecoration(
+                    color: AppColors.primaryColor,
+                    shape: BoxShape.circle,
+                  ),
                 ),
               )
               : null,
@@ -219,6 +224,7 @@ class StepCard extends StatelessWidget {
   final IconData icon;
   final Color iconColor;
   final Color bgColor;
+  final void Function()? onTap;
 
   const StepCard({
     super.key,
@@ -227,45 +233,49 @@ class StepCard extends StatelessWidget {
     required this.icon,
     required this.iconColor,
     required this.bgColor,
+    this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: const Color(0xFFF6F7FB),
-        borderRadius: BorderRadius.circular(20),
-        boxShadow: [
-          BoxShadow(color: const Color(0x19273377), blurRadius: 20, offset: const Offset(0, 4)),
-        ],
-      ),
-      child: Row(
-        children: [
-          Container(
-            padding: const EdgeInsets.all(10),
-            decoration: BoxDecoration(color: bgColor, borderRadius: BorderRadius.circular(10)),
-            child: Icon(icon, size: 20, color: iconColor),
-          ),
-          const SizedBox(width: 16),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(title, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-                const SizedBox(height: 4),
-                Text(
-                  duration,
-                  style: const TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.darkGreyTxtColor,
-                  ),
-                ),
-              ],
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: const Color(0xFFF6F7FB),
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: [
+            BoxShadow(color: const Color(0x19273377), blurRadius: 20, offset: const Offset(0, 4)),
+          ],
+        ),
+        child: Row(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(color: bgColor, borderRadius: BorderRadius.circular(10)),
+              child: Icon(icon, size: 20, color: iconColor),
             ),
-          ),
-        ],
+            const SizedBox(width: 16),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(title, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                  const SizedBox(height: 4),
+                  Text(
+                    duration,
+                    style: const TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.darkGreyTxtColor,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

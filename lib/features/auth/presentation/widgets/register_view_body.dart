@@ -4,6 +4,7 @@ import 'package:nap_nest/core/utils/app_colors.dart';
 import 'package:nap_nest/core/utils/app_images.dart';
 import 'package:nap_nest/core/widgets/custom_button.dart';
 import 'package:nap_nest/features/auth/presentation/widgets/custom_text_field.dart';
+import 'package:nap_nest/features/auth/presentation/widgets/date_ofbirth_field.dart';
 import 'package:nap_nest/features/auth/presentation/widgets/dont_have_account.dart';
 import 'package:nap_nest/features/auth/presentation/widgets/other_register.dart';
 
@@ -26,6 +27,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
 
   @override
   Widget build(BuildContext context) {
+    
     return Column(
       children: [
         Container(
@@ -68,6 +70,9 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                         validator: (val) => val!.isEmpty ? 'Enter your name' : null,
                       ),
                       SizedBox(height: 16.h),
+                      DateOfBirthField(),
+                   
+                      SizedBox(height: 16.h,),
                       CustomTextField(
                         controller: _emailController,
                         label: 'Email',
