@@ -1,8 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nap_nest/core/utils/app_images.dart';
-import 'package:nap_nest/features/soundtrack/presentation/widgets/song_view_body.dart';
+import 'package:nap_nest/features/breathing/presentation/view/breathing_details_view.dart';
 import 'package:nap_nest/home__items_model.dart';
 import 'package:svg_flutter/svg_flutter.dart';
 
@@ -13,19 +12,19 @@ class BreathingCardItem extends StatelessWidget {
     HomeItemsModel(
       title: '7 - 11 Breathing',
       path: 'song2.mp3',
-      imagePath: Assets.imagesLibrary1,
+      imagePath: Assets.imagesAirflow1,
       duration: '3 : 5 min',
     ),
     HomeItemsModel(
       title: '5 - 5 Breathing',
       path: 'song1.mp3',
-      imagePath: Assets.imagesLibrary2,
+      imagePath: Assets.imagesAirflow2,
       duration: '3 : 5 min',
     ),
     HomeItemsModel(
       title: '3 - 6 Breathing',
       path: 'song2.mp3',
-      imagePath: Assets.imagesLibrary3,
+      imagePath: Assets.imagesLibrary5,
       duration: '3 - 6 min',
     ),
   ];
@@ -39,21 +38,23 @@ class BreathingCardItem extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           itemCount: breathing.length,
           itemBuilder: (context, index) {
-            final breathingModel = breathing[index];
+            // final breathingModel = breathing[index];
             return BreathingItem(
               breathingModel: breathing[index],
               onTap: () {
-                Navigator.push(
-                  context,
-                  CupertinoPageRoute(
-                    builder:
-                        (_) => SongDetailsScreen(
-                          title: breathingModel.title,
-                          audio: breathingModel.path,
-                          backgroundImage: breathingModel.imagePath,
-                        ),
-                  ),
-                );
+                // Navigator.push(
+                //   context,
+                //   CupertinoPageRoute(
+                //     builder:
+                //         (_) => BreathingDetailsViewBody(
+                //           title:breathingModel.title,
+                //            description: breathingModel.path,
+                //            duration: breathingModel.duration,
+                //       //
+                //         ),
+                //   ),
+                // );
+                Navigator.pushNamed(context, BreathingDetailsView.routeName);
               },
             );
           },

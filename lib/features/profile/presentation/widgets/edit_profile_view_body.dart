@@ -55,7 +55,7 @@ class _EditProfileViewState extends State<EditProfileView> {
                     child: Icon(Icons.arrow_back_ios, size: 28.sp),
                   ),
                   Text(
-                    'Profile',
+                    'Me',
                     style: TextStyle(
                       fontSize: 22.sp,
                       fontWeight: FontWeight.w500,

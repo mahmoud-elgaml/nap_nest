@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:nap_nest/core/constants/custom_bottom_navbar.dart';
 import 'package:nap_nest/features/home/presentation/widgets/home_view_body.dart';
 import 'package:nap_nest/features/myPlan/presentation/views/my_plan_view.dart';
-import 'package:nap_nest/features/myPlan/presentation/widgets/my_plan_view_body.dart';
+import 'package:nap_nest/features/nestTime/presentation/views/nest_time_view.dart';
 import 'package:nap_nest/features/profile/presentation/widgets/profile_view_body.dart';
-import 'package:nap_nest/features/soundtrack/presentation/view/sound_track_view.dart';
 import 'package:nap_nest/statistics/presentation/views/statistics_view.dart';
 
 class HomeLayout extends StatefulWidget {
@@ -27,7 +26,7 @@ class _HomeNavigationState extends State<HomeLayout> with TickerProviderStateMix
 
   final List<Widget> pages = [
     const HomeViewBody(),
-    const SoundTrackView(),
+    const NestTimeView(),
     const MyPlanView(),
     const StatisticsView(),
     const ProfileViewBody(),

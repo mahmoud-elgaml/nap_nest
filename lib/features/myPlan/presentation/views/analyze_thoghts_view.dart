@@ -6,6 +6,6 @@ class AnalyzeThoghtsView extends StatelessWidget {
   static const routeName = 'AnalyzeThouths';
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: AnalyzeThoghtsViewBody());
+    return Scaffold(body: AnalyzeThoughtsViewBody());
   }
 }

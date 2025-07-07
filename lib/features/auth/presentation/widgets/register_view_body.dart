@@ -8,6 +8,8 @@ import 'package:nap_nest/features/auth/presentation/widgets/date_ofbirth_field.d
 import 'package:nap_nest/features/auth/presentation/widgets/dont_have_account.dart';
 import 'package:nap_nest/features/auth/presentation/widgets/gender_selection.dart';
 import 'package:nap_nest/features/auth/presentation/widgets/other_register.dart';
+import 'package:nap_nest/features/psqi/presentation/view/psqi_view.dart';
+
 
 class RegisterViewBody extends StatefulWidget {
   const RegisterViewBody({super.key});
@@ -18,6 +20,7 @@ class RegisterViewBody extends StatefulWidget {
 
 class _RegisterViewBodyState extends State<RegisterViewBody> {
   final _formKey = GlobalKey<FormState>();
+
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -28,31 +31,29 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    
     return Column(
       children: [
         Container(
-          color: Colors.white,
           height: 127.h,
           margin: EdgeInsets.only(top: 32.h),
           child: Center(child: Image.asset(Assets.imagesAppIcon, width: 74.w, height: 64.h)),
         ),
+
+        // Form Section
         Expanded(
           child: Card(
-            shadowColor: Colors.transparent,
-            borderOnForeground: false,
-            color: Colors.white,
+            elevation: 0,
             margin: EdgeInsets.zero,
-            shape: RoundedRectangleBorder(
+            shape:  RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(double.infinity),
-                topRight: Radius.circular(double.infinity),
+                topLeft: Radius.circular(999.r), 
+                topRight: Radius.circular(999.r),
               ),
             ),
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 16.h),
               decoration: BoxDecoration(
-                color: Color.fromARGB(255, 255, 251, 251),
+                color: const Color(0xFFFFFBFB),
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(60.r),
                   topRight: Radius.circular(60.r),
@@ -64,6 +65,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                   child: Column(
                     children: [
                       SizedBox(height: 32.h),
+                      // Full Name
                       CustomTextField(
                         controller: _nameController,
                         label: 'Full Name',
@@ -71,11 +73,16 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                         validator: (val) => val!.isEmpty ? 'Enter your name' : null,
                       ),
                       SizedBox(height: 16.h),
-                      DateOfBirthField(),
+
+                      // Date of Birth
+                      const DateOfBirthField(),
                       SizedBox(height: 16.h),
-                   
-                   GenderSelectionField(),
-                      SizedBox(height: 16.h,),
+
+                      // Gender
+                      const GenderSelectionField(),
+                      SizedBox(height: 16.h),
+
+                      // Email
                       CustomTextField(
                         controller: _emailController,
                         label: 'Email',
@@ -91,6 +98,8 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                         },
                       ),
                       SizedBox(height: 16.h),
+
+                      // Password
                       CustomTextField(
                         controller: _passwordController,
                         label: 'Password',
@@ -106,15 +115,17 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                         validator: (val) => val!.length < 6 ? 'Minimum 6 characters' : null,
                       ),
                       SizedBox(height: 16.h),
+
+                      // Confirm Password
                       CustomTextField(
                         controller: _confirmPasswordController,
                         label: 'Confirm Password',
-                        hint: 'Enter your password',
+                        hint: 'Re-enter your password',
                         obscureText: _obscureConfirmPassword,
                         suffix: IconButton(
                           icon: Icon(
                             _obscureConfirmPassword ? Icons.visibility_off : Icons.visibility,
-                         color: _obscureConfirmPassword ? Colors.grey : AppColors.primaryColor,
+                            color: _obscureConfirmPassword ? Colors.grey : AppColors.primaryColor,
                           ),
                           onPressed:
                               () => setState(
@@ -130,11 +141,14 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                         text: 'Sign Up',
                         color: AppColors.primaryColor,
                         width: double.infinity,
-                        onPressed: () {},
+                        onPressed: () {
+                          // if (_formKey.currentState!.validate()) {
+                          // }
+                          Navigator.pushNamed(context, PsqiView.routeName);
+                        },
                       ),
-                      SizedBox(height: 16.h),
+                      SizedBox(height: 12.h),
                       const Text('Or'),
-                      SizedBox(height: 4.h),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -143,8 +157,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                           OtherRegister(image: Assets.imagesApple, onPressed: () {}),
                         ],
                       ),
-                      SizedBox(height: 4.h),
-                      HaveAccount(
+                      const HaveAccount(
                         isLogin: false,
                         text: 'Already have an account?',
                         method: 'Login',

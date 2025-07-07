@@ -3,7 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nap_nest/core/utils/app_images.dart';
 import 'package:nap_nest/features/attachDevice/presentation/view/attach_device_view.dart';
 import 'package:nap_nest/features/home/presentation/widgets/categories_home_item_card.dart';
-import 'package:nap_nest/features/library/presentation/views/article_view.dart';
+import 'package:nap_nest/features/library/presentation/views/library_view.dart';
+import 'package:nap_nest/features/nestTime/presentation/views/nest_time_view.dart';
+import 'package:nap_nest/features/nestTime/presentation/widgets/alarm_setting_view.dart';
 
 class CategoriesCardGridView extends StatelessWidget {
   const CategoriesCardGridView({super.key});
@@ -19,25 +21,31 @@ class CategoriesCardGridView extends StatelessWidget {
       physics: NeverScrollableScrollPhysics(),
       children: [
         CategoriesHomeItemCard(
-          title: 'Ready to Sleep',
+          title: 'Nest Time',
           backgroundAsset: Assets.imagesPurble,
           iconAsset: Assets.imagesMoon,
+          onPressed: () {
+            Navigator.pushNamed(context, NestTimeView.routeName);
+          },
         ),
         CategoriesHomeItemCard(
           title: 'Library',
           backgroundAsset: Assets.imagesBlue,
           iconAsset: Assets.imagesBook,
           onPressed: () {
-            Navigator.pushNamed(context, ArticleView.routeName);
+            Navigator.pushNamed(context, LibraryView.routeName);
           },
         ),
         CategoriesHomeItemCard(
           title: 'Alarm',
           backgroundAsset: Assets.imagesGreen,
           iconAsset: Assets.imagesAlarm,
+          onPressed: () {
+            Navigator.pushNamed(context, AlarmView.routeName);
+          },
         ),
         CategoriesHomeItemCard(
-          title: 'Attach Device',
+          title: 'Connect my band',
           backgroundAsset: Assets.imagesOrange,
           iconAsset: Assets.imagesHand,
           onPressed: () {

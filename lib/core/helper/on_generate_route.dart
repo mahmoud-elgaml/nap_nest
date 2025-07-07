@@ -17,6 +17,8 @@ import 'package:nap_nest/features/library/presentation/views/library_view.dart';
 import 'package:nap_nest/features/library/presentation/widgets/articles_view_body.dart';
 import 'package:nap_nest/features/myPlan/presentation/views/analyze_thoghts_view.dart';
 import 'package:nap_nest/features/myPlan/presentation/views/my_plan_view.dart';
+import 'package:nap_nest/features/nestTime/presentation/views/nest_time_view.dart';
+import 'package:nap_nest/features/nestTime/presentation/widgets/alarm_setting_view.dart';
 import 'package:nap_nest/features/onboarding/presentation/views/on_boarding_view.dart';
 import 'package:nap_nest/features/profile/presentation/views/profile_view.dart';
 import 'package:nap_nest/features/profile/presentation/widgets/edit_profile_view_body.dart';
@@ -123,6 +125,12 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
 
     case AnalyzeThoghtsView.routeName:
       return CupertinoPageRoute(builder: (context) => AnalyzeThoghtsView());
+
+    case NestTimeView.routeName:
+      return CupertinoPageRoute(builder: (context) => NestTimeView());
+
+    case AlarmView.routeName:
+      return CupertinoPageRoute(builder: (context) => AlarmView());
 
     default:
       return CupertinoPageRoute(builder: (context) => const Scaffold());

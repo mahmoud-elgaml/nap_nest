@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nap_nest/core/utils/app_images.dart';
 import 'package:nap_nest/core/widgets/custom_appbar.dart';
+import 'package:nap_nest/features/library/presentation/views/article_view.dart';
 import 'package:nap_nest/features/library/presentation/widgets/articles_card.dart';
 
 class ArticlesViewBody extends StatelessWidget {
@@ -23,7 +24,9 @@ static const routeName = 'ArticlesViewBody';
                   subtitle: 'Learn how your thoughts shape your sleep.',
                 ),            
                 SizedBox(height: 20.h),
-                ArticlesCard(imageAsset: Assets.imagesBed, title: 'What Is Cognitive Behavioral Therapy?'),
+                ArticlesCard(imageAsset: Assets.imagesBed, title: 'What Is Cognitive Behavioral Therapy?',
+                onTap: () => Navigator.pushNamed(context, ArticleView.routeName),
+                ),
                 SizedBox(height: 20.h),
                 ArticlesCard(imageAsset: Assets.imagesBed, title: 'CBT-I: A Targeted Therapy for Insomnia..'),
                 SizedBox(height: 20.h),

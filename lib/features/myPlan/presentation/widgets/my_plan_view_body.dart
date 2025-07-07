@@ -19,7 +19,6 @@ class MyPlanViewBody extends StatelessWidget {
             style: TextStyle(
               fontSize: 28.sp,
               fontWeight: FontWeight.w600,
-
               //
             ),
           ),
@@ -49,7 +48,7 @@ class MyPlanViewBody extends StatelessWidget {
                 child: Column(
                   children: [
                     StepCard(
-                      title: 'Analyze Thoughts',
+                      title: 'Night Notions',
                       duration: '2 min',
                       icon: Icons.psychology_outlined,
                       iconColor: Color(0xFFC1A5E4),
@@ -66,7 +65,7 @@ class MyPlanViewBody extends StatelessWidget {
                     ),
                     SizedBox(height: 16.h),
                     StepCard(
-                      title: '7-11 Breathing',
+                      title: 'Airflow',
                       duration: '2 min',
                       icon: Icons.air_outlined,
                       iconColor: Color(0xFF74B2E7),
@@ -74,7 +73,7 @@ class MyPlanViewBody extends StatelessWidget {
                     ),
                     SizedBox(height: 16.h),
                     StepCard(
-                      title: 'Basic mindfulness',
+                      title: 'SleepTunes',
                       duration: '11 min',
                       icon: Icons.graphic_eq_outlined,
                       iconColor: Color(0xFF5ABE8F),
@@ -102,7 +101,7 @@ class MyPlanViewBody extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'Get Ready to Sleep',
+                        'Nest Time',
                         style: TextStyle(
                           fontSize: 18.sp,
                           fontWeight: FontWeight.w600,
@@ -125,9 +124,9 @@ class MyPlanViewBody extends StatelessWidget {
                         width: 123.w,
                         height: 36.h,
                         decoration: BoxDecoration(
-                          color: const Color(0xFF74B2E7),
+                          color: AppColors.primaryColor,
                           borderRadius: BorderRadius.circular(28.r),
-                          border: Border.all(color: const Color(0xFF74B2E7)),
+                          border: Border.all(color: AppColors.primaryColor),
                         ),
                         alignment: Alignment.center,
                         child: Text(

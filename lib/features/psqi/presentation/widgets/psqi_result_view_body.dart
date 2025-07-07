@@ -16,7 +16,7 @@ class PsqiResultViewBody extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(
-                'PSQI Test Result',
+                'Sleep Index Result',
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black),
               ),
               const SizedBox(height: 24),
@@ -124,8 +124,11 @@ class PsqiResultViewBody extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    // Handle continue action
-                    Navigator.pushNamed(context,HomeView.routeName); // Replace with your route
+                    Navigator.pushNamedAndRemoveUntil(
+                      context,
+                      HomeView.routeName,
+                      (route) => false,
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF4A90E2),
@@ -177,4 +180,3 @@ class PsqiResultViewBody extends StatelessWidget {
     );
   }
 }
-

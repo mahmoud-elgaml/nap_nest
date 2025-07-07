@@ -30,15 +30,15 @@ class _DateOfBirthFieldState extends State<DateOfBirthField> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 380,
+      width: 380.w,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
+           Text(
             'Birthdate',
             style: TextStyle(
               color: AppColors.darkGreyTxtColor,
-              fontSize: 16,
+              fontSize: 16.sp,
               fontFamily: 'Roboto',
               fontWeight: FontWeight.w700,
             ),
@@ -60,10 +60,10 @@ class _DateOfBirthFieldState extends State<DateOfBirthField> {
                     Expanded(
                       child: TextField(
                         controller: dobController,
-                        style: const TextStyle(
+                        style:  TextStyle(
                           color: const Color(0xFF9EA8B9),
 
-                          fontSize: 16,
+                          fontSize: 16.sp,
                           fontFamily: 'Roboto',
                           fontWeight: FontWeight.w400,
                         ),

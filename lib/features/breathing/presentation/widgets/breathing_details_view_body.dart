@@ -24,7 +24,7 @@ class BreathingDetailsViewBody extends StatelessWidget {
         children: [
           Positioned.fill(
             child: SvgPicture.asset(
-              Assets.imagesArticlebackground,
+              Assets.imagesAirflowBackground,
               fit: BoxFit.fill,
               //
             ),

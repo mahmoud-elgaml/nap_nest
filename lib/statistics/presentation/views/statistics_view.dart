@@ -6,6 +6,6 @@ class StatisticsView extends StatelessWidget {
 static const routeName = 'statistics';
   @override
   Widget build(BuildContext context) {
-    return StatisticsViewBody();
+    return Scaffold(body: StatisticsViewBody());
   }
 }

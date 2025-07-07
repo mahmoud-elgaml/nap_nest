@@ -49,7 +49,7 @@ class AttachDeviceViewBody extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'How To Attach Your Device',
+                'How To Connect Your Band',
                 style: TextStyle(fontSize: 24.sp, fontWeight: FontWeight.w700),
               ),
               SizedBox(height: 9.h),
@@ -74,7 +74,7 @@ class AttachDeviceViewBody extends StatelessWidget {
                 ),
               ),
               const ConnectButton(),
-        
+
               SizedBox(height: 68.h),
             ],
           ),

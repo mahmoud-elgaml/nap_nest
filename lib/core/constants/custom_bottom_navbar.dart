@@ -56,8 +56,6 @@ class CustomBottomNavBar extends StatelessWidget {
               ),
             ),
           ),
-
-          // الأيقونات
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: List.generate(icons.length, (index) {
@@ -90,31 +88,4 @@ class CustomBottomNavBar extends StatelessWidget {
   }
 }
 
-//           Row(
-//             mainAxisAlignment: MainAxisAlignment.spaceAround,
-//             children: List.generate(icons.length, (index) {
-//               final icon = icons[index];
-//               final isSelected = selectedIndex == index;
-//               // تغيير لون الأيقونة فقط عند التحديد
-//               return GestureDetector(
-//                 onTap: () => onTap(index),
-//                 child: Padding(
-//                   padding: EdgeInsets.all(14.w),
-//                   child: SvgPicture.asset(
-//                     icon,
-//                     height: 28.h,
 
-//                     colorFilter: ColorFilter.mode(
-//                       isSelected ? AppColors.primaryColor : Colors.grey,
-//                       BlendMode.srcIn,
-//                     ),
-//                   ),
-//                 ),
-//               );
-//             }),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }

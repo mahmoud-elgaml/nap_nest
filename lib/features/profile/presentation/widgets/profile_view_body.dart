@@ -14,21 +14,29 @@ class ProfileViewBody extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'Profile',
-            style: TextStyle(
-              fontSize: 32.sp,
-              fontWeight: FontWeight.w700,
-            ),
+          Row(
+            children: [
+              GestureDetector(
+                onTap: () => Navigator.pop(context),
+                child: Icon(
+                  Icons.arrow_back_ios,
+                  size: 28.sp,
+                  //
+                ),
+              ),
+
+              Text(
+                'Me',
+                style: TextStyle(
+                  fontSize: 32.sp,
+                  fontWeight: FontWeight.w700,
+                  //
+                ),
+              ),
+            ],
           ),
           SizedBox(height: 24.h),
-          Text(
-            'Mohamed Ali',
-            style: TextStyle(
-              fontSize: 24.sp,
-              fontWeight: FontWeight.w700,
-            ),
-          ),
+          Text('Mohamed Ali', style: TextStyle(fontSize: 24.sp, fontWeight: FontWeight.w700)),
           SizedBox(height: 4.h),
           Text(
             'Mohamedali@gmail.com',
@@ -38,12 +46,9 @@ class ProfileViewBody extends StatelessWidget {
               color: AppColors.darkGreyTxtColor,
             ),
           ),
-          SizedBox(height: 32.h,
-          child: Divider(
-            color: AppColors.darkGreyTxtColor,
-          thickness: 0.2.h,
-
-          ),
+          SizedBox(
+            height: 32.h,
+            child: Divider(color: AppColors.darkGreyTxtColor, thickness: 0.2.h),
           ),
 
           _buildMenuCard([
@@ -54,11 +59,7 @@ class ProfileViewBody extends StatelessWidget {
               onTap: () => Navigator.pushNamed(context, EditProfileView.routeName),
             ),
             Divider(color: AppColors.containerColor, height: 8.h),
-            _buildMenuItem(
-              icon: Icons.insights_outlined,
-              label: 'My Progress',
-              onTap: () {}, 
-            ),
+            _buildMenuItem(icon: Icons.insights_outlined, label: 'My Progress', onTap: () {}),
           ]),
           SizedBox(height: 24.h),
 
@@ -67,9 +68,6 @@ class ProfileViewBody extends StatelessWidget {
       ),
     );
   }
-
-
-
 
   Widget _buildMenuCard(List<Widget> children) {
     return Container(
@@ -106,15 +104,9 @@ class ProfileViewBody extends StatelessWidget {
             ),
             SizedBox(width: 16.w),
             Expanded(
-              child: Text(
-                label,
-                style: TextStyle(
-                  fontSize: 16.sp,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
+              child: Text(label, style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500)),
             ),
-            Icon(Icons.arrow_forward_ios, size: 16.sp, color:AppColors.darkGreyTxtColor),
+            Icon(Icons.arrow_forward_ios, size: 16.sp, color: AppColors.darkGreyTxtColor),
           ],
         ),
       ),
@@ -146,15 +138,14 @@ class ProfileViewBody extends StatelessWidget {
           Expanded(
             child: Text(
               'Notification',
-              style: TextStyle(
-                fontSize: 16.sp,
-                fontWeight: FontWeight.w500,
-              ),
+              style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500),
             ),
           ),
-          Switch(value: true, onChanged: (val) {}, activeColor: AppColors.primaryColor,
-          inactiveThumbColor: Colors.white,
-          
+          Switch(
+            value: true,
+            onChanged: (val) {},
+            activeColor: AppColors.primaryColor,
+            inactiveThumbColor: Colors.white,
           ),
         ],
       ),

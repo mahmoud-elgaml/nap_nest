@@ -11,7 +11,7 @@ class LibraryHomeItem extends StatelessWidget {
     HomeItemsModel(
       title: 'Sleep disturbances',
       path: 'song2.mp3',
-      imagePath: Assets.imagesLibrary1,
+      imagePath: Assets.imagesLibrary4,
       duration: '7 min',
     ),
     HomeItemsModel(
@@ -29,7 +29,7 @@ class LibraryHomeItem extends StatelessWidget {
     HomeItemsModel(
       title: 'Sleep disturbances',
       path: 'song3.mp3',
-      imagePath: Assets.imagesLibrary1,
+      imagePath: Assets.imagesLibrary5,
       duration: '7 min',
     ),
   ];
@@ -92,15 +92,16 @@ class LibItem extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ClipRRect(
+           ClipRRect(
               borderRadius: BorderRadius.vertical(top: Radius.circular(16.r)),
               child: SvgPicture.asset(
                 libModel.imagePath,
                 width: double.infinity,
                 height: 120.h,
-                fit: BoxFit.fill,
+                fit: BoxFit.cover, // ← استبدال هنا
               ),
             ),
+
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 10.h),
               child: Column(

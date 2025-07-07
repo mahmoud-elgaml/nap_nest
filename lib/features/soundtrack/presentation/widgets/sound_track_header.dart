@@ -14,7 +14,7 @@ class SoundTrackHeader extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              'Sound Tracks',
+              'SleepTunes',
               style: TextStyle(
                 fontSize: 24.sp,
                 fontWeight: FontWeight.w700,

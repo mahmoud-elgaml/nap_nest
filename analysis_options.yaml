@@ -13,6 +13,7 @@ analyzer:
     - "**/*.gr.dart"
   errors:
     # Treating warnings as errors (optional)
+    deprecated_member_use: ignore
     missing_return: warning
     unused_element: error
 

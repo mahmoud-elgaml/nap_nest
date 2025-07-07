@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nap_nest/features/breathing/presentation/view/breathing_view.dart';
 
-class BreathingHeader extends StatelessWidget {
-  const BreathingHeader({super.key});
+class AirflowHeader extends StatelessWidget {
+  const AirflowHeader({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class BreathingHeader extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              'Breathing Techniques',
+              'Airflow',
               style: TextStyle(
                 fontSize: 24.sp,
                 fontWeight: FontWeight.w700,

@@ -8,18 +8,17 @@ class ArticleViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFFF8F8F8),
-      body: SafeArea(
-        child: SingleChildScrollView(
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: const Color(0xFFF8F8F8),
+        body: SingleChildScrollView(
           child: Column(
             children: [
               Stack(
                 children: [
                   Container(
                     width: double.infinity,
-                    height: 300.h,
-
+                    height: 350.h,
                     child: Padding(
                       padding: EdgeInsets.symmetric(vertical: 16.h),
                       child: SvgPicture.asset(
@@ -62,16 +61,15 @@ class ArticleViewBody extends StatelessWidget {
                         fontSize: 20.sp,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
-                        height: 1.4,
+                        height: 1.7,
                       ),
                     ),
                   ),
                 ],
               ),
               SizedBox(height: 24.h),
-              // White content box
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16.w),
+                padding: EdgeInsets.symmetric(horizontal: 18.w),
                 child: Container(
                   padding: EdgeInsets.all(16.r),
                   decoration: BoxDecoration(
@@ -117,11 +115,11 @@ class ArticleViewBody extends StatelessWidget {
   Widget contentTitle(String text) {
     return Text(
       text,
-      style: TextStyle(fontSize: 17.sp, fontWeight: FontWeight.bold, color: Colors.black87),
+      style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold, color: Colors.black87),
     );
   }
 
   Widget contentText(String text) {
-    return Text(text, style: TextStyle(fontSize: 15.sp, color: Colors.black87, height: 1.5));
+    return Text(text, style: TextStyle(fontSize: 14.5.sp, color: Colors.black87, height: 1.6,fontWeight: FontWeight.w500));
   }
 }

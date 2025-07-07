@@ -7,7 +7,7 @@ import 'package:nap_nest/features/auth/presentation/view/forget_password_view.da
 import 'package:nap_nest/features/auth/presentation/widgets/custom_text_field.dart';
 import 'package:nap_nest/features/auth/presentation/widgets/dont_have_account.dart';
 import 'package:nap_nest/features/auth/presentation/widgets/other_register.dart';
-import 'package:nap_nest/features/userInfo/birthday_view_body.dart';
+import 'package:nap_nest/features/psqi/presentation/view/psqi_view.dart';
 
 class LoginViewBody extends StatefulWidget {
   const LoginViewBody({super.key});
@@ -114,7 +114,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                           color: AppColors.primaryColor,
                           width: double.infinity,
                           onPressed: () =>
-                                  () => Navigator.pushNamed(context, BirthdayViewBody.routeName),
+                                  () => Navigator.pushNamed(context, PsqiView.routeName),
                         ),
                         SizedBox(height: 24.h),
                         const Text('Or'),

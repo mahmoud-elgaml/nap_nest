@@ -1,411 +1,520 @@
+
 // import 'dart:async';
 // import 'dart:math';
 // import 'package:flutter/material.dart';
 // import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 // class BreathingTimerView extends StatefulWidget {
-//   const BreathingTimerView({super.key});
 //   static const routeName = 'breathing_timer_view';
 
 //   @override
-//   State<BreathingTimerView> createState() => _BreathingTimerViewState();
+//   _BreathingTimerViewState createState() => _BreathingTimerViewState();
 // }
 
-// class _BreathingTimerViewState extends State<BreathingTimerView> with TickerProviderStateMixin {
-//   late AnimationController _breathingController;
-//   late AnimationController _rotationController;
-//   bool isBreathingIn = true;
-//   bool isStarted = false;
+// class _BreathingTimerViewState extends State<BreathingTimerView>
+//     with SingleTickerProviderStateMixin {
+//   late AnimationController _controller;
+//   late Animation<double> _scaleAnimation;
 
-//   int selectedDuration = 4 * 60;
-//   int remainingSeconds = 4 * 60;
-//   Timer? _countdownTimer;
+//   final int inhaleSec = 7;
+//   final int exhaleSec = 11;
+//   int totalCycles = 6;
 
-//   final Color primaryColor = const Color(0xFF74B2E7);
-//   final double circleSize = 140.w;
-//   final double markerAngle = 330 * pi / 180;
+//   int currentCycle = 0;
+//   bool isInhale = true;
+//   bool hasStarted = false;
+
+//   final List<double> _quarterAngles = [0.0, pi / 2, pi, 3 * pi / 2];
+//   double _lastCheckedAngle = -1;
 
 //   @override
 //   void initState() {
 //     super.initState();
+//     final totalDuration = Duration(seconds: inhaleSec + exhaleSec);
 
-//     _breathingController = AnimationController(
-//       vsync: this,
-//       duration: const Duration(seconds: 7 + 11),
-//     )..addStatusListener((status) {
-//       if (status == AnimationStatus.completed) {
-//         setState(() => isBreathingIn = !isBreathingIn);
-//         _breathingController.reset();
-//         _breathingController.forward();
-//       }
+//     _controller = AnimationController(vsync: this, duration: totalDuration)..addListener(() {
+//       setState(() {
+//         _checkQuarterRotation();
+//       });
 //     });
 
-//     _rotationController = AnimationController(vsync: this, duration: const Duration(seconds: 18))
-//       ..addListener(_checkThreshold);
+//     _scaleAnimation = TweenSequence([
+//       TweenSequenceItem(
+//         tween: Tween(begin: 0.7, end: 1.0).chain(CurveTween(curve: Curves.easeInOut)),
+//         weight: inhaleSec.toDouble(),
+//       ),
+//       TweenSequenceItem(
+//         tween: Tween(begin: 1.0, end: 0.7).chain(CurveTween(curve: Curves.easeInOut)),
+//         weight: exhaleSec.toDouble(),
+//       ),
+//     ]).animate(_controller);
 //   }
 
-//   void _checkThreshold() {
-//     final angle = _rotationController.value * 2 * pi;
-//     if ((angle - markerAngle).abs() < 0.05) {
-//       setState(() => isBreathingIn = !isBreathingIn);
+//   void _startBreathing() {
+//     if (hasStarted) return;
+//     setState(() {
+//       hasStarted = true;
+//     });
+//     _controller.repeat();
+
+//     Timer.periodic(Duration(seconds: inhaleSec + exhaleSec), (timer) {
+//       if (currentCycle >= totalCycles - 1) {
+//         _controller.stop();
+//         timer.cancel();
+//       } else {
+//         currentCycle++;
+//       }
+//     });
+//   }
+
+//   void _checkQuarterRotation() {
+//     double angle = (2 * pi * _controller.value) % (2 * pi);
+
+//     for (var q in _quarterAngles) {
+//       if (_isCloseTo(angle, q, 0.05) && !_isCloseTo(_lastCheckedAngle, q, 0.05)) {
+//         isInhale = !isInhale;
+//         _lastCheckedAngle = q;
+//         break;
+//       }
 //     }
 //   }
 
-//   void _startSession() {
-//     setState(() => isStarted = true);
-//     _breathingController.forward();
-//     _rotationController.repeat();
+//   bool _isCloseTo(double a, double b, double tolerance) => (a - b).abs() < tolerance;
 
-//     _countdownTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
-//       if (mounted) {
-//         setState(() {
-//           remainingSeconds--;
-//           if (remainingSeconds <= 0) {
-//             timer.cancel();
-//             _breathingController.stop();
-//             _rotationController.stop();
-//           }
-//         });
-//       }
-//     });
+//   Offset get movingDotOffset {
+//     double angle = 2 * pi * _controller.value - pi / 2;
+//     double radius = 150.r;
+//     return Offset(cos(angle) * radius, sin(angle) * radius);
 //   }
 
-//   void _selectDuration(int minutes) {
-//     setState(() {
-//       selectedDuration = minutes * 60;
-//       remainingSeconds = selectedDuration;
-//     });
-//     _countdownTimer?.cancel();
-//     _breathingController.reset();
-//     _rotationController.reset();
-//     setState(() => isStarted = false);
+//   Widget _buildCycleSelector() {
+//     List<int> options = [3, 6, 9];
+
+//     return Row(
+//       mainAxisAlignment: MainAxisAlignment.center,
+//       children:
+//           options.map((value) {
+//             bool isSelected = value == totalCycles;
+//             return GestureDetector(
+//               onTap: () {
+//                 setState(() {
+//                   totalCycles = value;
+//                   currentCycle = 0;
+//                   hasStarted = false;
+//                   _controller.reset();
+//                 });
+//               },
+//               child: Container(
+//                 margin: EdgeInsets.symmetric(horizontal: 8.w),
+//                 padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 12.h),
+//                 decoration: BoxDecoration(
+//                   color: isSelected ? Colors.blueAccent : Colors.transparent,
+//                   borderRadius: BorderRadius.circular(12.r),
+//                   border: Border.all(color: Colors.blueAccent),
+//                 ),
+//                 child: Text(
+//                   "$value Cycles",
+//                   style: TextStyle(
+//                     color: isSelected ? Colors.white : Colors.blueAccent,
+//                     fontSize: 14.sp,
+//                     fontWeight: FontWeight.w500,
+//                   ),
+//                 ),
+//               ),
+//             );
+//           }).toList(),
+//     );
 //   }
 
 //   @override
 //   void dispose() {
-//     _breathingController.dispose();
-//     _rotationController.dispose();
-//     _countdownTimer?.cancel();
+//     _controller.dispose();
 //     super.dispose();
-//   }
-
-//   String _formatTime(int seconds) {
-//     final m = (seconds ~/ 60).toString().padLeft(2, '0');
-//     final s = (seconds % 60).toString().padLeft(2, '0');
-//     return '$m:$s';
 //   }
 
 //   @override
 //   Widget build(BuildContext context) {
-//     return Scaffold(
-//       backgroundColor: const Color(0xFFE5F2FC),
-//       body: SafeArea(
-//         child: Padding(
-//           padding: EdgeInsets.symmetric(horizontal: 24.w),
-//           child: Column(
-//             crossAxisAlignment: CrossAxisAlignment.start,
-//             children: [
-//               SizedBox(height: 20.h),
-//               GestureDetector(
-//                 onTap: () => Navigator.pop(context),
-//                 child: const Icon(Icons.arrow_back_ios_new_rounded, size: 20),
-//               ),
-//               SizedBox(height: 16.h),
-//               Text(
-//                 '7-11 Breathing',
-//                 style: TextStyle(fontSize: 24.sp, fontWeight: FontWeight.bold),
-//               ),
-//               SizedBox(height: 30.h),
-//               Expanded(
-//                 child: Center(
-//                   child: Stack(
-//                     alignment: Alignment.center,
+//     return ScreenUtilInit(
+//       designSize: Size(428, 926),
+//       builder:
+//           (_, __) => Scaffold(
+//             backgroundColor: Color(0xFF0D1B2A),
+//             body: Stack(
+//               children: [
+//                 Positioned(
+//                   right: 16.w,
+//                   top: 40.h,
+//                   child: GestureDetector(
+//                     onTap: () => Navigator.pop(context),
+//                     child: Icon(Icons.close, color: Colors.white, size: 30.sp),
+//                   ),
+//                 ),
+//                 Center(
+//                   child: Column(
+//                     mainAxisAlignment: MainAxisAlignment.center,
 //                     children: [
-//                       ..._buildGradientCircles(),
-//                       _buildMarker(),
-//                       _buildRotatingIndicator(),
-//                       _buildCenterCircle(),
+//                       Stack(
+//                         alignment: Alignment.center,
+//                         children: [
+//                           SizedBox(
+//                             width: 300.r,
+//                             height: 300.r,
+//                             child: CustomPaint(painter: DashedCirclePainter()),
+//                           ),
+//                           Transform.translate(
+//                             offset: movingDotOffset,
+//                             child: Container(
+//                               width: 20.r,
+//                               height: 20.r,
+//                               decoration: BoxDecoration(
+//                                 color: Colors.blueAccent,
+//                                 shape: BoxShape.circle,
+//                               ),
+//                             ),
+//                           ),
+//                           GestureDetector(
+//                             onTap: _startBreathing,
+//                             child: Transform.scale(
+//                               scale: _scaleAnimation.value,
+//                               child: Container(
+//                                 width: 160.r,
+//                                 height: 160.r,
+//                                 decoration: BoxDecoration(
+//                                   shape: BoxShape.circle,
+//                                   gradient: LinearGradient(
+//                                     colors: [Colors.blue, Colors.blueAccent],
+//                                     begin: Alignment.topLeft,
+//                                     end: Alignment.bottomRight,
+//                                   ),
+//                                 ),
+//                                 child: Center(
+//                                   child: Text(
+//                                     isInhale ? "Breathe In" : "Breathe Out",
+//                                     style: TextStyle(
+//                                       color: Colors.white,
+//                                       fontSize: 20.sp,
+//                                       fontWeight: FontWeight.bold,
+//                                     ),
+//                                   ),
+//                                 ),
+//                               ),
+//                             ),
+//                           ),
+//                         ],
+//                       ),
+//                       SizedBox(height: 32.h),
+//                       Text(
+//                         "${totalCycles - currentCycle} cycles left",
+//                         style: TextStyle(color: Colors.white70, fontSize: 16.sp),
+//                       ),
+//                       SizedBox(height: 16.h),
+//                       _buildCycleSelector(),
 //                     ],
 //                   ),
 //                 ),
-//               ),
-//               SizedBox(height: 16.h),
-//               Center(
-//                 child: Text(
-//                   _formatTime(remainingSeconds),
-//                   style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold),
-//                 ),
-//               ),
-//               SizedBox(height: 24.h),
-//               Row(
-//                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//                 children:
-//                     [3, 4, 5].map((m) {
-//                       final isSelected = m * 60 == selectedDuration;
-//                       return GestureDetector(
-//                         onTap: () => _selectDuration(m),
-//                         child: Container(
-//                           padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
-//                           decoration: BoxDecoration(
-//                             color: isSelected ? primaryColor : Colors.grey.shade300,
-//                             borderRadius: BorderRadius.circular(16.r),
-//                           ),
-//                           child: Row(
-//                             children: [
-//                               const Icon(Icons.timer, size: 18, color: Colors.white),
-//                               SizedBox(width: 8.w),
-//                               Text(
-//                                 '$m min',
-//                                 style: TextStyle(
-//                                   color: Colors.white,
-//                                   fontSize: 14.sp,
-//                                   fontWeight: FontWeight.w600,
-//                                 ),
-//                               ),
-//                             ],
-//                           ),
-//                         ),
-//                       );
-//                     }).toList(),
-//               ),
-//               SizedBox(height: 30.h),
-//             ],
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-
-//   Widget _buildCenterCircle() {
-//     return GestureDetector(
-//       onTap: () {
-//         if (!isStarted) _startSession();
-//       },
-//       child: AnimatedBuilder(
-//         animation: _breathingController,
-//         builder: (context, child) {
-//           final scale = Tween<double>(
-//             begin: 1.0,
-//             end: 1.2,
-//           ).animate(CurvedAnimation(parent: _breathingController, curve: Curves.easeInOut));
-
-//           return Transform.scale(
-//             scale: isStarted ? scale.value : 1.0,
-//             child: Container(
-//               width: circleSize,
-//               height: circleSize,
-//               decoration: BoxDecoration(shape: BoxShape.circle, color: primaryColor),
-//               alignment: Alignment.center,
-//               child: Text(
-//                 isBreathingIn ? 'Breathe in' : 'Breathe out',
-//                 style: TextStyle(fontSize: 18.sp, color: Colors.white, fontWeight: FontWeight.bold),
-//               ),
+//               ],
 //             ),
-//           );
-//         },
-//       ),
+//           ),
 //     );
-//   }
-
-//   Widget _buildRotatingIndicator() {
-//     return isStarted
-//         ? AnimatedBuilder(
-//           animation: _rotationController,
-//           builder: (_, __) {
-//             final angle = _rotationController.value * 2 * pi;
-//             final offset = Offset(
-//               (circleSize + 60) / 2 * cos(angle),
-//               (circleSize + 60) / 2 * sin(angle),
-//             );
-//             return Transform.translate(
-//               offset: offset,
-//               child: Container(
-//                 width: 16.w,
-//                 height: 16.w,
-//                 decoration: BoxDecoration(
-//                   shape: BoxShape.circle,
-//                   color: Colors.white,
-//                   border: Border.all(color: Colors.grey, width: 2),
-//                 ),
-//               ),
-//             );
-//           },
-//         )
-//         : const SizedBox.shrink();
-//   }
-
-//   Widget _buildMarker() {
-//     final offset = Offset(
-//       (circleSize + 60) / 2 * cos(markerAngle),
-//       (circleSize + 60) / 2 * sin(markerAngle),
-//     );
-//     return Transform.translate(
-//       offset: offset,
-//       child: Container(
-//         width: 12.w,
-//         height: 12.w,
-//         decoration: const BoxDecoration(shape: BoxShape.circle, color: Colors.white),
-//       ),
-//     );
-//   }
-
-//   List<Widget> _buildGradientCircles() {
-//     return List.generate(3, (i) {
-//       return Container(
-//         width: (circleSize + 60 + i * 30).w,
-//         height: (circleSize + 60 + i * 30).w,
-//         decoration: BoxDecoration(
-//           shape: BoxShape.circle,
-//           color: primaryColor.withOpacity(0.1 * (3 - i)),
-//         ),
-//       );
-//     });
 //   }
 // }
 
+// // Painter for Dashed Circle with markers
+// class DashedCirclePainter extends CustomPainter {
+//   @override
+//   void paint(Canvas canvas, Size size) {
+//     final paint =
+//         Paint()
+//           ..color = Colors.blue.withOpacity(0.5)
+//           ..strokeWidth = 4
+//           ..style = PaintingStyle.stroke;
+
+//     final radius = size.width / 2;
+//     const dashWidth = 6;
+//     const dashSpace = 6;
+//     double angle = 0;
+
+//     while (angle < 2 * pi) {
+//       final x1 = radius + radius * cos(angle);
+//       final y1 = radius + radius * sin(angle);
+//       final x2 = radius + radius * cos(angle + dashWidth / radius);
+//       final y2 = radius + radius * sin(angle + dashWidth / radius);
+//       canvas.drawLine(Offset(x1, y1), Offset(x2, y2), paint);
+//       angle += (dashWidth + dashSpace) / radius;
+//     }
+
+//     final markerPaint =
+//         Paint()
+//           ..color = Colors.blue
+//           ..strokeWidth = 6;
+
+//     for (var markAngle in [0.0, pi]) {
+//       final x = radius + radius * cos(markAngle);
+//       final y = radius + radius * sin(markAngle);
+//       canvas.drawLine(Offset(x, y - 10), Offset(x, y + 10), markerPaint);
+//     }
+//   }
+
+//   @override
+//   bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
+// }
 
 import 'dart:async';
+import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class BreathingTimerView extends StatefulWidget {
+  static const routeName = 'breathing_timer_view';
+
   @override
   _BreathingTimerViewState createState() => _BreathingTimerViewState();
-    static const routeName = 'breathing_timer_view';
-
 }
 
-class _BreathingTimerViewState extends State<BreathingTimerView> with SingleTickerProviderStateMixin {
-  late AnimationController _cycleController;
-  Timer? _countdownTimer;
-  int _remainingSeconds = 0;
+class _BreathingTimerViewState extends State<BreathingTimerView>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _scaleAnimation;
 
-  // Breath settings
   final int inhaleSec = 7;
   final int exhaleSec = 11;
-  late int _sessionMin = 4;
+  int totalCycles = 6;
+
+  int currentCycle = 0;
+  bool isInhale = true;
+  bool hasStarted = false;
+
+  final List<double> _quarterAngles = [0.0, pi / 2, pi, 3 * pi / 2];
+  double _lastCheckedAngle = -1;
 
   @override
   void initState() {
     super.initState();
+    final totalDuration = Duration(seconds: inhaleSec + exhaleSec);
 
-    // 1 full cycle = inhale + exhale
-    final cycleDuration = Duration(seconds: inhaleSec + exhaleSec);
+    _controller = AnimationController(vsync: this, duration: totalDuration)..addListener(() {
+      setState(() {
+        _checkQuarterRotation();
+      });
+    });
 
-    _cycleController = AnimationController(vsync: this, duration: cycleDuration);
-
-    _startSession();
+    _scaleAnimation = TweenSequence([
+      TweenSequenceItem(
+        tween: Tween(begin: 0.7, end: 1.0).chain(CurveTween(curve: Curves.easeInOut)),
+        weight: inhaleSec.toDouble(),
+      ),
+      TweenSequenceItem(
+        tween: Tween(begin: 1.0, end: 0.7).chain(CurveTween(curve: Curves.easeInOut)),
+        weight: exhaleSec.toDouble(),
+      ),
+    ]).animate(_controller);
   }
 
-  void _startSession() {
-    // restart breathing animation
-    _cycleController
-      ..reset()
-      ..repeat();
+  void _startBreathing() {
+    if (hasStarted) return;
+    setState(() {
+      hasStarted = true;
+    });
+    _controller.repeat();
 
-    // restart countdown
-    _countdownTimer?.cancel();
-    _remainingSeconds = _sessionMin * 60;
-    _countdownTimer = Timer.periodic(Duration(seconds: 1), (timer) {
-      if (_remainingSeconds <= 0) {
+    Timer.periodic(Duration(seconds: inhaleSec + exhaleSec), (timer) {
+      if (currentCycle >= totalCycles - 1) {
+        _controller.stop();
         timer.cancel();
-        _cycleController.stop();
       } else {
-        setState(() => _remainingSeconds--);
+        currentCycle++;
       }
     });
   }
 
-  String get _timerText {
-    final m = (_remainingSeconds ~/ 60).toString().padLeft(2, '0');
-    final s = (_remainingSeconds % 60).toString().padLeft(2, '0');
-    return '$m:$s';
-  }
+  void _checkQuarterRotation() {
+    double angle = (2 * pi * _controller.value) % (2 * pi);
 
-  String get _breathPhase {
-    final t = _cycleController.value * (inhaleSec + exhaleSec); // 0 → total cycle seconds
-    return t < inhaleSec ? 'Breathe in' : 'Breathe out';
-  }
-
-  double get _phaseProgress {
-    final t = _cycleController.value * (inhaleSec + exhaleSec);
-    if (t < inhaleSec) {
-      // inhale phase
-      return t / inhaleSec;
-    } else {
-      // exhale phase
-      return (t - inhaleSec) / exhaleSec;
+    for (var q in _quarterAngles) {
+      if (_isCloseTo(angle, q, 0.05) && !_isCloseTo(_lastCheckedAngle, q, 0.05)) {
+        isInhale = !isInhale;
+        _lastCheckedAngle = q;
+        break;
+      }
     }
+  }
+
+  bool _isCloseTo(double a, double b, double tolerance) => (a - b).abs() < tolerance;
+
+  Offset get movingDotOffset {
+    double angle = 2 * pi * _controller.value - pi / 2;
+    double radius = 150.r;
+    return Offset(cos(angle) * radius, sin(angle) * radius);
+  }
+
+  Widget _buildCycleSelector() {
+    List<int> options = [3, 6, 9];
+
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children:
+          options.map((value) {
+            bool isSelected = value == totalCycles;
+            return GestureDetector(
+              onTap: () {
+                setState(() {
+                  totalCycles = value;
+                  currentCycle = 0;
+                  hasStarted = false;
+                  _controller.reset();
+                });
+              },
+              child: Container(
+                margin: EdgeInsets.symmetric(horizontal: 8.w),
+                padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 12.h),
+                decoration: BoxDecoration(
+                  color: isSelected ? Colors.blueAccent : Colors.transparent,
+                  borderRadius: BorderRadius.circular(12.r),
+                  border: Border.all(color: Colors.blueAccent),
+                ),
+                child: Text(
+                  '$value Cycles',
+                  style: TextStyle(
+                    color: isSelected ? Colors.white : Colors.blueAccent,
+                    fontSize: 14.sp,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+            );
+          }).toList(),
+    );
   }
 
   @override
   void dispose() {
-    _cycleController.dispose();
-    _countdownTimer?.cancel();
+    _controller.dispose();
     super.dispose();
-  }
-
-  Widget _buildDurationButton(int minutes) {
-    final selected = _sessionMin == minutes;
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8),
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(backgroundColor: selected ? Colors.blue : Colors.grey[400]),
-        onPressed: () {
-          setState(() => _sessionMin = minutes);
-          _startSession();
-        },
-        child: Text('$minutes min'),
-      ),
-    );
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('7-11 Breathing'), centerTitle: true),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
-        child: Column(
-          children: [
-            SizedBox(height: 16),
-            Expanded(
-              child: AnimatedBuilder(
-                animation: _cycleController,
-                builder:
-                    (_, __) => Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            SizedBox(
-                              width: 200,
-                              height: 200,
-                              child: CircularProgressIndicator(
-                                value: _phaseProgress,
-                                strokeWidth: 12,
+    return ScreenUtilInit(
+      designSize: Size(428, 926),
+      builder:
+          (_, __) => Scaffold(
+            backgroundColor: Color(0xFF0D1B2A),
+            body: Stack(
+              children: [
+                Positioned(
+                  right: 16.w,
+                  top: 40.h,
+                  child: GestureDetector(
+                    onTap: () => Navigator.pop(context),
+                    child: Icon(Icons.close, color: Colors.white, size: 30.sp),
+                  ),
+                ),
+                Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          SizedBox(
+                            width: 300.r,
+                            height: 300.r,
+                            child: CustomPaint(painter: DashedCirclePainter()),
+                          ),
+                          Transform.translate(
+                            offset: movingDotOffset,
+                            child: Container(
+                              width: 20.r,
+                              height: 20.r,
+                              decoration: BoxDecoration(
+                                color: Colors.blueAccent,
+                                shape: BoxShape.circle,
                               ),
                             ),
-                            Text(
-                              _breathPhase,
-                              style: TextStyle(fontSize: 24, fontWeight: FontWeight.w600),
+                          ),
+                          GestureDetector(
+                            onTap: _startBreathing,
+                            child: Transform.scale(
+                              scale: _scaleAnimation.value,
+                              child: Container(
+                                width: 160.r,
+                                height: 160.r,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  gradient: LinearGradient(
+                                    colors: [Colors.blue, Colors.blueAccent],
+                                    begin: Alignment.topLeft,
+                                    end: Alignment.bottomRight,
+                                  ),
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    isInhale ? 'Breathe Out' :  'Breathe In',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 20.sp,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                              ),
                             ),
-                          ],
-                        ),
-                        SizedBox(height: 24),
-                        Text(_timerText, style: TextStyle(fontSize: 32)),
-                      ],
-                    ),
-              ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 32.h),
+                      Text(
+                        '${totalCycles - currentCycle} cycles left',
+                        style: TextStyle(color: Colors.white70, fontSize: 16.sp),
+                      ),
+                      SizedBox(height: 16.h),
+                      _buildCycleSelector(),
+                    ],
+                  ),
+                ),
+              ],
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [_buildDurationButton(3), _buildDurationButton(4), _buildDurationButton(5)],
-            ),
-            SizedBox(height: 24),
-          ],
-        ),
-      ),
+          ),
     );
   }
+}
+
+// Painter for Dashed Circle with markers
+class DashedCirclePainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint =
+        Paint()
+          ..color = Colors.blue.withOpacity(0.5)
+          ..strokeWidth = 4
+          ..style = PaintingStyle.stroke;
+
+    final radius = size.width / 2;
+    const dashWidth = 6;
+    const dashSpace = 6;
+    double angle = 0;
+
+    while (angle < 2 * pi) {
+      final x1 = radius + radius * cos(angle);
+      final y1 = radius + radius * sin(angle);
+      final x2 = radius + radius * cos(angle + dashWidth / radius);
+      final y2 = radius + radius * sin(angle + dashWidth / radius);
+      canvas.drawLine(Offset(x1, y1), Offset(x2, y2), paint);
+      angle += (dashWidth + dashSpace) / radius;
+    }
+
+    final markerPaint =
+        Paint()
+          ..color = Colors.blue
+          ..strokeWidth = 6;
+
+    for (var markAngle in [0.0, pi]) {
+      final x = radius + radius * cos(markAngle);
+      final y = radius + radius * sin(markAngle);
+      canvas.drawLine(Offset(x, y - 10), Offset(x, y + 10), markerPaint);
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }

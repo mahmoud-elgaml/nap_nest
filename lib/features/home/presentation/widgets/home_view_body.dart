@@ -32,7 +32,7 @@ class HomeViewBody extends StatelessWidget {
             sliverSizedBox(6),
             SoundTrackItem(),
             sliverSizedBox(16),
-            BreathingHeader(),
+            AirflowHeader(),
             sliverSizedBox(6),
             BreathingCardItem(),
             sliverSizedBox(16),

@@ -20,7 +20,7 @@ class PsqiViewBody extends StatelessWidget {
             children: [
               SizedBox(height: 54.h),
               Text(
-                'PSQI Test',
+                'Sleep Index',
                 style: TextStyle(
                   color: AppColors.darkGreyTxtColor,
                   fontSize: 16.sp,
