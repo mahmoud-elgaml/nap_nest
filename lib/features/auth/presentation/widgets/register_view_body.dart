@@ -1,8 +1,10 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nap_nest/core/utils/app_colors.dart';
 import 'package:nap_nest/core/utils/app_images.dart';
 import 'package:nap_nest/core/widgets/custom_button.dart';
+import 'package:nap_nest/features/auth/data/cubits/register_cubit.dart';
 import 'package:nap_nest/features/auth/presentation/widgets/custom_text_field.dart';
 import 'package:nap_nest/features/auth/presentation/widgets/date_ofbirth_field.dart';
 import 'package:nap_nest/features/auth/presentation/widgets/dont_have_account.dart';
@@ -32,178 +34,220 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          height: 127.h,
-          margin: EdgeInsets.only(top: 32.h),
-          child: Center(child: Image.asset(Assets.imagesAppIcon, width: 74.w, height: 64.h)),
-        ),
+    return BlocListener<RegisterCubit, RegisterState>(
+      listener: (context, state) {
+        print('📍 State changed: $state');
 
-        // Form Section
-        Expanded(
-          child: Card(
-            elevation: 0,
-            margin: EdgeInsets.zero,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(999.r),
-                topRight: Radius.circular(999.r),
-              ),
-            ),
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 16.h),
-              decoration: BoxDecoration(
-                color: const Color(0xFFFFFBFB),
+        if (state is RegisterSuccess) {
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text('Welcome ${state.user.patientName}!')));
+          Navigator.pushNamed(context, PsqiView.routeName);
+        } else if (state is RegisterFailure) {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.error)));
+        }
+      },
+      child: Column(
+        children: [
+          Container(
+            height: 127.h,
+            margin: EdgeInsets.only(top: 32.h),
+            child: Center(child: Image.asset(Assets.imagesAppIcon, width: 74.w, height: 64.h)),
+          ),
+
+          // Form Section
+          Expanded(
+            child: Card(
+              elevation: 0,
+              margin: EdgeInsets.zero,
+              shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(60.r),
-                  topRight: Radius.circular(60.r),
+                  topLeft: Radius.circular(999.r),
+                  topRight: Radius.circular(999.r),
                 ),
               ),
-              child: SingleChildScrollView(
-                child: Form(
-                  key: _formKey,
-                  child: Column(
-                    children: [
-                      SizedBox(height: 32.h),
-                      // Full Name
-                      CustomTextField(
-                        controller: _nameController,
-                        label: 'Full Name',
-                        hint: 'Enter your name',
-                        validator: (val) => val!.isEmpty ? 'Enter your name' : null,
-                      ),
-                      SizedBox(height: 16.h),
-
-                      // Date of Birth
-                      DateOfBirthField(controller: _dobController),
-                      SizedBox(height: 16.h),
-
-                      // Gender
-                      GenderSelectionField(
-                        selectedGender: _selectedGender,
-                        onGenderSelected: (gender) {
-                          setState(() => _selectedGender = gender);
-                        },
-                      ),
-                      SizedBox(height: 16.h),
-
-                      CustomTextField(
-                        controller: _emailController,
-                        label: 'Email',
-                        hint: 'Enter your email',
-                        keyboardType: TextInputType.emailAddress,
-                        validator: (val) {
-                          if (val!.isEmpty) return 'Enter your email';
-                          final emailRegex = RegExp(r'^[^@]+@[^@]+\.[^@]+');
-                          if (!emailRegex.hasMatch(val)) {
-                            return 'Enter a valid email';
-                          }
-                          return null;
-                        },
-                      ),
-                      SizedBox(height: 16.h),
-
-                      // Password
-                      CustomTextField(
-                        controller: _passwordController,
-                        label: 'Password',
-                        hint: 'Enter your password',
-                        obscureText: _obscurePassword,
-                        suffix: IconButton(
-                          icon: Icon(
-                            _obscurePassword ? Icons.visibility_off : Icons.visibility,
-                            color: _obscurePassword ? Colors.grey : AppColors.primaryColor,
-                          ),
-                          onPressed: () => setState(() => _obscurePassword = !_obscurePassword),
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 16.h),
+                decoration: BoxDecoration(
+                  color: const Color(0xFFFFFBFB),
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(60.r),
+                    topRight: Radius.circular(60.r),
+                  ),
+                ),
+                child: SingleChildScrollView(
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      children: [
+                        SizedBox(height: 32.h),
+                        // Full Name
+                        CustomTextField(
+                          controller: _nameController,
+                          label: 'Full Name',
+                          hint: 'Enter your name',
+                          validator: (val) => val!.isEmpty ? 'Enter your name' : null,
                         ),
-                        validator: (val) => val!.length < 6 ? 'Minimum 6 characters' : null,
-                      ),
-                      SizedBox(height: 16.h),
+                        SizedBox(height: 16.h),
 
-                      // Confirm Password
-                      CustomTextField(
-                        controller: _confirmPasswordController,
-                        label: 'Confirm Password',
-                        hint: 'Re-enter your password',
-                        obscureText: _obscureConfirmPassword,
-                        suffix: IconButton(
-                          icon: Icon(
-                            _obscureConfirmPassword ? Icons.visibility_off : Icons.visibility,
-                            color: _obscureConfirmPassword ? Colors.grey : AppColors.primaryColor,
-                          ),
-                          onPressed:
-                              () => setState(
-                                () => _obscureConfirmPassword = !_obscureConfirmPassword,
-                              ),
+                        // Date of Birth
+                        DateOfBirthField(controller: _dobController),
+                        SizedBox(height: 16.h),
+
+                        // Gender
+                        GenderSelectionField(
+                          selectedGender: _selectedGender,
+                          onGenderSelected: (gender) {
+                            setState(() => _selectedGender = gender);
+                          },
                         ),
-                        validator:
-                            (val) =>
-                                val != _passwordController.text ? "Passwords don't match" : null,
-                      ),
-                      SizedBox(height: 24.h),
-                      CustomButton(
-                        text: 'Sign Up',
-                        color: AppColors.primaryColor,
-                        width: double.infinity,
-                        onPressed: () {
-                          if (_formKey.currentState!.validate()) {
-                            if (_selectedGender.isEmpty) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text(
-                                    'Please select a gender',
-                                    style: TextStyle(fontSize: 14.sp, color: Colors.white),
-                                  ),
-                                  backgroundColor: Colors.red,
-                                  width: double.infinity,
+                        SizedBox(height: 16.h),
+
+                        CustomTextField(
+                          controller: _emailController,
+                          label: 'Email',
+                          hint: 'Enter your email',
+                          keyboardType: TextInputType.emailAddress,
+                          validator: (val) {
+                            if (val!.isEmpty) return 'Enter your email';
+                            final emailRegex = RegExp(r'^[^@]+@[^@]+\.[^@]+');
+                            if (!emailRegex.hasMatch(val)) {
+                              return 'Enter a valid email';
+                            }
+                            return null;
+                          },
+                        ),
+                        SizedBox(height: 16.h),
+
+                        // Password
+                        CustomTextField(
+                          controller: _passwordController,
+                          label: 'Password',
+                          hint: 'Enter your password',
+                          obscureText: _obscurePassword,
+                          suffix: IconButton(
+                            icon: Icon(
+                              _obscurePassword ? Icons.visibility_off : Icons.visibility,
+                              color: _obscurePassword ? Colors.grey : AppColors.primaryColor,
+                            ),
+                            onPressed: () => setState(() => _obscurePassword = !_obscurePassword),
+                          ),
+                          validator: (val) => val!.length < 6 ? 'Minimum 6 characters' : null,
+                        ),
+                        SizedBox(height: 16.h),
+
+                        // Confirm Password
+                        CustomTextField(
+                          controller: _confirmPasswordController,
+                          label: 'Confirm Password',
+                          hint: 'Re-enter your password',
+                          obscureText: _obscureConfirmPassword,
+                          suffix: IconButton(
+                            icon: Icon(
+                              _obscureConfirmPassword ? Icons.visibility_off : Icons.visibility,
+                              color: _obscureConfirmPassword ? Colors.grey : AppColors.primaryColor,
+                            ),
+                            onPressed:
+                                () => setState(
+                                  () => _obscureConfirmPassword = !_obscureConfirmPassword,
                                 ),
-                              );
-                              return;
+                          ),
+                          validator:
+                              (val) =>
+                                  val != _passwordController.text ? "Passwords don't match" : null,
+                        ),
+                        SizedBox(height: 24.h),
+                        BlocBuilder<RegisterCubit, RegisterState>(
+                          builder: (context, state) {
+                            if (state is RegisterLoading) {
+                              return CircularProgressIndicator();
                             }
 
-                            if (_dobController.text.isEmpty) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text(
-                                    'Please select a birthdate',
-                                    style: TextStyle(fontSize: 14.sp, color: Colors.white),
-                                  ),
-                                  backgroundColor: Colors.red,
-                                  width: double.infinity,
-                                ),
-                              );
-                              return;
-                            }
+                            return CustomButton(
+                              text: 'Sign Up',
+                              color: AppColors.primaryColor,
+                              width: double.infinity,
+                              onPressed: () {
+                                if (_formKey.currentState!.validate()) {
+                                  if (_selectedGender.isEmpty || _dobController.text.isEmpty) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(content: Text('Please complete all fields')),
+                                    );
+                                    return;
+                                  }
 
-                            // Success - navigate or save data
-                            Navigator.pushNamed(context, PsqiView.routeName);
-                          }
-                        },
-                      ),
-                      SizedBox(height: 12.h),
-                      const Text('Or'),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          OtherRegister(image: Assets.imagesGoogle, onPressed: () {}),
-                          OtherRegister(image: Assets.imagesFacebook, onPressed: () {}),
-                          OtherRegister(image: Assets.imagesApple, onPressed: () {}),
-                        ],
-                      ),
-                      const HaveAccount(
-                        isLogin: false,
-                        text: 'Already have an account?',
-                        method: 'Login',
-                      ),
-                    ],
+                                  context.read<RegisterCubit>().registerUser(
+                                    name: _nameController.text.trim(),
+                                    birthDate: _dobController.text.trim(),
+                                    gender: _selectedGender,
+                                    email: _emailController.text.trim(),
+                                    password: _passwordController.text,
+                                    confirmPassword: _confirmPasswordController.text,
+                                  );
+                                }
+                              },
+                            );
+                            //   onPressed: () {
+                            //     if (_formKey.currentState!.validate()) {
+                            //       if (_selectedGender.isEmpty) {
+                            //         ScaffoldMessenger.of(context).showSnackBar(
+                            //           SnackBar(
+                            //             content: Text(
+                            //               'Please select a gender',
+                            //               style: TextStyle(fontSize: 14.sp, color: Colors.white),
+                            //             ),
+                            //             backgroundColor: Colors.red,
+                            //             width: double.infinity,
+                            //           ),
+                            //         );
+                            //         return;
+                            //       }
+
+                            //       if (_dobController.text.isEmpty) {
+                            //         ScaffoldMessenger.of(context).showSnackBar(
+                            //           SnackBar(
+                            //             content: Text(
+                            //               'Please select a birthdate',
+                            //               style: TextStyle(fontSize: 14.sp, color: Colors.white),
+                            //             ),
+                            //             backgroundColor: Colors.red,
+                            //             width: double.infinity,
+                            //           ),
+                            //         );
+                            //         return;
+                            //       }
+
+                            //       // Success - navigate or save data
+                            //       Navigator.pushNamed(context, PsqiView.routeName);
+                            //     }
+                            //   },
+                            // );
+                          },
+                        ),
+                        SizedBox(height: 12.h),
+                        const Text('Or'),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            OtherRegister(image: Assets.imagesGoogle, onPressed: () {}),
+                            OtherRegister(image: Assets.imagesFacebook, onPressed: () {}),
+                            OtherRegister(image: Assets.imagesApple, onPressed: () {}),
+                          ],
+                        ),
+                        const HaveAccount(
+                          isLogin: false,
+                          text: 'Already have an account?',
+                          method: 'Login',
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
