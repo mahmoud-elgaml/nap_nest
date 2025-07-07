@@ -3,15 +3,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nap_nest/core/utils/app_colors.dart';
 
 class DateOfBirthField extends StatefulWidget {
-  const DateOfBirthField({super.key});
+  final TextEditingController controller;
+
+  const DateOfBirthField({super.key, required this.controller});
 
   @override
   State<DateOfBirthField> createState() => _DateOfBirthFieldState();
 }
 
 class _DateOfBirthFieldState extends State<DateOfBirthField> {
-  final TextEditingController dobController = TextEditingController(text: '13/10/2001');
-
   Future<void> _selectDate() async {
     DateTime? pickedDate = await showDatePicker(
       context: context,
@@ -22,7 +22,7 @@ class _DateOfBirthFieldState extends State<DateOfBirthField> {
 
     if (pickedDate != null) {
       setState(() {
-        dobController.text = '${pickedDate.day}/${pickedDate.month}/${pickedDate.year}';
+        widget.controller.text = '${pickedDate.day}/${pickedDate.month}/${pickedDate.year}';
       });
     }
   }
@@ -59,7 +59,7 @@ class _DateOfBirthFieldState extends State<DateOfBirthField> {
                   children: [
                     Expanded(
                       child: TextField(
-                        controller: dobController,
+                        controller: widget.controller,
                         style:  TextStyle(
                           color: const Color(0xFF9EA8B9),
 

@@ -10,7 +10,6 @@ import 'package:nap_nest/features/auth/presentation/widgets/gender_selection.dar
 import 'package:nap_nest/features/auth/presentation/widgets/other_register.dart';
 import 'package:nap_nest/features/psqi/presentation/view/psqi_view.dart';
 
-
 class RegisterViewBody extends StatefulWidget {
   const RegisterViewBody({super.key});
 
@@ -25,6 +24,8 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController = TextEditingController();
+  final TextEditingController _dobController = TextEditingController();
+  String _selectedGender = '';
 
   bool _obscurePassword = true;
   bool _obscureConfirmPassword = true;
@@ -44,9 +45,9 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
           child: Card(
             elevation: 0,
             margin: EdgeInsets.zero,
-            shape:  RoundedRectangleBorder(
+            shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(999.r), 
+                topLeft: Radius.circular(999.r),
                 topRight: Radius.circular(999.r),
               ),
             ),
@@ -75,14 +76,18 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                       SizedBox(height: 16.h),
 
                       // Date of Birth
-                      const DateOfBirthField(),
+                      DateOfBirthField(controller: _dobController),
                       SizedBox(height: 16.h),
 
                       // Gender
-                      const GenderSelectionField(),
+                      GenderSelectionField(
+                        selectedGender: _selectedGender,
+                        onGenderSelected: (gender) {
+                          setState(() => _selectedGender = gender);
+                        },
+                      ),
                       SizedBox(height: 16.h),
 
-                      // Email
                       CustomTextField(
                         controller: _emailController,
                         label: 'Email',
@@ -142,9 +147,38 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                         color: AppColors.primaryColor,
                         width: double.infinity,
                         onPressed: () {
-                          // if (_formKey.currentState!.validate()) {
-                          // }
-                          Navigator.pushNamed(context, PsqiView.routeName);
+                          if (_formKey.currentState!.validate()) {
+                            if (_selectedGender.isEmpty) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    'Please select a gender',
+                                    style: TextStyle(fontSize: 14.sp, color: Colors.white),
+                                  ),
+                                  backgroundColor: Colors.red,
+                                  width: double.infinity,
+                                ),
+                              );
+                              return;
+                            }
+
+                            if (_dobController.text.isEmpty) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    'Please select a birthdate',
+                                    style: TextStyle(fontSize: 14.sp, color: Colors.white),
+                                  ),
+                                  backgroundColor: Colors.red,
+                                  width: double.infinity,
+                                ),
+                              );
+                              return;
+                            }
+
+                            // Success - navigate or save data
+                            Navigator.pushNamed(context, PsqiView.routeName);
+                          }
                         },
                       ),
                       SizedBox(height: 12.h),

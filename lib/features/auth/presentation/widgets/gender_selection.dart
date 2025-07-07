@@ -2,25 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nap_nest/core/utils/app_colors.dart';
 
-class GenderSelectionField extends StatefulWidget {
-  const GenderSelectionField({super.key});
+class GenderSelectionField extends StatelessWidget {
+  final String selectedGender;
+  final void Function(String) onGenderSelected;
 
-  @override
-  State<GenderSelectionField> createState() => _GenderSelectionFieldState();
-}
-
-class _GenderSelectionFieldState extends State<GenderSelectionField> {
-  String selectedGender = '';
+  const GenderSelectionField({
+    super.key,
+    required this.selectedGender,
+    required this.onGenderSelected,
+  });
 
   Widget buildGenderOption(String gender) {
     final bool isSelected = selectedGender == gender;
 
     return GestureDetector(
-      onTap: () {
-        setState(() {
-          selectedGender = gender;
-        });
-      },
+      onTap: () => onGenderSelected(gender),
       child: Container(
         padding:  EdgeInsets.only(top: 12.h, right: 18.w, bottom: 12.h, left: 12.w),
         decoration: ShapeDecoration(
