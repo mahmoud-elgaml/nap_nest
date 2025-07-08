@@ -1,22 +1,3 @@
-// // lib/models/psqi_question_model.dart
-
-// class PsqiQuestionModel {
-//   final int id;
-//   final String question;
-//   final List<String> answers;
-
-//   PsqiQuestionModel({required this.id, required this.question, required this.answers});
-
-//   factory PsqiQuestionModel.fromJson(Map<String, dynamic> json) {
-//     return PsqiQuestionModel(
-//       id: json['id'],
-//       question: json['question'],
-//       answers: List<String>.from(json['answers']),
-//     );
-//   }
-
-// }
-
 class Question {
   final String question;
   final List<String> options;
@@ -24,13 +5,7 @@ class Question {
   Question({required this.question, required this.options});
 }
 
-//   factory Question.fromJson(Map<String, dynamic> json) {
-//     return Question(
-//       id: json['id'],
-//       question: json['question'],
-//       answers: List<String>.from(json['answers']),
-//     );
-//   }
+
 
 final List<Question> dummyQuestions = [
   Question(

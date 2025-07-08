@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nap_nest/features/auth/cubits/auth_cubit.dart';
-import 'package:nap_nest/features/auth/data/service/auth_api.dart';
+import 'package:nap_nest/features/auth/data/service/auth_service.dart';
 import 'package:nap_nest/features/auth/presentation/widgets/login_view_body.dart';
 
 class LoginView extends StatelessWidget {
@@ -11,7 +11,7 @@ class LoginView extends StatelessWidget {
   Widget build(BuildContext context) => Scaffold(
     body: SafeArea(
       child: BlocProvider(
-        create: (_) => AuthCubit(AuthApi()),
+        create: (_) => AuthCubit(AuthService()),
         child: LoginViewBody(),
         //
       ),

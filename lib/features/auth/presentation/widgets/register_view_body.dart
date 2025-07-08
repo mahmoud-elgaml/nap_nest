@@ -163,7 +163,6 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                             if (state is AuthLoading) {
                               return CircularProgressIndicator();
                             }
-
                             return CustomButton(
                               text: 'Sign Up',
                               color: AppColors.primaryColor,
@@ -176,7 +175,6 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                                     );
                                     return;
                                   }
-
                                   context.read<AuthCubit>().registerUser(
                                     name: _nameController.text.trim(),
                                     birthDate: _dobController.text.trim(),
@@ -188,41 +186,6 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                                 }
                               },
                             );
-                            //   onPressed: () {
-                            //     if (_formKey.currentState!.validate()) {
-                            //       if (_selectedGender.isEmpty) {
-                            //         ScaffoldMessenger.of(context).showSnackBar(
-                            //           SnackBar(
-                            //             content: Text(
-                            //               'Please select a gender',
-                            //               style: TextStyle(fontSize: 14.sp, color: Colors.white),
-                            //             ),
-                            //             backgroundColor: Colors.red,
-                            //             width: double.infinity,
-                            //           ),
-                            //         );
-                            //         return;
-                            //       }
-
-                            //       if (_dobController.text.isEmpty) {
-                            //         ScaffoldMessenger.of(context).showSnackBar(
-                            //           SnackBar(
-                            //             content: Text(
-                            //               'Please select a birthdate',
-                            //               style: TextStyle(fontSize: 14.sp, color: Colors.white),
-                            //             ),
-                            //             backgroundColor: Colors.red,
-                            //             width: double.infinity,
-                            //           ),
-                            //         );
-                            //         return;
-                            //       }
-
-                            //       // Success - navigate or save data
-                            //       Navigator.pushNamed(context, PsqiView.routeName);
-                            //     }
-                            //   },
-                            // );
                           },
                         ),
                         SizedBox(height: 12.h),
