@@ -129,7 +129,9 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                             ),
                             SizedBox(height: 10.h),
                             state is AuthLoading
-                                ? const CircularProgressIndicator()
+                                ? const CircularProgressIndicator(
+                                  
+                                )
                                 : CustomButton(
                                   text: 'Login',
                                   color: AppColors.primaryColor,
