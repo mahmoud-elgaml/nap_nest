@@ -34,6 +34,7 @@ import 'package:nap_nest/statistics/presentation/views/statistics_view.dart';
 
 Route<dynamic> onGenerateRoute(RouteSettings settings) {
   switch (settings.name) {
+
     case SplashView1.routeName:
       return CupertinoPageRoute(builder: (context) => const SplashView1());
 
@@ -67,8 +68,10 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
     case PsqiView.routeName:
       return CupertinoPageRoute(builder: (context) => const PsqiView());
 
-    case PsqiResultView.routeName:
-      return CupertinoPageRoute(builder: (context) => const PsqiResultView());
+case PsqiResultView.routeName:
+      final result = settings.arguments as Map<String, dynamic>;
+      return CupertinoPageRoute(builder: (_) => PsqiResultView(result: result));
+
 
     case SuccessMessage.routeName:
       return CupertinoPageRoute(builder: (context) => const SuccessMessage());

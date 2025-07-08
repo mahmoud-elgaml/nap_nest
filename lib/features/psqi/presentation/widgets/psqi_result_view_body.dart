@@ -1,12 +1,20 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:nap_nest/core/utils/app_colors.dart';
 import 'package:nap_nest/features/home/presentation/view/home_view.dart';
 
 class PsqiResultViewBody extends StatelessWidget {
-  const PsqiResultViewBody({super.key});
+  final Map<String, dynamic> result;
+
+  const PsqiResultViewBody({super.key, required this.result});
 
   @override
   Widget build(BuildContext context) {
+    final int score = result['score'];
+    final String status = result['status'];
+    final String advice = result['advice'];
+    final Map<String, dynamic> data = result['data'];
+
     return Scaffold(
       backgroundColor: const Color(0xFFF8F9FA),
       body: SafeArea(
@@ -27,7 +35,7 @@ class PsqiResultViewBody extends StatelessWidget {
                   borderRadius: BorderRadius.circular(16),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withAlpha(13), // 0.05 opacity converted to alpha
+                      color: Colors.black.withAlpha(13),
                       blurRadius: 15,
                       offset: const Offset(0, 8),
                     ),
@@ -45,26 +53,26 @@ class PsqiResultViewBody extends StatelessWidget {
                             PieChartData(
                               sectionsSpace: 0,
                               centerSpaceRadius: 30,
+                              startDegreeOffset: 270,
                               sections: [
                                 PieChartSectionData(
-                                  value: 11,
-                                  color: const Color(0xFF4A90E2),
+                                  value: score.toDouble(),
+                                  color: status == 'Severe' ? Colors.red : AppColors.primaryColor,
                                   radius: 10,
                                   showTitle: false,
                                 ),
                                 PieChartSectionData(
-                                  value: 10,
+                                  value: (21 - score).toDouble(),
                                   color: const Color(0xFFE0E0E0),
                                   radius: 10,
                                   showTitle: false,
                                 ),
                               ],
-                              startDegreeOffset: 270,
                             ),
                           ),
-                          const Text(
-                            '11/21',
-                            style: TextStyle(
+                          Text(
+                            '$score/21',
+                            style: const TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
                               color: Colors.black,
@@ -78,15 +86,12 @@ class PsqiResultViewBody extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
-                            'Moderate',
-                            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                          Text(
+                            status,
+                            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                           ),
                           const SizedBox(height: 8),
-                          Text(
-                            'Worem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit, aliquet odio mattis.',
-                            style: TextStyle(fontSize: 14, color: Colors.grey[600]),
-                          ),
+                          Text(advice, style: TextStyle(fontSize: 14, color: Colors.grey[600])),
                         ],
                       ),
                     ),
@@ -94,31 +99,7 @@ class PsqiResultViewBody extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 24),
-              Container(
-                padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(16),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withAlpha(13), // 0.05 opacity converted to alpha
-                      blurRadius: 15,
-                      offset: const Offset(0, 8),
-                    ),
-                  ],
-                ),
-                child: Column(
-                  children: [
-                    _buildProgressItem('Sleep Quality', 0.8, const Color(0xFF4CAF50)),
-                    _buildProgressItem('Sleep Latency', 0.3, const Color(0xFFFFA726)),
-                    _buildProgressItem('Sleep Duration', 0.7, const Color(0xFF4CAF50)),
-                    _buildProgressItem('Sleep Efficiency', 0.9, const Color(0xFF4CAF50)),
-                    _buildProgressItem('Sleep Disturbances', 0.3, const Color(0xFFFFA726)),
-                    _buildProgressItem('Use of Sleep Medications', 0.2, const Color(0xFF4CAF50)),
-                    _buildProgressItem('Daytime Dysfunction', 0.4, const Color(0xFFFFA726)),
-                  ],
-                ),
-              ),
+              _buildProgressGroup(data),
               const Spacer(),
               SizedBox(
                 width: double.infinity,
@@ -131,7 +112,7 @@ class PsqiResultViewBody extends StatelessWidget {
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF4A90E2),
+                    backgroundColor: AppColors.primaryColor,
                     padding: const EdgeInsets.symmetric(vertical: 16),
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                   ),
@@ -148,6 +129,28 @@ class PsqiResultViewBody extends StatelessWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildProgressGroup(Map<String, dynamic> data) {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(color: Colors.black.withAlpha(13), blurRadius: 15, offset: const Offset(0, 8)),
+        ],
+      ),
+      child: Column(
+        children:
+            data.entries.map((entry) {
+              final label = _formatLabel(entry.key);
+              final value = entry.value;
+              final color = (value <= 1) ? Colors.green : Colors.red;
+              return _buildProgressItem(label, value / 3, color);
+            }).toList(),
       ),
     );
   }
@@ -178,5 +181,13 @@ class PsqiResultViewBody extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  String _formatLabel(String key) {
+    return key
+        .replaceAll('_', ' ')
+        .split(' ')
+        .map((word) => word[0].toUpperCase() + word.substring(1))
+        .join(' ');
   }
 }

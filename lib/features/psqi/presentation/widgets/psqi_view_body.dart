@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:linear_progress_bar/linear_progress_bar.dart';
+import 'package:nap_nest/core/services/shared_preferences_singleton.dart';
 import 'package:nap_nest/core/utils/app_colors.dart';
-import 'package:nap_nest/features/psqi/presentation/view/psqi_result_view.dart';
+import 'package:nap_nest/features/psqi/cubit/psqi_cubit.dart';
+import 'package:nap_nest/features/psqi/cubit/psqi_state.dart';
 import 'package:nap_nest/features/psqi/presentation/widgets/answer_container.dart';
 import 'package:nap_nest/features/psqi/presentation/widgets/navigator_button.dart';
 
@@ -11,78 +14,89 @@ class PsqiViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 8.h),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: 54.h),
-              Text(
-                'Sleep Index',
-                style: TextStyle(
-                  color: AppColors.darkGreyTxtColor,
-                  fontSize: 16.sp,
-                  fontFamily: 'Roboto',
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-              SizedBox(height: 30.h),
-              LinearProgressBar(
-                maxSteps: 20,
-                currentStep: 9,
-                progressColor: AppColors.secondaryColor2,
-                backgroundColor: AppColors.containerColor,
-                borderRadius: BorderRadius.circular(12.r),
-              ),
-              SizedBox(height: 10.h),
-              Text(
-                'Question 9 of 17',
-                style: TextStyle(
-                  color: const Color(0xFF9EA8B9),
-                  fontSize: 14.sp,
-                  fontFamily: 'Roboto',
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-              SizedBox(height: 40.h),
-              Text(
-                'During the past month, what time have you usually gone to bed at night?',
-                style: TextStyle(
-                  fontSize: 18.sp,
-                  fontFamily: 'Roboto',
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              SizedBox(height: 45.h),
-              AnswersContainer(),
-            ],
-          ),
-        ),
-        SizedBox(height: 44.h),
+    final cubit = context.read<PsqiCubit>();
+    final token = Prefs.getString('token')!;
+    final patientId = Prefs.getInt('patient_id')!;
 
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            NavigatorButton(
-              buttonColor: Colors.transparent,
-              text: 'Previous',
-              textColor: AppColors.primaryColor,
-              side: BorderSide(color: AppColors.primaryColor, width: 2.5.w),
-              onPressed: () {},
-            ),
-            NavigatorButton(
-              text: 'Next',
-              textColor: Colors.white,
-              buttonColor: AppColors.primaryColor,
-              onPressed: () {
-                Navigator.pushNamed(context, PsqiResultView.routeName);
-              },
-            ),
-          ],
-        ),
-      ],
+    return BlocBuilder<PsqiCubit, PsqiState>(
+      builder: (context, state) {
+        if (state is PsqiInitial) {
+          cubit.fetchQuestions(token);
+          return const Center(child: CircularProgressIndicator());
+        } else if (state is PsqiLoading) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (state is PsqiLoaded) {
+          final q = state.question;
+          return Column(
+            children: [
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 8.h),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(height: 54.h),
+                    Text(
+                      'Sleep Index',
+                      style: TextStyle(
+                        color: AppColors.darkGreyTxtColor,
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    SizedBox(height: 30.h),
+                    LinearProgressBar(
+                      maxSteps: state.total,
+                      currentStep: state.current,
+                      progressColor: AppColors.secondaryColor2,
+                      backgroundColor: AppColors.containerColor,
+                      borderRadius: BorderRadius.circular(12.r),
+                    ),
+                    SizedBox(height: 10.h),
+                    Text(
+                      'Question ${state.current} of ${state.total}',
+                      style: TextStyle(
+                        color: const Color(0xFF9EA8B9),
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                    SizedBox(height: 40.h),
+                    Text(q.text, style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w600)),
+                    SizedBox(height: 45.h),
+                    AnswersContainer(
+                      options: q.options,
+                      selected: state.selectedAnswer,
+                      onTap: (val) => cubit.selectAnswer(q.id, val),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 44.h),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  NavigatorButton(
+                    text: 'Previous',
+                    textColor: AppColors.primaryColor,
+                    buttonColor: Colors.transparent,
+                    side: BorderSide(color: AppColors.primaryColor, width: 2.5.w),
+                    onPressed: cubit.previousQuestion,
+                  ),
+                  NavigatorButton(
+                    text: 'Next',
+                    textColor: Colors.white,
+                    buttonColor: AppColors.primaryColor,
+                    onPressed: () => cubit.nextQuestion(context, token, patientId),
+                  ),
+                ],
+              ),
+            ],
+          );
+        } else if (state is PsqiError) {
+          return Center(child: Text('Error: ${state.message}'));
+        }
+        return const SizedBox.shrink();
+      },
     );
   }
 }
