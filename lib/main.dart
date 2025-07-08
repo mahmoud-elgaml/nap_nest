@@ -5,8 +5,8 @@ import 'package:nap_nest/core/helpers/on_generate_route.dart';
 import 'package:nap_nest/core/services/shared_preferences_singleton.dart';
 import 'package:nap_nest/core/utils/app_colors.dart';
 import 'package:nap_nest/features/auth/data/cubits/auth_cubit.dart';
+import 'package:nap_nest/features/auth/data/service/auth_api.dart';
 import 'package:nap_nest/features/splash/presentation/view/splash_view1.dart';
-import 'package:nap_nest/services/api/api_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,7 +16,7 @@ void main() async {
     MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (_) => AuthCubit(AuthService()),
+          create: (_) => AuthCubit((AuthApi())),
           //
         ),
       ],
@@ -29,9 +29,6 @@ void main() async {
     ),
   );
 }
-
-
-
 
 class NapNest extends StatelessWidget {
   const NapNest({super.key});

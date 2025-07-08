@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nap_nest/features/auth/data/cubits/auth_cubit.dart';
+import 'package:nap_nest/features/auth/data/service/auth_api.dart';
 import 'package:nap_nest/features/auth/presentation/widgets/register_view_body.dart';
-import 'package:nap_nest/services/api/api_service.dart';
 
 class RegisterView extends StatelessWidget {
   const RegisterView({super.key});
@@ -12,7 +12,7 @@ class RegisterView extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: BlocProvider(
-          create: (_) => AuthCubit(AuthService()),
+          create: (_) => AuthCubit(AuthApi()),
           child: RegisterViewBody(),
           //
         ),
