@@ -1,11 +1,17 @@
 import 'package:dio/dio.dart';
 import 'package:nap_nest/features/auth/data/models/patient_model.dart';
 
-class ApiService {
+class AuthService {
   final Dio _dio = Dio(
     BaseOptions(
       baseUrl: 'https://test1-laravel-api-hraag6degva5f6cn.ukwest-01.azurewebsites.net/api/',
-      headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        //
+      },
+      followRedirects: false,
+      validateStatus: (status) => status != null && status < 500,
     ),
   );
 
@@ -32,7 +38,8 @@ class ApiService {
 
       print('📥 Status Code: ${response.statusCode}');
       print('📥 Response Data: ${response.data}');
-      if ((response.statusCode == 200 || response.statusCode == 201) && response.data['patient'] != null) {
+      if ((response.statusCode == 200 || response.statusCode == 201) &&
+          response.data['patient'] != null) {
         return PatientModel.fromJson(response.data['patient']);
       } else {
         print('❌No patient found in response.');
@@ -60,4 +67,47 @@ class ApiService {
       throw Exception(errorMessage);
     }
   }
+
+//   Future<void> login({required String email, required String password}) async {
+//     try {
+//       final response = await _dio.post('login', data: {'email': email, 'password': password});
+
+//       if (response.statusCode == 200 || response.statusCode == 201) {
+//         final token = response.data['token'];
+//         await Prefs.setString('token', token);
+//         return token;
+//       } else {
+//         throw Exception('Login failed.');
+//       }
+//     } on DioException catch (e) {
+//       final msg = e.response?.data['message'] ?? 'Login error';
+//       throw Exception(msg);
+//     }
+//   }
+// }
+
+Future<String> login({
+  required String email,
+  required String password,
+}) async {
+  try {
+    final response = await _dio.post(
+      'login',
+      data: {
+        'email': email,
+        'password': password,
+      },
+    );
+
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      final token = response.data['token'];
+      return token; // ✅ الآن صح، لأن الدالة Future<String>
+    } else {
+      throw Exception('Login failed.');
+    }
+  } on DioException catch (e) {
+    final msg = e.response?.data['message'] ?? 'Login error';
+    throw Exception(msg);
+  }
+}
 }

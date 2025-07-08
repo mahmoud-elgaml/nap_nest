@@ -4,7 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nap_nest/core/utils/app_colors.dart';
 import 'package:nap_nest/core/utils/app_images.dart';
 import 'package:nap_nest/core/widgets/custom_button.dart';
-import 'package:nap_nest/features/auth/data/cubits/register_cubit.dart';
+import 'package:nap_nest/features/auth/data/cubits/auth_cubit.dart';
+import 'package:nap_nest/features/auth/data/cubits/auth_states.dart';
 import 'package:nap_nest/features/auth/presentation/widgets/custom_text_field.dart';
 import 'package:nap_nest/features/auth/presentation/widgets/date_ofbirth_field.dart';
 import 'package:nap_nest/features/auth/presentation/widgets/dont_have_account.dart';
@@ -34,16 +35,16 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<RegisterCubit, RegisterState>(
+    return BlocListener<AuthCubit, AuthState>(
       listener: (context, state) {
         print('📍 State changed: $state');
 
-        if (state is RegisterSuccess) {
+        if (state is AuthRegisterSuccess) {
           ScaffoldMessenger.of(
             context,
           ).showSnackBar(SnackBar(content: Text('Welcome ${state.user.patientName}!')));
           Navigator.pushNamed(context, PsqiView.routeName);
-        } else if (state is RegisterFailure) {
+        } else if (state is AuthFailure) {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.error)));
         }
       },
@@ -157,9 +158,9 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                                   val != _passwordController.text ? "Passwords don't match" : null,
                         ),
                         SizedBox(height: 24.h),
-                        BlocBuilder<RegisterCubit, RegisterState>(
+                        BlocBuilder<AuthCubit, AuthState>(
                           builder: (context, state) {
-                            if (state is RegisterLoading) {
+                            if (state is AuthLoading) {
                               return CircularProgressIndicator();
                             }
 
@@ -176,7 +177,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                                     return;
                                   }
 
-                                  context.read<RegisterCubit>().registerUser(
+                                  context.read<AuthCubit>().registerUser(
                                     name: _nameController.text.trim(),
                                     birthDate: _dobController.text.trim(),
                                     gender: _selectedGender,
