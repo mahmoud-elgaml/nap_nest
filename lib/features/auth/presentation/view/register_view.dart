@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nap_nest/features/auth/data/cubits/auth_cubit.dart';
+import 'package:nap_nest/features/auth/cubits/auth_cubit.dart';
 import 'package:nap_nest/features/auth/data/service/auth_api.dart';
 import 'package:nap_nest/features/auth/presentation/widgets/register_view_body.dart';
 

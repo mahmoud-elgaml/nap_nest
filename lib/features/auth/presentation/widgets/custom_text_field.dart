@@ -38,7 +38,6 @@ class CustomTextField extends StatelessWidget {
         SizedBox(height: 6.h),
         TextFormField(
           autovalidateMode: AutovalidateMode.onUserInteraction,
-          
           cursorColor: AppColors.primaryColor,
           controller: controller,
           obscureText: obscureText,

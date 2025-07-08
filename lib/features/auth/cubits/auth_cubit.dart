@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nap_nest/core/helpers/date_converter.dart';
 import 'package:nap_nest/core/services/shared_preferences_singleton.dart';
-import 'package:nap_nest/features/auth/data/cubits/auth_states.dart';
+import 'package:nap_nest/features/auth/cubits/auth_states.dart';
 import 'package:nap_nest/features/auth/data/service/auth_api.dart';
 
 // class AuthCubit extends Cubit<AuthState> {
