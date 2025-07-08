@@ -6,7 +6,7 @@ import 'package:nap_nest/core/services/shared_preferences_singleton.dart';
 import 'package:nap_nest/core/utils/app_colors.dart';
 import 'package:nap_nest/features/auth/cubits/auth_cubit.dart';
 import 'package:nap_nest/features/auth/data/service/auth_service.dart';
-import 'package:nap_nest/features/splash/presentation/view/splash_view1.dart';
+import 'package:nap_nest/features/auth/presentation/view/auth_view.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -62,7 +62,9 @@ class NapNest extends StatelessWidget {
         useMaterial3: true,
       ),
       onGenerateRoute: onGenerateRoute,
-      initialRoute: SplashView1.routeName,
+      initialRoute: AuthView.routeName,
     );
   }
 }
+
+

@@ -2,7 +2,6 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nap_nest/core/utils/app_colors.dart';
-
 class ThoughtFlipScreen extends StatefulWidget {
   final String selectedThought;
   const ThoughtFlipScreen({super.key, required this.selectedThought});
@@ -10,13 +9,13 @@ class ThoughtFlipScreen extends StatefulWidget {
   @override
   State<ThoughtFlipScreen> createState() => _ThoughtFlipScreenState();
 }
-
 class _ThoughtFlipScreenState extends State<ThoughtFlipScreen> with SingleTickerProviderStateMixin {
   bool isFlipped = false;
   late AnimationController _controller;
   late Animation<double> _animation;
 
-  final Map<String, String> flippedThoughtMap = {
+
+final Map<String, String> flippedThoughtMap = {
     'Many people struggle with sleep at times. I’m not alone, and I can learn to improve my sleep.':
         'Struggles with sleep are common, and learning helps me grow.',
     'If I don’t get 8 hours of sleep, I’ll be a wreck tomorrow.':
@@ -204,4 +203,7 @@ class _ThoughtFlipScreenState extends State<ThoughtFlipScreen> with SingleTicker
     );
   }
 }
+
+
+
 

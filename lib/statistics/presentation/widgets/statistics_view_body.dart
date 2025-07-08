@@ -6,7 +6,6 @@ import 'package:fl_chart/fl_chart.dart';
 
 class StatisticsViewBody extends StatelessWidget {
   const StatisticsViewBody({super.key});
-
   final List<FlSpot> _spots = const [
     FlSpot(0, 3),
     FlSpot(1, 1),
@@ -126,54 +125,7 @@ class StatisticsViewBody extends StatelessWidget {
   }
 }
 
-class SleepStatIndicator extends StatelessWidget {
-  final double percent;
-  final String textPercent;
-  final String label;
-  final Color color;
 
-  const SleepStatIndicator({
-    super.key,
-    required this.percent,
-    required this.textPercent,
-    required this.label,
-    required this.color,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        CircularPercentIndicator(
-          radius: 35.r,
-          lineWidth: 6.r,
-          percent: percent,
-          animation: true,
-          center: Text(
-            textPercent,
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 17.sp,
-              color: const Color(0xff111111),
-            ),
-          ),
-          progressColor: color,
-          backgroundColor: Colors.grey.shade300,
-          circularStrokeCap: CircularStrokeCap.round,
-        ),
-        SizedBox(height: 8.h),
-        SizedBox(
-          width: 80.w,
-          child: Text(
-            label,
-            textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 15.5.sp, color: AppColors.darkGreyTxtColor,fontWeight: FontWeight.w500),
-          ),
-        ),
-      ],
-    );
-  }
-}
 
 class SleepChart extends StatelessWidget {
   final List<FlSpot> spots;
@@ -251,6 +203,60 @@ class SleepChart extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+
+class SleepStatIndicator extends StatelessWidget {
+  final double percent;
+  final String textPercent;
+  final String label;
+  final Color color;
+
+  const SleepStatIndicator({
+    super.key,
+    required this.percent,
+    required this.textPercent,
+    required this.label,
+    required this.color,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        CircularPercentIndicator(
+          radius: 35.r,
+          lineWidth: 6.r,
+          percent: percent,
+          animation: true,
+          center: Text(
+            textPercent,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 17.sp,
+              color: const Color(0xff111111),
+            ),
+          ),
+          progressColor: color,
+          backgroundColor: Colors.grey.shade300,
+          circularStrokeCap: CircularStrokeCap.round,
+        ),
+        SizedBox(height: 8.h),
+        SizedBox(
+          width: 80.w,
+          child: Text(
+            label,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 15.5.sp,
+              color: AppColors.darkGreyTxtColor,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

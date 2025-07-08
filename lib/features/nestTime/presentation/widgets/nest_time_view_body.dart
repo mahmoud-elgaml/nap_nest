@@ -8,29 +8,30 @@ import 'package:nap_nest/features/attachDevice/presentation/view/attach_device_v
 import 'package:nap_nest/features/nestTime/presentation/widgets/alarm_setting_view.dart';
 import 'package:nap_nest/home__items_model.dart';
 class NestTimeViewBody extends StatelessWidget {
+
+  
+final List<HomeItemsModel> sounds = [
+  HomeItemsModel(
+    title: 'Basic Mindfulness',
+    path: 'song2.mp3',
+    imagePath: Assets.imagesSound4,
+    duration: '8:24 min',
+  ),
+  HomeItemsModel(
+    title: 'Airflow',
+    path: '',
+    imagePath: Assets.imagesAirflow2,
+    duration: '3:05 min',
+  ),
+  HomeItemsModel(
+    title: 'Sleeping',
+    path: '',
+    imagePath: Assets.imagesLibrary2,
+    duration: '7:11 min',
+  ),
+];
+
   NestTimeViewBody({super.key});
-
-  final List<HomeItemsModel> sounds = [
-    HomeItemsModel(
-      title: 'Basic Mindfulness',
-      path: 'song2.mp3',
-      imagePath: Assets.imagesSound4,
-      duration: '8:24 min',
-    ),
-    HomeItemsModel(
-      title: 'Airflow',
-      path: '',
-      imagePath: Assets.imagesAirflow2,
-      duration: '3:05 min',
-    ),
-    HomeItemsModel(
-      title: 'Sleeping',
-      path: '',
-      imagePath: Assets.imagesLibrary2,
-      duration: '7:11 min',
-    ),
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -76,7 +77,6 @@ class NestTimeViewBody extends StatelessWidget {
               },
             ),
           ),
-
           const Spacer(),
         ],
       ),
