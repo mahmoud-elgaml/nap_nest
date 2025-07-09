@@ -72,7 +72,6 @@ case PsqiResultView.routeName:
       final result = settings.arguments as Map<String, dynamic>;
       return CupertinoPageRoute(builder: (_) => PsqiResultView(result: result));
 
-
     case SuccessMessage.routeName:
       return CupertinoPageRoute(builder: (context) => const SuccessMessage());
 

@@ -48,27 +48,6 @@ class PsqiResultViewBody extends StatelessWidget {
                       child: Stack(
                         alignment: Alignment.center,
                         children: [
-                          // PieChart(
-                          //   PieChartData(
-                          //     sectionsSpace: 0,
-                          //     centerSpaceRadius: 30,
-                          //     startDegreeOffset: 270,
-                          //     sections: [
-                          //       PieChartSectionData(
-                          //         value: score.toDouble(),
-                          //         color: status == 'Severe' ? Colors.red : AppColors.primaryColor,
-                          //         radius: 10,
-                          //         showTitle: false,
-                          //       ),
-                          //       PieChartSectionData(
-                          //         value: (21 - score).toDouble(),
-                          //         color: const Color(0xFFE0E0E0),
-                          //         radius: 10,
-                          //         showTitle: false,
-                          //       ),
-                          //     ],
-                          //   ),
-                          // ),
                           TweenAnimationBuilder<double>(
                             tween: Tween(begin: 0, end: score.toDouble()),
                             duration: const Duration(milliseconds: 1000),
@@ -217,35 +196,6 @@ Widget _buildProgressItem(String title, double value, Color color) {
       ),
     );
   }
-
-  // Widget _buildProgressItem(String title, double value, Color color) {
-  //   return Padding(
-  //     padding: const EdgeInsets.symmetric(vertical: 8),
-  //     child: Column(
-  //       crossAxisAlignment: CrossAxisAlignment.start,
-  //       children: [
-  //         Row(
-  //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //           children: [
-  //             Text(title, style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 14)),
-  //             const Icon(Icons.info_outline, color: Colors.grey, size: 20),
-  //           ],
-  //         ),
-  //         const SizedBox(height: 8),
-  //         ClipRRect(
-  //           borderRadius: BorderRadius.circular(4),
-  //           child: LinearProgressIndicator(
-  //             value: value,
-  //             backgroundColor: Colors.grey[200],
-  //             color: color,
-  //             minHeight: 6,
-  //           ),
-  //         ),
-  //       ],
-  //     ),
-  //   );
-  // }
-
   String _formatLabel(String key) {
     return key
         .replaceAll('_', ' ')

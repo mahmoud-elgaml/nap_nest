@@ -22,6 +22,9 @@ class Prefs {
     return _instance.getBool(key) ?? false;
   }
 
+
+
+
   static int? getInt(String key) {
     return _instance.getInt(key);
   }

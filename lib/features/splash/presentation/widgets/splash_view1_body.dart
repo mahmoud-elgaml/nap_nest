@@ -35,3 +35,20 @@ class SplashView1BodyState extends State<SplashView1Body> {
     });
   }
 }
+
+
+
+// void executeNavigation(BuildContext context) {
+//   bool isOnBoardingSeen = Prefs.getBool(kIsOnBoardingSeen);
+//   bool isLoggedIn = Prefs.getBool('isLoggedIn');
+
+//   Future.delayed(const Duration(milliseconds: 1500), () {
+//     if (!isOnBoardingSeen) {
+//       Navigator.pushReplacementNamed(context, OnBoardingView.routeName);
+//     } else if (!isLoggedIn) {
+//       Navigator.pushReplacementNamed(context, AuthView.routeName);
+//     } else {
+//       Navigator.pushReplacementNamed(context, HomeView.routeName);
+//     }
+//   });
+// }
