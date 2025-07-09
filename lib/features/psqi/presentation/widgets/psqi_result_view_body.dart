@@ -5,7 +5,6 @@ import 'package:nap_nest/features/home/presentation/view/home_view.dart';
 
 class PsqiResultViewBody extends StatelessWidget {
   final Map<String, dynamic> result;
-
   const PsqiResultViewBody({super.key, required this.result});
 
   @override
@@ -49,27 +48,56 @@ class PsqiResultViewBody extends StatelessWidget {
                       child: Stack(
                         alignment: Alignment.center,
                         children: [
-                          PieChart(
-                            PieChartData(
-                              sectionsSpace: 0,
-                              centerSpaceRadius: 30,
-                              startDegreeOffset: 270,
-                              sections: [
-                                PieChartSectionData(
-                                  value: score.toDouble(),
-                                  color: status == 'Severe' ? Colors.red : AppColors.primaryColor,
-                                  radius: 10,
-                                  showTitle: false,
+                          // PieChart(
+                          //   PieChartData(
+                          //     sectionsSpace: 0,
+                          //     centerSpaceRadius: 30,
+                          //     startDegreeOffset: 270,
+                          //     sections: [
+                          //       PieChartSectionData(
+                          //         value: score.toDouble(),
+                          //         color: status == 'Severe' ? Colors.red : AppColors.primaryColor,
+                          //         radius: 10,
+                          //         showTitle: false,
+                          //       ),
+                          //       PieChartSectionData(
+                          //         value: (21 - score).toDouble(),
+                          //         color: const Color(0xFFE0E0E0),
+                          //         radius: 10,
+                          //         showTitle: false,
+                          //       ),
+                          //     ],
+                          //   ),
+                          // ),
+                          TweenAnimationBuilder<double>(
+                            tween: Tween(begin: 0, end: score.toDouble()),
+                            duration: const Duration(milliseconds: 1000),
+                            builder: (context, animatedScore, _) {
+                              return PieChart(
+                                PieChartData(
+                                  sectionsSpace: 0,
+                                  centerSpaceRadius: 30,
+                                  startDegreeOffset: 270,
+                                  sections: [
+                                    PieChartSectionData(
+                                      value: animatedScore,
+                                      color:
+                                          status == 'Severe' ? Colors.red : AppColors.primaryColor,
+                                      radius: 10,
+                                      showTitle: false,
+                                    ),
+                                    PieChartSectionData(
+                                      value: 21 - animatedScore,
+                                      color: const Color(0xFFE0E0E0),
+                                      radius: 10,
+                                      showTitle: false,
+                                    ),
+                                  ],
                                 ),
-                                PieChartSectionData(
-                                  value: (21 - score).toDouble(),
-                                  color: const Color(0xFFE0E0E0),
-                                  radius: 10,
-                                  showTitle: false,
-                                ),
-                              ],
-                            ),
+                              );
+                            },
                           ),
+
                           Text(
                             '$score/21',
                             style: const TextStyle(
@@ -155,7 +183,9 @@ class PsqiResultViewBody extends StatelessWidget {
     );
   }
 
-  Widget _buildProgressItem(String title, double value, Color color) {
+
+
+Widget _buildProgressItem(String title, double value, Color color) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: Column(
@@ -171,17 +201,50 @@ class PsqiResultViewBody extends StatelessWidget {
           const SizedBox(height: 8),
           ClipRRect(
             borderRadius: BorderRadius.circular(4),
-            child: LinearProgressIndicator(
-              value: value,
-              backgroundColor: Colors.grey[200],
-              color: color,
-              minHeight: 6,
+            child: TweenAnimationBuilder<double>(
+              tween: Tween(begin: 0, end: value),
+              duration: const Duration(milliseconds: 900),
+              builder:
+                  (context, animatedVal, _) => LinearProgressIndicator(
+                    value: animatedVal,
+                    backgroundColor: Colors.grey[200],
+                    color: color,
+                    minHeight: 6,
+                  ),
             ),
           ),
         ],
       ),
     );
   }
+
+  // Widget _buildProgressItem(String title, double value, Color color) {
+  //   return Padding(
+  //     padding: const EdgeInsets.symmetric(vertical: 8),
+  //     child: Column(
+  //       crossAxisAlignment: CrossAxisAlignment.start,
+  //       children: [
+  //         Row(
+  //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  //           children: [
+  //             Text(title, style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 14)),
+  //             const Icon(Icons.info_outline, color: Colors.grey, size: 20),
+  //           ],
+  //         ),
+  //         const SizedBox(height: 8),
+  //         ClipRRect(
+  //           borderRadius: BorderRadius.circular(4),
+  //           child: LinearProgressIndicator(
+  //             value: value,
+  //             backgroundColor: Colors.grey[200],
+  //             color: color,
+  //             minHeight: 6,
+  //           ),
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
 
   String _formatLabel(String key) {
     return key

@@ -30,6 +30,7 @@ dependencies:
   percent_indicator: ^4.2.5
   google_fonts: ^6.2.1
   timeline_tile: ^2.0.0
+  fluttertoast: ^8.2.12
 
 
 

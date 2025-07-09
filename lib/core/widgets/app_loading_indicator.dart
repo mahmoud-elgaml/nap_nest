@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nap_nest/core/utils/app_images.dart';
 
-class AppLoading extends StatefulWidget {
-  const AppLoading({super.key});
+class CustomAppLoading extends StatefulWidget {
+  const CustomAppLoading({super.key});
 
   @override
-  State<AppLoading> createState() => _AppLoadingState();
+  State<CustomAppLoading> createState() => _CustomAppLoadingState();
 }
 
-class _AppLoadingState extends State<AppLoading> with TickerProviderStateMixin {
+class _CustomAppLoadingState extends State<CustomAppLoading> with TickerProviderStateMixin {
   late AnimationController _rotationController;
   late AnimationController _rippleController;
 

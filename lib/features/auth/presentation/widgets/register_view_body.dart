@@ -4,6 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nap_nest/core/utils/app_colors.dart';
 import 'package:nap_nest/core/utils/app_images.dart';
 import 'package:nap_nest/core/widgets/custom_button.dart';
+import 'package:nap_nest/core/widgets/custom_circular_indicator.dart';
+import 'package:nap_nest/core/widgets/custom_toast.dart';
 import 'package:nap_nest/features/auth/cubits/auth_cubit.dart';
 import 'package:nap_nest/features/auth/cubits/auth_states.dart';
 import 'package:nap_nest/features/auth/presentation/widgets/custom_text_field.dart';
@@ -15,7 +17,6 @@ import 'package:nap_nest/features/psqi/presentation/view/psqi_view.dart';
 
 class RegisterViewBody extends StatefulWidget {
   const RegisterViewBody({super.key});
-
   @override
   State<RegisterViewBody> createState() => _RegisterViewBodyState();
 }
@@ -29,7 +30,6 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
   final TextEditingController _confirmPasswordController = TextEditingController();
   final TextEditingController _dobController = TextEditingController();
   String _selectedGender = '';
-
   bool _obscurePassword = true;
   bool _obscureConfirmPassword = true;
 
@@ -40,12 +40,11 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
         print('📍 State changed: $state');
 
         if (state is AuthRegisterSuccess) {
-          ScaffoldMessenger.of(
-            context,
-          ).showSnackBar(SnackBar(content: Text('Welcome ${state.user.patientName}!')));
+          CustomToast.show(message: 'Welcome ${state.user.patientName}', isError: false);
+
           Navigator.pushNamed(context, PsqiView.routeName);
         } else if (state is AuthFailure) {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.error)));
+          CustomToast.show(message: state.error, isError: true);
         }
       },
       child: Column(
@@ -55,8 +54,6 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
             margin: EdgeInsets.only(top: 32.h),
             child: Center(child: Image.asset(Assets.imagesAppIcon, width: 74.w, height: 64.h)),
           ),
-
-          // Form Section
           Expanded(
             child: Card(
               elevation: 0,
@@ -90,12 +87,9 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                           validator: (val) => val!.isEmpty ? 'Enter your name' : null,
                         ),
                         SizedBox(height: 16.h),
-
                         // Date of Birth
                         DateOfBirthField(controller: _dobController),
                         SizedBox(height: 16.h),
-
-                        // Gender
                         GenderSelectionField(
                           selectedGender: _selectedGender,
                           onGenderSelected: (gender) {
@@ -103,7 +97,6 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                           },
                         ),
                         SizedBox(height: 16.h),
-
                         CustomTextField(
                           controller: _emailController,
                           label: 'Email',
@@ -119,8 +112,6 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                           },
                         ),
                         SizedBox(height: 16.h),
-
-                        // Password
                         CustomTextField(
                           controller: _passwordController,
                           label: 'Password',
@@ -136,8 +127,6 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                           validator: (val) => val!.length < 6 ? 'Minimum 6 characters' : null,
                         ),
                         SizedBox(height: 16.h),
-
-                        // Confirm Password
                         CustomTextField(
                           controller: _confirmPasswordController,
                           label: 'Confirm Password',
@@ -161,7 +150,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                         BlocBuilder<AuthCubit, AuthState>(
                           builder: (context, state) {
                             if (state is AuthLoading) {
-                              return CircularProgressIndicator();
+                              return CustomCircularIndicator();
                             }
                             return CustomButton(
                               text: 'Sign Up',
@@ -170,8 +159,9 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                               onPressed: () {
                                 if (_formKey.currentState!.validate()) {
                                   if (_selectedGender.isEmpty || _dobController.text.isEmpty) {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(content: Text('Please complete all fields')),
+                                    CustomToast.show(
+                                      message: 'Please complete all fields',
+                                      isError: true,
                                     );
                                     return;
                                   }

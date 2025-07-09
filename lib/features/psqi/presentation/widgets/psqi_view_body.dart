@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:linear_progress_bar/linear_progress_bar.dart';
 import 'package:nap_nest/core/services/shared_preferences_singleton.dart';
 import 'package:nap_nest/core/utils/app_colors.dart';
+import 'package:nap_nest/core/widgets/app_loading_indicator.dart';
 import 'package:nap_nest/features/psqi/cubit/psqi_cubit.dart';
 import 'package:nap_nest/features/psqi/cubit/psqi_state.dart';
 import 'package:nap_nest/features/psqi/presentation/widgets/answer_container.dart';
@@ -22,11 +23,14 @@ class PsqiViewBody extends StatelessWidget {
       builder: (context, state) {
         if (state is PsqiInitial) {
           cubit.fetchQuestions(token);
-          return const Center(child: CircularProgressIndicator());
+          return Center(child: CustomAppLoading());
         } else if (state is PsqiLoading) {
-          return const Center(child: CircularProgressIndicator());
+          return Center(child: CustomAppLoading());
+        } else if (state is PsqiSubmitting) {
+          return Center(child: CustomAppLoading()); // ✅ أثناء إرسال الإجابات
         } else if (state is PsqiLoaded) {
           final q = state.question;
+
           return Column(
             children: [
               Padding(
@@ -79,22 +83,35 @@ class PsqiViewBody extends StatelessWidget {
                     text: 'Previous',
                     textColor: AppColors.primaryColor,
                     buttonColor: Colors.transparent,
-                    side: BorderSide(color: AppColors.primaryColor, width: 2.5.w),
-                    onPressed: cubit.previousQuestion,
+                    side: BorderSide(
+                      color: cubit.currentIndex == 0 ? Colors.grey : AppColors.primaryColor,
+                      width: 2.5.w,
+                    ),
+                    onPressed: cubit.currentIndex == 0 ? null : cubit.previousQuestion,
                   ),
                   NavigatorButton(
                     text: 'Next',
-                    textColor: Colors.white,
-                    buttonColor: AppColors.primaryColor,
-                    onPressed: () => cubit.nextQuestion(context, token, patientId),
+                    textColor: state.selectedAnswer != null ? AppColors.primaryColor : AppColors.primaryColor,
+                    buttonColor: Colors.transparent,
+                    side: BorderSide(
+                      color: state.selectedAnswer != null ? AppColors.primaryColor : Colors.grey,
+                      width: 2.5.w,
+                    ),
+                    onPressed:
+                        state.selectedAnswer != null
+                            ? () => cubit.nextQuestion(context, token, patientId)
+                            : null,
                   ),
                 ],
               ),
+
             ],
           );
         } else if (state is PsqiError) {
+
           return Center(child: Text('Error: ${state.message}'));
         }
+
         return const SizedBox.shrink();
       },
     );

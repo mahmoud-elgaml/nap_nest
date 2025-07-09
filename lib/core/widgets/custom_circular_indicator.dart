@@ -9,6 +9,7 @@ class CustomCircularIndicator extends StatelessWidget {
     return Center(
       child: SizedBox(
         width: 40,
+
         height: 40,
         child: TweenAnimationBuilder<double>(
           tween: Tween(begin: 0.0, end: 1.0),

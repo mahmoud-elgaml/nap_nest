@@ -4,10 +4,9 @@ import 'package:nap_nest/core/services/shared_preferences_singleton.dart';
 import 'package:nap_nest/features/auth/cubits/auth_states.dart';
 import 'package:nap_nest/features/auth/data/service/auth_service.dart';
 class AuthCubit extends Cubit<AuthState> {
+
   final AuthService _authService;
-
   AuthCubit(this._authService) : super(AuthInitial());
-
   Future<void> registerUser({
     required String name,
     required String birthDate,
@@ -39,7 +38,6 @@ class AuthCubit extends Cubit<AuthState> {
       emit(AuthFailure(e.toString().replaceFirst('Exception: ', '')));
     }
   }
-
   Future<void> loginUser({required String email, required String password}) async {
     emit(AuthLoading());
     try {

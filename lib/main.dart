@@ -11,7 +11,6 @@ import 'package:nap_nest/features/auth/presentation/view/auth_view.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Prefs.init();
-
   runApp(
     MultiBlocProvider(
       providers: [
@@ -29,7 +28,6 @@ void main() async {
     ),
   );
 }
-
 class NapNest extends StatelessWidget {
   const NapNest({super.key});
 

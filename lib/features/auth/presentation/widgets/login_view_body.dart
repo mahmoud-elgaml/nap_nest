@@ -4,6 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nap_nest/core/utils/app_colors.dart';
 import 'package:nap_nest/core/utils/app_images.dart';
 import 'package:nap_nest/core/widgets/custom_button.dart';
+import 'package:nap_nest/core/widgets/custom_circular_indicator.dart';
+import 'package:nap_nest/core/widgets/custom_toast.dart';
 import 'package:nap_nest/features/auth/cubits/auth_cubit.dart';
 import 'package:nap_nest/features/auth/cubits/auth_states.dart';
 import 'package:nap_nest/features/auth/presentation/view/forget_password_view.dart';
@@ -32,12 +34,10 @@ class _LoginViewBodyState extends State<LoginViewBody> {
       body: BlocConsumer<AuthCubit, AuthState>(
         listener: (context, state) {
           if (state is AuthLoginSuccess) {
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Login successful')));
+                        CustomToast.show(message: 'Login successful', isError: false);
             Navigator.pushNamed(context, PsqiView.routeName);
           } else if (state is AuthFailure) {
-            ScaffoldMessenger.of(
-              context,
-            ).showSnackBar(SnackBar(content: Text(state.error), backgroundColor: Colors.red));
+            CustomToast.show(message: state.error, isError: true);
           }
         },
         builder: (context, state) {
@@ -129,9 +129,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                             ),
                             SizedBox(height: 10.h),
                             state is AuthLoading
-                                ? const CircularProgressIndicator(
-                                  
-                                )
+                                ? const CustomCircularIndicator()
                                 : CustomButton(
                                   text: 'Login',
                                   color: AppColors.primaryColor,
