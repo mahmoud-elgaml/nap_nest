@@ -33,8 +33,8 @@ class _LoginViewBodyState extends State<LoginViewBody> {
       backgroundColor: Colors.white,
       body: BlocConsumer<AuthCubit, AuthState>(
         listener: (context, state) {
-          if (state is AuthLoginSuccess) {
-                        CustomToast.show(message: 'Login successful', isError: false);
+          if (state is AuthRegisterSuccess) {
+            CustomToast.show(message: 'Login successful', isError: false);
             Navigator.pushNamed(context, PsqiView.routeName);
           } else if (state is AuthFailure) {
             CustomToast.show(message: state.error, isError: true);

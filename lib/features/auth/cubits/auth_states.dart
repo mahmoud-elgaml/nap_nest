@@ -1,5 +1,6 @@
 import 'package:nap_nest/features/auth/data/models/patient_model.dart';
 
+
 abstract class AuthState {}
 
 class AuthInitial extends AuthState {}

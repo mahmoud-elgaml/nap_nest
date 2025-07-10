@@ -82,7 +82,8 @@ class _VerifyCodeViewBodyState extends State<VerifyCodeViewBody> {
                       ),
                     ),
                     TextSpan(
-                      text: 'Yomna24@gmail.com\n',
+                      text: 'user email',
+                      // text: 'Yomna24@gmail.com\n',
                       style: TextStyle(
                         color: AppColors.darkGreyTxtColor,
                         fontSize: 16.sp,
@@ -186,49 +187,10 @@ class _VerifyCodeViewBodyState extends State<VerifyCodeViewBody> {
                 ),
               ),
             ),
-            SizedBox(height: 12.h),
-            Container(
-              width: 380,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                spacing: 12,
-                children: [
-                  SizedBox(
-                    width: 380,
-                    child: Text.rich(
-                      TextSpan(
-                        children: [
-                          TextSpan(
-                            text: 'Haven’t got the email yet? ',
-                            style: TextStyle(
-                              color: const Color(0xFF9EA8B9),
-                              fontSize: 14.sp,
-                              fontFamily: 'Roboto',
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-
-                          TextSpan(
-                            text: 'Resend email',
-                            style: TextStyle(
-                              color: AppColors.primaryColor,
-                              fontSize: 14.sp,
-                              fontFamily: 'Roboto',
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                        ],
-                      ),
-                      textAlign: TextAlign.right,
-                    ),
-                  ),
-                ],
-              ),
-            ),
           ],
         ),
       ),
     );
   }
 }
+

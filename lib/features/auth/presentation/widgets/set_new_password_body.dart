@@ -1,9 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nap_nest/core/utils/app_colors.dart';
-import 'package:nap_nest/core/widgets/success_message_view.dart';
-import 'package:nap_nest/features/auth/presentation/view/login_view.dart';
+import 'package:nap_nest/core/widgets/custom_toast.dart';
 import 'package:nap_nest/features/auth/presentation/widgets/custom_text_field.dart';
 import 'package:nap_nest/features/auth/presentation/widgets/reset_button.dart';
 
@@ -23,28 +21,12 @@ class _SetNewPasswordViewBodyState extends State<SetNewPasswordViewBody> {
   bool _obscurePassword = true;
   bool _obscureConfirmPassword = true;
   bool _passwordsMatch = false;
+  bool isLoading = false;
 
   void _togglePasswordVisibility() => setState(() => _obscurePassword = !_obscurePassword);
 
   void _toggleConfirmPasswordVisibility() =>
       setState(() => _obscureConfirmPassword = !_obscureConfirmPassword);
-
-  void _validateAndNavigate() {
-    if (_formKey.currentState!.validate()) {
-      Navigator.pushReplacement(
-        context,
-        CupertinoPageRoute(
-          builder:
-              (context) => SuccessMessage(
-                title: 'Way to go!',
-                message: 'Your password has changed successfully!',
-                textButton: 'Done',
-                onPressed: () => Navigator.pushReplacementNamed(context, LoginView.routeName),
-              ),
-        ),
-      );
-    }
-  }
 
   void _checkPasswordMatch() {
     setState(() {
@@ -52,6 +34,22 @@ class _SetNewPasswordViewBodyState extends State<SetNewPasswordViewBody> {
           _passwordController.text.isNotEmpty &&
           _passwordController.text == _confirmPasswordController.text;
     });
+  }
+
+  late String email;
+  late String code;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final args = ModalRoute.of(context)!.settings.arguments as Map?;
+    if (args != null && args['email'] != null && args['code'] != null) {
+      email = args['email'];
+      code = args['code'];
+    } else {
+      Navigator.pop(context);
+      CustomToast.show(message: 'Missing data to reset password', isError: true);
+    }
   }
 
   @override
@@ -146,7 +144,13 @@ class _SetNewPasswordViewBodyState extends State<SetNewPasswordViewBody> {
                   buttonText: 'Update Password',
                   backgroundColor: AppColors.primaryColor,
                   opacity: _passwordsMatch ? 1.0 : 0.5,
-                  onTap: _passwordsMatch ? _validateAndNavigate : null,
+                  onTap:
+                      _passwordsMatch
+                          ? () {
+                            if (_formKey.currentState!.validate()) {
+                            }
+                          }
+                          : null,
                 ),
               ],
             ),

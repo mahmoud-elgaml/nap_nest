@@ -3,9 +3,74 @@ import 'package:nap_nest/core/helpers/date_converter.dart';
 import 'package:nap_nest/core/services/shared_preferences_singleton.dart';
 import 'package:nap_nest/features/auth/cubits/auth_states.dart';
 import 'package:nap_nest/features/auth/data/service/auth_service.dart';
-class AuthCubit extends Cubit<AuthState> {
+// class AuthCubit extends Cubit<AuthState> {
 
+//   final AuthService _authService;
+//   AuthCubit(this._authService) : super(AuthInitial());
+
+//   Future<void> registerUser({
+//     required String name,
+//     required String birthDate,
+//     required String gender,
+//     required String email,
+//     required String password,
+//     required String confirmPassword,
+//   }) async {
+//     emit(AuthLoading());
+//     try {
+//       final formattedDate = DateConverter.toApiFormat(birthDate);
+//       final patient = await _authService.register(
+//         name: name,
+//         birthDate: formattedDate,
+//         gender: gender,
+//         email: email,
+//         password: password,
+//         confirmPassword: confirmPassword,
+//       );
+
+//       if (patient != null) {
+//         await Prefs.setInt('patient_id', patient.patientId);
+//         await Prefs.setBool('isRegistered', true);
+//         await Prefs.setString('name', patient.patientName);
+//         final token = await _authService.login(email: email, password: password);
+//         await Prefs.setString('token', token);
+
+//         emit(AuthRegisterSuccess(patient));
+//       } else {
+//         emit(AuthFailure('Registration failed.'));
+//       }
+//     } catch (e) {
+//       emit(AuthFailure(e.toString().replaceFirst('Exception: ', '')));
+//     }
+//   }
+//   Future<void> loginUser({
+//   required String email,
+//   required String password,
+// }) async {
+//   emit(AuthLoading());
+//   try {
+//     final response = await _authService.loginWithFullResponse(
+//       email: email,
+//       password: password,
+//     );
+
+//     final String token = response['token'];
+//     final String message = response['message'];
+//     final String name = message.replaceFirst('Welcome ', '');
+//     await Prefs.setString('token', token);
+//     await Prefs.setBool('isRegistered', true);
+//     await Prefs.setString('name', name);
+
+//     emit(AuthLoginSuccess(token));
+//   } catch (e) {
+//     emit(AuthFailure(e.toString().replaceFirst('Exception: ', '')));
+//   }
+// }
+// }
+
+class AuthCubit extends Cubit<AuthState> {
   final AuthService _authService;
+
   AuthCubit(this._authService) : super(AuthInitial());
 
   Future<void> registerUser({
@@ -43,27 +108,22 @@ class AuthCubit extends Cubit<AuthState> {
       emit(AuthFailure(e.toString().replaceFirst('Exception: ', '')));
     }
   }
-  Future<void> loginUser({
-  required String email,
-  required String password,
-}) async {
-  emit(AuthLoading());
-  try {
-    final response = await _authService.loginWithFullResponse(
-      email: email,
-      password: password,
-    );
 
-    final String token = response['token'];
-    final String message = response['message'];
-    final String name = message.replaceFirst('Welcome ', '');
-    await Prefs.setString('token', token);
-    await Prefs.setBool('isRegistered', true);
-    await Prefs.setString('name', name);
+  Future<void> loginUser({required String email, required String password}) async {
+    emit(AuthLoading());
+    try {
+      final response = await _authService.loginWithFullResponse(email: email, password: password);
 
-    emit(AuthLoginSuccess(token));
-  } catch (e) {
-    emit(AuthFailure(e.toString().replaceFirst('Exception: ', '')));
+      final String token = response['token'];
+      final String message = response['message'];
+      final String name = message.replaceFirst('Welcome ', '');
+      await Prefs.setString('token', token);
+      await Prefs.setBool('isRegistered', true);
+      await Prefs.setString('name', name);
+
+      emit(AuthLoginSuccess(token));
+    } catch (e) {
+      emit(AuthFailure(e.toString().replaceFirst('Exception: ', '')));
+    }
   }
-}
 }

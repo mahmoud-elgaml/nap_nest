@@ -6,6 +6,7 @@ class VerifyCodeView extends StatelessWidget {
   static const routeName = 'verifyCode';
   @override
   Widget build(BuildContext context) {
+    
     return const Scaffold(body: VerifyCodeViewBody());
   }
 }
