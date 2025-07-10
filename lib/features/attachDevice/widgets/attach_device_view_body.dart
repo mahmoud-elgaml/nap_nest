@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:nap_nest/core/utils/app_colors.dart';
 import 'package:nap_nest/features/attachDevice/widgets/custom_step.dart';
 import 'package:nap_nest/features/attachDevice/widgets/connect_button.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AttachDeviceViewBody extends StatelessWidget {
   const AttachDeviceViewBody({super.key});
@@ -54,7 +56,7 @@ class AttachDeviceViewBody extends StatelessWidget {
               ),
               SizedBox(height: 9.h),
               Text(
-                'Select your preferred relaxing soundtrack to listen to.',
+                'Follow these simple steps to link your band and get started.',
                 style: TextStyle(fontSize: 16.sp, color: AppColors.darkGreyTxtColor),
               ),
               SizedBox(height: 40.h),
@@ -73,8 +75,23 @@ class AttachDeviceViewBody extends StatelessWidget {
                   ),
                 ),
               ),
-              const ConnectButton(),
+              ConnectButton(
+                onPressed: () async {
+                  // final Uri url = Uri.parse('http://192.168.4.1');
 
+                  // if (await canLaunchUrl(url)) {
+                  //   await launchUrl(url);
+                  // } else {
+                  //   Fluttertoast.showToast(msg: 'Could not launch the setup page.');
+                  // }
+                  const deviceUrl = 'http://192.168.4.1';
+                  if (await canLaunchUrl(Uri.parse(deviceUrl))) {
+                    await launchUrl(Uri.parse(deviceUrl), mode: LaunchMode.externalApplication);
+                  } else {
+                    Fluttertoast.showToast(msg: 'Failed to open connection page');
+                  }
+                },
+              ),
               SizedBox(height: 68.h),
             ],
           ),
