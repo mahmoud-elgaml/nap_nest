@@ -32,67 +32,155 @@ import 'package:nap_nest/features/userInfo/gender_view_body.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:nap_nest/statistics/presentation/views/statistics_view.dart';
 
+// Route<dynamic> onGenerateRoute(RouteSettings settings) {
+//   switch (settings.name) {
+
+//     case SplashView1.routeName:
+//       return CupertinoPageRoute(builder: (context) => const SplashView1());
+
+//     case SplashView2.routeName:
+//       return CupertinoPageRoute(builder: (context) => const SplashView2());
+
+//     case OnBoardingView.routeName:
+//       return CupertinoPageRoute(builder: (context) => const OnBoardingView());
+
+//     case AuthView.routeName:
+//       return CupertinoPageRoute(builder: (context) => const AuthView());
+
+//     case RegisterView.routeName:
+//       return CupertinoPageRoute(builder: (context) => const RegisterView());
+
+//     case LoginView.routeName:
+//       return CupertinoPageRoute(builder: (context) => const LoginView());
+
+//     case ForgetPasswordView.routeName:
+//       return CupertinoPageRoute(builder: (context) => const ForgetPasswordView());
+
+//     case BirthdayViewBody.routeName:
+//       return CupertinoPageRoute(builder: (context) => BirthdayViewBody());
+
+//     case VerifyCodeView.routeName:
+//       return CupertinoPageRoute(builder: (context) => const VerifyCodeView());
+
+//     case GenderViewBody.routeName:
+//       return CupertinoPageRoute(builder: (context) => GenderViewBody());
+
+//     case PsqiView.routeName:
+//       return CupertinoPageRoute(builder: (context) => const PsqiView());
+
+// case PsqiResultView.routeName:
+//       final result = settings.arguments as Map<String, dynamic>;
+//       return CupertinoPageRoute(builder: (_) => PsqiResultView(result: result));
+
+//     case SuccessMessage.routeName:
+//       return CupertinoPageRoute(builder: (context) => const SuccessMessage());
+
+//     case SetNewPasswordViewBody.routeName:
+//       return CupertinoPageRoute(builder: (context) => const SetNewPasswordViewBody());
+
+//     case HomeView.routeName:
+//       return CupertinoPageRoute(builder: (context) => const HomeView());
+
+//     case SoundTrackView.routeName:
+//       return CupertinoPageRoute(builder: (context) => const SoundTrackView());
+
+//     case AttachDeviceView.routeName:
+//       return CupertinoPageRoute(builder: (context) => const AttachDeviceView());
+
+//     case BreathingView.routeName:
+//       return CupertinoPageRoute(builder: (context) => const BreathingView());
+
+//     case StatisticsView.routeName:
+//       return CupertinoPageRoute(builder: (context) => const StatisticsView());
+
+//     case BreathingDetailsView.routeName:
+//       final args = settings.arguments as Map<String, String>;
+//       return CupertinoPageRoute(
+//         builder:
+//             (context) => BreathingDetailsViewBody(
+//               title: args['title'] ?? '',
+//               description: args['description'] ?? '',
+//               duration: args['duration'] ?? '',
+//             ),
+//       );
+
+//     case ArticleView.routeName:
+//       return CupertinoPageRoute(builder: (context) => const ArticleView());
+
+//     case LibraryView.routeName:
+//       return CupertinoPageRoute(builder: (context) => const LibraryView());
+
+//     case ArticlesViewBody.routeName:
+//       return CupertinoPageRoute(builder: (context) => const ArticlesViewBody());
+
+//     case BreathingTimerView.routeName:
+//       return CupertinoPageRoute(builder: (context) => BreathingTimerView());
+
+//     case ProfileView.routeName:
+//       return CupertinoPageRoute(builder: (context) => ProfileView());
+
+//     case EditProfileView.routeName:
+//       return CupertinoPageRoute(builder: (context) => EditProfileView());
+
+//     case MyPlanView.routeName:
+//       return CupertinoPageRoute(builder: (context) => MyPlanView());
+
+//     case AnalyzeThoghtsView.routeName:
+//       return CupertinoPageRoute(builder: (context) => AnalyzeThoghtsView());
+
+//     case NestTimeView.routeName:
+//       return CupertinoPageRoute(builder: (context) => NestTimeView());
+
+//     case AlarmView.routeName:
+//       return CupertinoPageRoute(builder: (context) => AlarmView());
+
+//     default:
+//       return CupertinoPageRoute(builder: (context) => const Scaffold());
+//   }
+// }
+
+
 Route<dynamic> onGenerateRoute(RouteSettings settings) {
   switch (settings.name) {
-
     case SplashView1.routeName:
       return CupertinoPageRoute(builder: (context) => const SplashView1());
-
     case SplashView2.routeName:
       return CupertinoPageRoute(builder: (context) => const SplashView2());
-
     case OnBoardingView.routeName:
       return CupertinoPageRoute(builder: (context) => const OnBoardingView());
-
     case AuthView.routeName:
       return CupertinoPageRoute(builder: (context) => const AuthView());
-
     case RegisterView.routeName:
       return CupertinoPageRoute(builder: (context) => const RegisterView());
-
     case LoginView.routeName:
       return CupertinoPageRoute(builder: (context) => const LoginView());
-
     case ForgetPasswordView.routeName:
       return CupertinoPageRoute(builder: (context) => const ForgetPasswordView());
-
     case BirthdayViewBody.routeName:
       return CupertinoPageRoute(builder: (context) => BirthdayViewBody());
-
     case VerifyCodeView.routeName:
       return CupertinoPageRoute(builder: (context) => const VerifyCodeView());
-
     case GenderViewBody.routeName:
       return CupertinoPageRoute(builder: (context) => GenderViewBody());
-
     case PsqiView.routeName:
       return CupertinoPageRoute(builder: (context) => const PsqiView());
-
-case PsqiResultView.routeName:
+    case PsqiResultView.routeName:
       final result = settings.arguments as Map<String, dynamic>;
       return CupertinoPageRoute(builder: (_) => PsqiResultView(result: result));
-
     case SuccessMessage.routeName:
       return CupertinoPageRoute(builder: (context) => const SuccessMessage());
-
     case SetNewPasswordViewBody.routeName:
       return CupertinoPageRoute(builder: (context) => const SetNewPasswordViewBody());
-
     case HomeView.routeName:
       return CupertinoPageRoute(builder: (context) => const HomeView());
-
     case SoundTrackView.routeName:
       return CupertinoPageRoute(builder: (context) => const SoundTrackView());
-
     case AttachDeviceView.routeName:
       return CupertinoPageRoute(builder: (context) => const AttachDeviceView());
-
     case BreathingView.routeName:
       return CupertinoPageRoute(builder: (context) => const BreathingView());
-
     case StatisticsView.routeName:
       return CupertinoPageRoute(builder: (context) => const StatisticsView());
-
     case BreathingDetailsView.routeName:
       final args = settings.arguments as Map<String, String>;
       return CupertinoPageRoute(
@@ -103,37 +191,26 @@ case PsqiResultView.routeName:
               duration: args['duration'] ?? '',
             ),
       );
-
     case ArticleView.routeName:
       return CupertinoPageRoute(builder: (context) => const ArticleView());
-
     case LibraryView.routeName:
       return CupertinoPageRoute(builder: (context) => const LibraryView());
-
     case ArticlesViewBody.routeName:
       return CupertinoPageRoute(builder: (context) => const ArticlesViewBody());
-
     case BreathingTimerView.routeName:
       return CupertinoPageRoute(builder: (context) => BreathingTimerView());
-
     case ProfileView.routeName:
       return CupertinoPageRoute(builder: (context) => ProfileView());
-
     case EditProfileView.routeName:
       return CupertinoPageRoute(builder: (context) => EditProfileView());
-
     case MyPlanView.routeName:
       return CupertinoPageRoute(builder: (context) => MyPlanView());
-
     case AnalyzeThoghtsView.routeName:
       return CupertinoPageRoute(builder: (context) => AnalyzeThoghtsView());
-
     case NestTimeView.routeName:
       return CupertinoPageRoute(builder: (context) => NestTimeView());
-
     case AlarmView.routeName:
       return CupertinoPageRoute(builder: (context) => AlarmView());
-
     default:
       return CupertinoPageRoute(builder: (context) => const Scaffold());
   }

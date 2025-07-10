@@ -16,18 +16,28 @@ class PsqiViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<PsqiCubit>();
-    final token = Prefs.getString('token')!;
-    final patientId = Prefs.getInt('patient_id')!;
+    final token = Prefs.getString('token');
+    final patientId = Prefs.getInt('patient_id');
+
+    if (token == null || patientId == null) {
+      return const Center(child: Text('⚠️ Missing token or patient ID'));
+    }
+
+    // final token = Prefs.getString('token');
+    // final patientId = Prefs.getInt('patient_id');
+    // if (token == null || patientId == null) {
+    //   return const Center(
+    //     child: Text('⚠️ Missing token or patient ID', style: TextStyle(color: Colors.red)),
+    //   );
+    // }
 
     return BlocBuilder<PsqiCubit, PsqiState>(
       builder: (context, state) {
         if (state is PsqiInitial) {
           cubit.fetchQuestions(token);
-          return Center(child: CustomAppLoading());
-        } else if (state is PsqiLoading) {
-          return Center(child: CustomAppLoading());
-        } else if (state is PsqiSubmitting) {
-          return Center(child: CustomAppLoading()); // ✅ أثناء إرسال الإجابات
+          return const Center(child: CustomAppLoading());
+        } else if (state is PsqiLoading || state is PsqiSubmitting) {
+          return const Center(child: CustomAppLoading());
         } else if (state is PsqiLoaded) {
           final q = state.question;
 

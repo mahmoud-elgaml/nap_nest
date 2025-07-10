@@ -1,5 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:nap_nest/core/services/shared_preferences_singleton.dart';
 import 'package:nap_nest/core/utils/app_colors.dart';
 import 'package:nap_nest/features/home/presentation/view/home_view.dart';
 
@@ -111,7 +112,8 @@ class PsqiResultViewBody extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () {
+                  onPressed: () async {
+                    await Prefs.setBool('isRegistered', true);
                     Navigator.pushNamedAndRemoveUntil(
                       context,
                       HomeView.routeName,

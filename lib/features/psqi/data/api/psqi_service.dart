@@ -32,7 +32,6 @@ class PsqiService {
           validateStatus: (status) => status != null && status < 400,
         ),
       );
-
       if (response.statusCode == 200 || response.statusCode == 201) {
         return response.data;
       } else {
@@ -43,4 +42,3 @@ class PsqiService {
     }
   }
 }
-

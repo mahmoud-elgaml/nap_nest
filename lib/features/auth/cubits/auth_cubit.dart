@@ -7,6 +7,7 @@ class AuthCubit extends Cubit<AuthState> {
 
   final AuthService _authService;
   AuthCubit(this._authService) : super(AuthInitial());
+
   Future<void> registerUser({
     required String name,
     required String birthDate,
@@ -30,6 +31,10 @@ class AuthCubit extends Cubit<AuthState> {
       if (patient != null) {
         await Prefs.setInt('patient_id', patient.patientId);
         await Prefs.setBool('isRegistered', true);
+        await Prefs.setString('name', patient.patientName);
+        final token = await _authService.login(email: email, password: password);
+        await Prefs.setString('token', token);
+
         emit(AuthRegisterSuccess(patient));
       } else {
         emit(AuthFailure('Registration failed.'));
@@ -38,15 +43,45 @@ class AuthCubit extends Cubit<AuthState> {
       emit(AuthFailure(e.toString().replaceFirst('Exception: ', '')));
     }
   }
-  Future<void> loginUser({required String email, required String password}) async {
-    emit(AuthLoading());
-    try {
-      final token = await _authService.login(email: email, password: password);
-      await Prefs.setString('token', token);
-      await Prefs.setBool('isRegistered', true);
-      emit(AuthLoginSuccess(token));
-    } catch (e) {
-      emit(AuthFailure(e.toString().replaceFirst('Exception: ', '')));
-    }
+
+  // Future<void> loginUser({
+  //   required String email,
+  //   required String password,
+  // }) async {
+  //   emit(AuthLoading());
+  //   try {
+  //     final token = await _authService.login(email: email, password: password);
+  //     await Prefs.setString('token', token);
+  //     await Prefs.setBool('isRegistered', true);
+  //     final String name = message.replaceFirst('Welcome ', '');
+  //     await Prefs.setString('name', name); 
+  //     emit(AuthLoginSuccess(token));
+  //   } catch (e) {
+  //     emit(AuthFailure(e.toString().replaceFirst('Exception: ', '')));
+  //   }
+  // }
+
+  Future<void> loginUser({
+  required String email,
+  required String password,
+}) async {
+  emit(AuthLoading());
+  try {
+    final response = await _authService.loginWithFullResponse(
+      email: email,
+      password: password,
+    );
+
+    final String token = response['token'];
+    final String message = response['message'];
+    final String name = message.replaceFirst('Welcome ', '');
+    await Prefs.setString('token', token);
+    await Prefs.setBool('isRegistered', true);
+    await Prefs.setString('name', name);
+
+    emit(AuthLoginSuccess(token));
+  } catch (e) {
+    emit(AuthFailure(e.toString().replaceFirst('Exception: ', '')));
   }
+}
 }
