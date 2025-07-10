@@ -75,12 +75,9 @@ import 'package:nap_nest/features/onboarding/presentation/views/on_boarding_view
 //     );
 //   }
 // }
-
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Prefs.init();
-
   runApp(
     MultiBlocProvider(
       providers: [BlocProvider(create: (_) => AuthCubit(AuthService()))],
@@ -96,13 +93,11 @@ class NapNest extends StatelessWidget {
   Widget build(BuildContext context) {
     final bool isOnBoardingSeen = Prefs.getBool('isOnBoardingSeen');
     final bool isRegistered = Prefs.getBool('isRegistered');
-    final String? token = Prefs.getString('token');
-    final int? patientId = Prefs.getInt('patient_id');
 
     String initialRoute;
     if (!isOnBoardingSeen) {
       initialRoute = OnBoardingView.routeName;
-    } else if (!isRegistered || token == null || patientId == null) {
+    } else if (!isRegistered) {
       initialRoute = AuthView.routeName;
     } else {
       initialRoute = HomeView.routeName;
@@ -112,37 +107,37 @@ class NapNest extends StatelessWidget {
       designSize: const Size(428, 926),
       minTextAdapt: true,
       splitScreenMode: true,
-      builder: (context, child) {
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          theme: ThemeData(
-            fontFamily: 'Roboto',
-            scaffoldBackgroundColor: Colors.white,
-            splashColor: const Color.fromARGB(255, 164, 209, 248),
-            splashFactory: InkRipple.splashFactory,
-            primaryColor: AppColors.primaryColor,
-            useMaterial3: true,
-            brightness: Brightness.light,
-            bottomNavigationBarTheme: BottomNavigationBarThemeData(
-              backgroundColor: Colors.white,
-              selectedItemColor: AppColors.primaryColor,
-              unselectedItemColor: AppColors.darkGreyTxtColor,
-              selectedIconTheme: IconThemeData(color: AppColors.primaryColor),
-              unselectedIconTheme: IconThemeData(color: AppColors.darkGreyTxtColor),
-              selectedLabelStyle: TextStyle(color: AppColors.primaryColor),
-              type: BottomNavigationBarType.shifting,
-            ),
-            elevatedButtonTheme: ElevatedButtonThemeData(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.primaryColor,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(28.r)),
+      builder:
+          (context, child) => MaterialApp(
+            debugShowCheckedModeBanner: false,
+            themeMode: ThemeMode.system, 
+            theme: ThemeData(
+              fontFamily: 'Roboto',
+              scaffoldBackgroundColor: Colors.white,
+              splashColor: const Color.fromARGB(255, 164, 209, 248),
+              splashFactory: InkRipple.splashFactory,
+              primaryColor: AppColors.primaryColor,
+              useMaterial3: true,
+              brightness: Brightness.light,
+              bottomNavigationBarTheme: BottomNavigationBarThemeData(
+                backgroundColor: Colors.white,
+                selectedItemColor: AppColors.primaryColor,
+                unselectedItemColor: AppColors.darkGreyTxtColor,
+                selectedIconTheme: IconThemeData(color: AppColors.primaryColor),
+                unselectedIconTheme: IconThemeData(color: AppColors.darkGreyTxtColor),
+                selectedLabelStyle: TextStyle(color: AppColors.primaryColor),
+                type: BottomNavigationBarType.shifting,
+              ),
+              elevatedButtonTheme: ElevatedButtonThemeData(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.primaryColor,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(28.r)),
+                ),
               ),
             ),
+            onGenerateRoute: onGenerateRoute, 
+            initialRoute: initialRoute,
           ),
-          initialRoute: initialRoute,
-          onGenerateRoute: onGenerateRoute,
-        );
-      },
     );
   }
 }
