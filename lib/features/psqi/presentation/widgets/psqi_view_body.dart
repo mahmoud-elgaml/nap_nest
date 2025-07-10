@@ -22,15 +22,6 @@ class PsqiViewBody extends StatelessWidget {
     if (token == null || patientId == null) {
       return const Center(child: Text('⚠️ Missing token or patient ID'));
     }
-
-    // final token = Prefs.getString('token');
-    // final patientId = Prefs.getInt('patient_id');
-    // if (token == null || patientId == null) {
-    //   return const Center(
-    //     child: Text('⚠️ Missing token or patient ID', style: TextStyle(color: Colors.red)),
-    //   );
-    // }
-
     return BlocBuilder<PsqiCubit, PsqiState>(
       builder: (context, state) {
         if (state is PsqiInitial) {
@@ -101,7 +92,10 @@ class PsqiViewBody extends StatelessWidget {
                   ),
                   NavigatorButton(
                     text: 'Next',
-                    textColor: state.selectedAnswer != null ? AppColors.primaryColor : AppColors.primaryColor,
+                    textColor:
+                        state.selectedAnswer != null
+                            ? AppColors.primaryColor
+                            : AppColors.primaryColor,
                     buttonColor: Colors.transparent,
                     side: BorderSide(
                       color: state.selectedAnswer != null ? AppColors.primaryColor : Colors.grey,
@@ -114,11 +108,9 @@ class PsqiViewBody extends StatelessWidget {
                   ),
                 ],
               ),
-
             ],
           );
         } else if (state is PsqiError) {
-
           return Center(child: Text('Error: ${state.message}'));
         }
 

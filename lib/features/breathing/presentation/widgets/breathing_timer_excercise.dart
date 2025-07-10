@@ -160,16 +160,6 @@ class _BreathingTimerViewState extends State<BreathingTimerView>
               child: Icon(Icons.close, color: Colors.white, size: 30.sp),
             ),
           ),
-            // body: Stack(
-            //   children: [
-            //     Positioned(
-            //       right: 16.w,
-            //       top: 40.h,
-            //       child: GestureDetector(
-            //         onTap: () => Navigator.pop(context),
-            //         child: Icon(Icons.close, color: Colors.white, size: 30.sp),
-            //       ),
-            //     ),
                 Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -239,8 +229,6 @@ class _BreathingTimerViewState extends State<BreathingTimerView>
     );
   }
 }
-
-// Painter for Dashed Circle with markers
 class DashedCirclePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {

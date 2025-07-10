@@ -12,7 +12,7 @@ import 'package:nap_nest/features/soundtrack/presentation/widgets/sound_track_he
 import 'package:nap_nest/features/soundtrack/presentation/widgets/sound_track_item.dart';
 
 class HomeViewBody extends StatelessWidget {
-const   HomeViewBody({super.key});
+  const HomeViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ const   HomeViewBody({super.key});
             sliverSizedBox(6),
             SoundTrackItem(),
             sliverSizedBox(16),
-            AirflowHeader(),
+            BreathingNest(),
             sliverSizedBox(6),
             BreathingCardItem(),
             sliverSizedBox(16),

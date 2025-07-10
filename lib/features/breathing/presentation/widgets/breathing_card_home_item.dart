@@ -42,18 +42,7 @@ class BreathingCardItem extends StatelessWidget {
             return BreathingItem(
               breathingModel: breathing[index],
               onTap: () {
-                // Navigator.push(
-                //   context,
-                //   CupertinoPageRoute(
-                //     builder:
-                //         (_) => BreathingDetailsViewBody(
-                //           title:breathingModel.title,
-                //            description: breathingModel.path,
-                //            duration: breathingModel.duration,
-                //       //
-                //         ),
-                //   ),
-                // );
+           
                 Navigator.pushNamed(context, BreathingDetailsView.routeName);
               },
             );

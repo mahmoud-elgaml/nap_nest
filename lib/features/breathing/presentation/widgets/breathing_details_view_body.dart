@@ -49,7 +49,7 @@ class BreathingDetailsViewBody extends StatelessWidget {
                       ),
                       SizedBox(width: 4.w),
                       Text(
-                        'Breathing',
+                        'Breathing Nest',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 18.sp,

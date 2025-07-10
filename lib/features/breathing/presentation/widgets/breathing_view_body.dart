@@ -20,7 +20,7 @@ import 'package:nap_nest/features/breathing/presentation/widgets/breathing_card.
             children: [
               CustomAppbar(
                 popText: 'Home',
-                title: 'Airflow',
+                title: 'Breathing Nest',
                 subtitle: 'Select your preferred relaxing breathe exercise to do.',
               ),
               SizedBox(height: 16.h),

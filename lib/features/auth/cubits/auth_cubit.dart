@@ -43,24 +43,6 @@ class AuthCubit extends Cubit<AuthState> {
       emit(AuthFailure(e.toString().replaceFirst('Exception: ', '')));
     }
   }
-
-  // Future<void> loginUser({
-  //   required String email,
-  //   required String password,
-  // }) async {
-  //   emit(AuthLoading());
-  //   try {
-  //     final token = await _authService.login(email: email, password: password);
-  //     await Prefs.setString('token', token);
-  //     await Prefs.setBool('isRegistered', true);
-  //     final String name = message.replaceFirst('Welcome ', '');
-  //     await Prefs.setString('name', name); 
-  //     emit(AuthLoginSuccess(token));
-  //   } catch (e) {
-  //     emit(AuthFailure(e.toString().replaceFirst('Exception: ', '')));
-  //   }
-  // }
-
   Future<void> loginUser({
   required String email,
   required String password,
