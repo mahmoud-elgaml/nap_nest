@@ -4,7 +4,7 @@ import 'package:nap_nest/features/psqi/data/model/question_model.dart';
 class PsqiService {
   final Dio _dio = Dio(
     BaseOptions(
-      baseUrl: 'https://test1-laravel-api-hraag6degva5f6cn.ukwest-01.azurewebsites.net/api/',
+      baseUrl: 'https://laravel-api-ageaa7exbtgqauh2.ukwest-01.azurewebsites.net/api/',
     ),
   );
   

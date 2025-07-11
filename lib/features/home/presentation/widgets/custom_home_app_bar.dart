@@ -24,19 +24,7 @@ class CustomHomeAppBar extends StatelessWidget {
               //
             ),
           ),
-  // Text(
-    //   'Have a nice day 😊✨',
-    //   style: TextStyle(
-    //     color: AppColors.orangeColor,
-    //     fontSize: 20.sp,
-    //     fontFamily: 'Roboto',
-    //     fontWeight: FontWeight.w700,
-    //   ),
-    // )
-    //     .animate(onPlay: (controller) => controller.repeat())
-    //     .shimmer(duration: 2500.ms)
-    //     .scaleXY(begin: 0.95, end: 1.05, duration: 1500.ms, curve: Curves.easeInOut)
-    //     .fadeIn(duration: 1000.ms),
+
      Text(
       'Have a nice day 😊✨',
       style: TextStyle(
@@ -46,7 +34,7 @@ class CustomHomeAppBar extends StatelessWidget {
         fontFamily: 'Roboto',
         shadows: [
           Shadow(
-            color: AppColors.orangeColor.withOpacity(0.5),
+            color: AppColors.orangeColor.withOpacity(0.2),
             blurRadius: 12,
             offset: const Offset(0, 0),
           ),
@@ -57,7 +45,7 @@ class CustomHomeAppBar extends StatelessWidget {
         .animate(onPlay: (controller) => controller.repeat())
         .fadeIn(duration: 800.ms, curve: Curves.easeOut)
         .scaleXY(begin: 0.96, end: 1.04, duration: 1400.ms, curve: Curves.easeInOut)
-        .shimmer(duration: 2200.ms, color: Colors.amberAccent)
+        .shimmer(duration: 2200.ms, color: AppColors.orangeColor)
         .moveY(begin: 4, end: -4, duration: 1800.ms, curve: Curves.easeInOut),
           SizedBox(height: 30.h),
         ],

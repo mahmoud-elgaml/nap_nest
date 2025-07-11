@@ -6,9 +6,6 @@ class LibraryView extends StatelessWidget {
   static const routeName = 'libraryView';
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: LibraryViewBody(),
-      //
-    );
+    return Scaffold(body: LibraryViewBody());
   }
 }

@@ -57,7 +57,7 @@ class _AnalyzeThoughtsViewBodyState extends State<AnalyzeThoughtsViewBody> {
                 SizedBox(
                   width: 370.w,
                   child: Text(
-                    'Night Notions',
+                    'Nest Notions',
                     style: TextStyle(
                       fontSize: 24.sp,
                       fontFamily: 'Roboto',

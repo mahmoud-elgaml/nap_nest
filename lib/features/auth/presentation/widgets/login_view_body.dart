@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nap_nest/core/services/shared_preferences_singleton.dart';
 import 'package:nap_nest/core/utils/app_colors.dart';
 import 'package:nap_nest/core/utils/app_images.dart';
 import 'package:nap_nest/core/widgets/custom_button.dart';
@@ -34,7 +35,11 @@ class _LoginViewBodyState extends State<LoginViewBody> {
       body: BlocConsumer<AuthCubit, AuthState>(
         listener: (context, state) {
           if (state is AuthRegisterSuccess) {
-            CustomToast.show(message: 'Login successful', isError: false);
+            CustomToast.show(message: 'Welcome ${state.user.patientName}', isError: false);
+            Navigator.pushNamed(context, PsqiView.routeName);
+          } else if (state is AuthLoginSuccess) {
+            final name = Prefs.getString('name') ?? 'User';
+            CustomToast.show(message: 'Welcome $name', isError: false);
             Navigator.pushNamed(context, PsqiView.routeName);
           } else if (state is AuthFailure) {
             CustomToast.show(message: state.error, isError: true);

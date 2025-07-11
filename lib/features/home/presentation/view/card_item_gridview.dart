@@ -29,7 +29,7 @@ class CategoriesCardGridView extends StatelessWidget {
           },
         ),
         CategoriesHomeItemCard(
-          title: 'Library',
+          title: 'Nest Notes',
           backgroundAsset: Assets.imagesBlue,
           iconAsset: Assets.imagesBook,
           onPressed: () {

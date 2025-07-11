@@ -77,13 +77,6 @@ class AttachDeviceViewBody extends StatelessWidget {
               ),
               ConnectButton(
                 onPressed: () async {
-                  // final Uri url = Uri.parse('http://192.168.4.1');
-
-                  // if (await canLaunchUrl(url)) {
-                  //   await launchUrl(url);
-                  // } else {
-                  //   Fluttertoast.showToast(msg: 'Could not launch the setup page.');
-                  // }
                   const deviceUrl = 'http://192.168.4.1';
                   if (await canLaunchUrl(Uri.parse(deviceUrl))) {
                     await launchUrl(Uri.parse(deviceUrl), mode: LaunchMode.externalApplication);

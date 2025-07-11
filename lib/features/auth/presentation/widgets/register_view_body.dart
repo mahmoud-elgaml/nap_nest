@@ -47,15 +47,6 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
           CustomToast.show(message: state.error, isError: true);
         }
       },
-      //  return BlocListener<AuthCubit, AuthState>(
-      //   listener: (context, state) {
-      //     if (state is AuthRegisterSuccess) {
-      //       CustomToast.show(message: 'Welcome ${state.user.patientName}', isError: false);
-      //       Navigator.pushNamed(context, PsqiView.routeName);
-      //     } else if (state is AuthFailure) {
-      //       CustomToast.show(message: state.error, isError: true);
-      //     }
-      //   },
       child: Column(
         children: [
           Container(

@@ -13,6 +13,7 @@ import 'package:nap_nest/features/breathing/presentation/view/breathing_view.dar
 import 'package:nap_nest/features/breathing/presentation/widgets/breathing_details_view_body.dart';
 import 'package:nap_nest/features/breathing/presentation/widgets/breathing_timer_excercise.dart';
 import 'package:nap_nest/features/home/presentation/view/home_view.dart';
+import 'package:nap_nest/features/library/data/model/article_model.dart';
 import 'package:nap_nest/features/library/presentation/views/article_view.dart';
 import 'package:nap_nest/features/library/presentation/views/library_view.dart';
 import 'package:nap_nest/features/library/presentation/widgets/articles_view_body.dart';
@@ -82,8 +83,13 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
           duration: args['duration'] ?? '',
         ),
       );
-    case ArticleView.routeName:
-      return CustomIOSPageRoute(page: const ArticleView());
+    // case ArticleView.routeName:
+    //   return CustomIOSPageRoute(page: const ArticleView());
+  case ArticleView.routeName:
+  final article = settings.arguments as ArticleModel;
+  return CustomIOSPageRoute(page: ArticleView(article: article));
+
+
     case LibraryView.routeName:
       return CustomIOSPageRoute(page: const LibraryView());
     case ArticlesViewBody.routeName:
