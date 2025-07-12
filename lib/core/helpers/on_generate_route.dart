@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nap_nest/core/helpers/custom_transition.dart';
 import 'package:nap_nest/core/widgets/success_message_view.dart';
 import 'package:nap_nest/features/attachDevice/presentation/view/attach_device_view.dart';
+import 'package:nap_nest/features/auth/data/models/patient_profile_model.dart';
 import 'package:nap_nest/features/auth/presentation/view/auth_view.dart';
 import 'package:nap_nest/features/auth/presentation/view/forget_password_view.dart';
 import 'package:nap_nest/features/auth/presentation/view/login_view.dart';
@@ -19,6 +20,7 @@ import 'package:nap_nest/features/library/presentation/views/library_view.dart';
 import 'package:nap_nest/features/library/presentation/widgets/articles_view_body.dart';
 import 'package:nap_nest/features/myPlan/presentation/views/analyze_thoghts_view.dart';
 import 'package:nap_nest/features/myPlan/presentation/views/my_plan_view.dart';
+import 'package:nap_nest/features/myPlan/presentation/widgets/challenge_negative_body.dart';
 import 'package:nap_nest/features/nestTime/presentation/views/nest_time_view.dart';
 import 'package:nap_nest/features/nestTime/presentation/widgets/alarm_setting_view.dart';
 import 'package:nap_nest/features/onboarding/presentation/views/on_boarding_view.dart';
@@ -83,12 +85,9 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
           duration: args['duration'] ?? '',
         ),
       );
-    // case ArticleView.routeName:
-    //   return CustomIOSPageRoute(page: const ArticleView());
-  case ArticleView.routeName:
-  final article = settings.arguments as ArticleModel;
-  return CustomIOSPageRoute(page: ArticleView(article: article));
-
+    case ArticleView.routeName:
+      final article = settings.arguments as ArticleModel;
+      return CustomIOSPageRoute(page: ArticleView(article: article));
 
     case LibraryView.routeName:
       return CustomIOSPageRoute(page: const LibraryView());
@@ -98,12 +97,18 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
       return CustomIOSPageRoute(page: BreathingTimerView());
     case ProfileView.routeName:
       return CustomIOSPageRoute(page: ProfileView());
+
     case EditProfileView.routeName:
-      return CustomIOSPageRoute(page: EditProfileView());
+      final user = settings.arguments as UserProfileModel;
+      return CustomIOSPageRoute(page: EditProfileView(user: user));
+
     case MyPlanView.routeName:
       return CustomIOSPageRoute(page: MyPlanView());
     case AnalyzeThoghtsView.routeName:
       return CustomIOSPageRoute(page: AnalyzeThoghtsView());
+
+    case NegativeThoughtsView.routeName:
+      return CustomIOSPageRoute(page: NegativeThoughtsView());
     case NestTimeView.routeName:
       return CustomIOSPageRoute(page: NestTimeView());
     case AlarmView.routeName:

@@ -90,6 +90,10 @@ class Assets {
   /// assets/images/moon.svg
   static const String imagesMoon = "assets/images/moon.svg";
 
+  /// Assets for imagesNegativeThoughts
+  /// assets/images/negative_thoughts.svg
+  static const String imagesNegativeThoughts = "assets/images/negative_thoughts.svg";
+
   /// Assets for imagesOnboarding1
   /// assets/images/onboarding1.svg
   static const String imagesOnboarding1 = "assets/images/onboarding1.svg";

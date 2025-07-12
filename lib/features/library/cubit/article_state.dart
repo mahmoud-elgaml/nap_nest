@@ -7,10 +7,17 @@ class ArticlesInitial extends ArticlesState {}
 
 class ArticlesLoading extends ArticlesState {}
 
+// class ArticlesLoaded extends ArticlesState {
+//   final List<ArticleModel> articles;
+//   ArticlesLoaded(this.articles);
+// }
 class ArticlesLoaded extends ArticlesState {
   final List<ArticleModel> articles;
-  ArticlesLoaded(this.articles);
+  final String tagLine;
+  ArticlesLoaded(this.articles, {this.tagLine = ''});
 }
+
+
 
 class ArticlesError extends ArticlesState {
   final String message;

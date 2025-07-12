@@ -46,19 +46,7 @@ class LibraryHomeItem extends StatelessWidget {
             final sound = sounds[index];
             return LibItem(
               libModel: sound,
-              // onTap: () {
-              //   Navigator.push(
-              //     context,
-              //     CupertinoPageRoute(
-              //       builder:
-              //           (_) => SongDetailsScreen(
-              //             title: sound.title,
-              //             audio: sound.path,
-              //             backgroundImage: sound.imagePath,
-              //           ),
-              //     ),
-              //   );
-              // },
+         
             );
           },
         ),

@@ -5,6 +5,7 @@ import 'package:nap_nest/core/utils/app_colors.dart';
 import 'package:nap_nest/core/utils/app_images.dart';
 import 'package:nap_nest/features/breathing/presentation/view/breathing_view.dart';
 import 'package:nap_nest/features/myPlan/presentation/views/analyze_thoghts_view.dart';
+import 'package:nap_nest/features/myPlan/presentation/widgets/challenge_negative_body.dart';
 import 'package:nap_nest/features/soundtrack/presentation/view/sound_track_view.dart';
 
 class MyPlanViewBody extends StatelessWidget {
@@ -50,7 +51,7 @@ class MyPlanViewBody extends StatelessWidget {
                 child: Column(
                   children: [
                     StepCard(
-                      title: 'Nest Notions',
+                      title: 'Night Notions',
                       duration: '2 min',
                       icon: Icons.psychology_outlined,
                       iconColor: Color(0xFFC1A5E4),
@@ -64,11 +65,12 @@ class MyPlanViewBody extends StatelessWidget {
                       icon: Icons.menu_book_outlined,
                       iconColor: Color(0xFFE7A786),
                       bgColor: Color(0x4CE7A786),
-                      
+                      onTap: () => Navigator.pushNamed(context, NegativeThoughtsView.routeName),
+
                     ),
                     SizedBox(height: 16.h),
                     StepCard(
-                      title: 'Airflow',
+                      title: 'Breathing Nest',
                       duration: '2 min',
                       icon: Icons.air_outlined,
                       iconColor: Color(0xFF74B2E7),

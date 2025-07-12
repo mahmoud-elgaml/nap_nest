@@ -44,6 +44,7 @@ class LibraryGrid extends StatelessWidget {
         return LibraryCard(
           title: section.section,
           imagePath: getImageForSection(section.section),
+
           onTap: () {
             Navigator.pushNamed(context, ArticlesViewBody.routeName, arguments: section.slug);
           },

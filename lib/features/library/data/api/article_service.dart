@@ -15,7 +15,6 @@ class ArticleService {
     }
   }
 
-
   Future<List<ArticleModel>> fetchArticlesBySectionSlug(String slug) async {
     final response = await _dio.get('home/nest-notes/section/$slug');
 
@@ -27,4 +26,7 @@ class ArticleService {
     }
   }
 
+  Future<Response> getArticlesBySlug(String slug) async {
+    return await _dio.get('home/nest-notes/section/$slug');
+  }
 }

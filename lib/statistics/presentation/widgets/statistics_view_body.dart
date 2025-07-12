@@ -27,7 +27,7 @@ class StatisticsViewBody extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
 
               children: [
-                Text('Statistics', style: TextStyle(fontSize: 32.sp, fontWeight: FontWeight.w700)),
+                Text('Night Graphs', style: TextStyle(fontSize: 32.sp, fontWeight: FontWeight.w700)),
                 SizedBox(height: 6.h),
                 Text(
                   'Track your weekly sleep performance, discover insights, and improve your rest quality',
@@ -153,7 +153,7 @@ class SleepChart extends StatelessWidget {
           minX: 0,
           maxX: 6,
           minY: 0,
-          maxY: 10,
+          maxY: 100,
           gridData: const FlGridData(show: false),
           borderData: FlBorderData(show: true, border: Border.all(color: Colors.grey.shade300)),
           titlesData: FlTitlesData(
@@ -177,7 +177,7 @@ class SleepChart extends StatelessWidget {
                 interval: 2,
                 getTitlesWidget:
                     (value, _) => Text(
-                      '${value.toInt()}h',
+                      '${value.toInt()}',
                       style: TextStyle(
                         fontSize: 16.sp,
                         fontWeight: FontWeight.w500, color: AppColors.darkGreyTxtColor),

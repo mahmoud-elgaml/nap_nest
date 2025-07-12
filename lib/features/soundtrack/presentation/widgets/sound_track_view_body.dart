@@ -11,19 +11,19 @@ class SoundTrackViewBody extends StatelessWidget {
 
   final List<HomeItemsModel> sounds = [
     HomeItemsModel(
-      title: 'Basic Mindfulness',
+      title: 'Ocean Waves',
       path: 'song1.mp3',
       imagePath: Assets.imagesSound3,
       duration: '8:24',
     ),
     HomeItemsModel(
-      title: 'Basic Mindfulness',
+      title: 'Thunderstorms',
       path: 'song2.mp3',
       imagePath: Assets.imagesSound2,
       duration: '8:24',
     ),
     HomeItemsModel(
-      title: 'Basic Mindfulness',
+      title: 'Fireplace Crackling',
       path: 'song3.mp3',
       imagePath: Assets.imagesSound4,
       duration: '8:24',
